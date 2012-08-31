@@ -43,6 +43,7 @@ class DebianPlymouthManager:
         self.tvResolution = self.builder.get_object("tvResolution")
         self.btnInstallTheme = self.builder.get_object("btnInstallTheme")
         self.btnRemoveTheme = self.builder.get_object("btnRemoveTheme")
+        self.btnPreviewTheme = self.builder.get_object("btnPreviewTheme")
         self.btnSetTheme = self.builder.get_object("btnSetTheme")
         self.lblSelectedSettings = self.builder.get_object("lblSelectedSettings")
         self.lblCurrentSettings = self.builder.get_object("lblCurrentSettings")
@@ -78,6 +79,7 @@ class DebianPlymouthManager:
         signals = {
             "on_btnInstallTheme_clicked" : self.installTheme,
             "on_btnRemoveTheme_clicked" : self.removeTheme,
+            "on_btnPreviewTheme_clicked" : self.previewTheme,
             "on_btnSetTheme_clicked" : self.setTheme,
             "on_tvInstalled_cursor_changed" : self.changeTheme,
             "on_tvResolution_cursor_changed" : self.changeRes,
@@ -244,6 +246,10 @@ class DebianPlymouthManager:
         MessageDialog(title, msg , gtk.MESSAGE_INFO).show()
         return False
             
+    def previewTheme(self, widget):
+        functions.previewPlymouth()
+        
+    
     def setTheme(self, widget):
         self.toggleGuiElements(True)
         msg = "Save setting: " + self.selectedThemeName + " (" + self.selectedResolution + ")"
