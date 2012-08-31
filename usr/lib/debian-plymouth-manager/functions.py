@@ -197,13 +197,7 @@ def getAvailableThemes():
     return avlThemes
 
 def previewPlymouth():
-    prevPath = '/usr/bin/debian-plymouth-preview'
-    if not os.path.isfile(prevPath):
-        prevFile = open(prevPath, 'w')
-        prevFile.write('#!/bin/bash\nplymouthd; plymouth --show-splash ; for ((I=0; I<10; I++)); do plymouth --update=test$I ; sleep 1; done; plymouth quit')
-        prevFile.close()
-    os.chmod(prevPath, 755)
-    cmd = 'su -c ' + prevPath
+    cmd = "su -c 'plymouthd; plymouth --show-splash ; for ((I=0; I<10; I++)); do plymouth --update=test$I ; sleep 1; done; plymouth quit'"
     ec = ExecCmd()
     ec.run(cmd)
 
