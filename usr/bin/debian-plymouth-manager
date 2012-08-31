@@ -1,0 +1,3 @@
+#!/bin/bash
+# Launch debian-plymouth-manager with all passed arguments (future reserved)
+/usr/bin/python2.7 -tt /usr/lib/debian-plymouth-manager/main.py $*
