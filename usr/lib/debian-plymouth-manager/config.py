@@ -17,9 +17,9 @@ class Config():
     def getSections(self):
         return self.parser.sections()
     
-    def doesSectionExist(section):
+    def doesSectionExist(self, section):
         found = False
-        for s in getSections():
+        for s in self.getSections():
             if s == section:
                 found = True
                 break
@@ -27,7 +27,7 @@ class Config():
 
     def getOptions(self, section):
         options = []
-        if doesSectionExist():
+        if self.doesSectionExist(section):
             options = self.parser.items(section)
         return options
 
@@ -37,8 +37,8 @@ class Config():
             value = self.parser.getint(section, option)
         except ValueError:
             val = self.parser.get(section, option)
-            if "\\n" in val:
-                valueList = val.split("\\n")
+            if '\\n' in val:
+                valueList = val.split('\\n')
                 for v in valueList:
                     value += v + '\n'
             else:

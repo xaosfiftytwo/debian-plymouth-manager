@@ -7,7 +7,7 @@
     <property name="resizable">False</property>
     <property name="window_position">center-on-parent</property>
     <property name="destroy_with_parent">True</property>
-    <property name="icon">icon.png</property>
+    <property name="icon">logo.png</property>
     <property name="type_hint">dialog</property>
     <property name="program_name">Debian Program Manager</property>
     <property name="logo">banner.png</property>
@@ -40,7 +40,7 @@
     <property name="title" translatable="yes">Debian Plymouth Manager</property>
     <property name="resizable">False</property>
     <property name="window_position">mouse</property>
-    <property name="icon">icon.png</property>
+    <property name="icon">logo.png</property>
     <signal name="destroy" handler="on_ManagerWindow_destroy" swapped="no"/>
     <child>
       <object class="GtkFixed" id="grdFixed">
@@ -169,15 +169,11 @@ used by your system.</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="hscrollbar_policy">never</property>
+	    <property name="shadow_type">in</property>
             <child>
               <object class="GtkTreeView" id="tvResolution">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="border_width">1</property>
-                <property name="headers_visible">False</property>
-                <property name="enable_search">False</property>
-                <property name="fixed_height_mode">True</property>
-                <property name="show_expanders">False</property>
                 <signal name="cursor-changed" handler="on_tvResolution_cursor_changed" swapped="no"/>
                 <child internal-child="selection">
                   <object class="GtkTreeSelection" id="treeview-selection1"/>
@@ -196,14 +192,11 @@ used by your system.</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="hscrollbar_policy">never</property>
+	    <property name="shadow_type">in</property>
             <child>
               <object class="GtkTreeView" id="tvAvailable">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="border_width">1</property>
-                <property name="headers_visible">False</property>
-                <property name="enable_search">False</property>
-                <property name="fixed_height_mode">True</property>
                 <property name="show_expanders">False</property>
                 <child internal-child="selection">
                   <object class="GtkTreeSelection" id="treeview-selection2"/>
@@ -222,15 +215,11 @@ used by your system.</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="hscrollbar_policy">never</property>
+	    <property name="shadow_type">in</property>
             <child>
               <object class="GtkTreeView" id="tvInstalled">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="border_width">1</property>
-                <property name="headers_visible">False</property>
-                <property name="enable_search">False</property>
-                <property name="fixed_height_mode">True</property>
-                <property name="show_expanders">False</property>
                 <signal name="cursor-changed" handler="on_tvInstalled_cursor_changed" swapped="no"/>
                 <child internal-child="selection">
                   <object class="GtkTreeSelection" id="treeview-selection3"/>
