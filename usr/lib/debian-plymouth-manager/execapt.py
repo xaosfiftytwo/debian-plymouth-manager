@@ -3,13 +3,14 @@
 import threading
 from execcmd import ExecCmd
 
+
 class ExecuteApt(threading.Thread):
     def __init__(self, cb, loggerObject, command):
         threading.Thread.__init__(self)
         self.log = loggerObject
         self.callback = cb
         self.command = command
-        
+
     def run(self):
         try:
             if self.command != '':
@@ -25,6 +26,6 @@ class ExecuteApt(threading.Thread):
                         break
             else:
                 self.log.write('Command not set, use setCommand(command)', 'execapt.run', 'error')
-                
+
         except Exception, detail:
             self.log.write(detail, 'execapt.run', 'exception')

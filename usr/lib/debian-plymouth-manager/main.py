@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 # Elevate permissions
 import os
@@ -6,21 +6,14 @@ import functions
 import getopt
 import sys
 import string
-from execcmd import ExecCmd
 from config import Config
 from logger import Logger
-try:
-    import gtk
-except Exception, detail:
-    print detail
-    sys.exit(1)
-    
 
 # Help
 def usage():
     # Show usage
     hlp = """Usage: debian-plymouth-manager [options]
-        
+
 Options:
   -d (--debug): print debug information to log file in user directory
   -f (--force): force start in a live environment
@@ -44,8 +37,8 @@ for opt, arg in opts:
         force = True
     elif opt in ('-h', '--help'):
         usage()
-        sys.exit() 
-        
+        sys.exit()
+
 # Initialize logging
 logFile = ''
 if debug:
@@ -70,9 +63,9 @@ if len(args) > 0:
     args = ' ' + string.replace(args, '-', ':')
     # Pass the log path to dpm.py
     if debug:
-        args +=  ' :l ' + log.logPath
+        args += ' :l ' + log.logPath
 
-if (not os.path.isfile(livePath) and not os.path.isfile(ubiquityPath)) or force:
+if not functions.isRunningLive() or force:
     if functions.getDistribution().lower() != 'debian':
         # Not Debian
         log.write('Not running Debian: exiting', 'main', 'error')
@@ -90,4 +83,3 @@ if (not os.path.isfile(livePath) and not os.path.isfile(ubiquityPath)) or force:
         cmd = '%s python %s' % (launcher, dpmPath)
         log.write('Startup command: ' + cmd, 'main', 'debug')
         os.system(cmd)
-        

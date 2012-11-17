@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 
-import sys
 import os
 import pwd
 import logging
-import gtk
 import functions
+import gtk
+from dialogs import MessageDialog
+
 
 class Logger():
 
-    def __init__(self, logPath='', defaultLogLevel='debug', addLogTime=True, rtObject=None):
+    def __init__(self, logPath='', defaultLogLevel='debug', addLogTime=True, rtObject=None, parent=None):
         self.logPath = logPath
         if self.logPath != '':
             if self.logPath[:1] != '/':
@@ -19,7 +20,8 @@ class Logger():
         self.logTime = addLogTime
         self.rtobject = rtObject
         self.typeString = functions.getTypeString(self.rtobject)
-        
+        self.parent = parent
+
         if self.logPath == '':
             # Log only to console
             logging.basicConfig(level=self.defaultLevel, format='%(levelname)-10s%(message)s')
@@ -30,10 +32,10 @@ class Logger():
             if addLogTime:
                 formatStr = '%(asctime)s ' + formatStr
                 dateFmtStr = '%d-%m-%Y %H:%M:%S'
-            
+
             # Log to file
             logging.basicConfig(filename=self.logPath, level=self.defaultLevel, format=formatStr, datefmt=dateFmtStr)
-            
+
             # Define a Handler which writes INFO messages or higher to the console
             # Debug messages are written to a specified log file
             console = logging.StreamHandler()
@@ -41,7 +43,7 @@ class Logger():
             formatter = logging.Formatter('%(levelname)-10s%(message)s')
             console.setFormatter(formatter)
             logging.getLogger('').addHandler(console)
-    
+
     # Write message
     def write(self, message, loggerName='log', logLevel='debug'):
         message = str(message).strip()
@@ -58,17 +60,17 @@ class Logger():
                 self.rtobjectWrite(message)
             elif logLevel == 'error':
                 myLogger.error(message)
-                self.rtobjectWrite(message)
+                MessageDialog('Error', message, gtk.MESSAGE_ERROR, self.parent).show()
             elif logLevel == 'critical':
                 myLogger.critical(message)
-                self.rtobjectWrite(message)
+                MessageDialog('Critical', message, gtk.MESSAGE_ERROR, self.parent).show()
             elif logLevel == 'exception':
                 myLogger.exception(message)
-                self.rtobjectWrite(message)
-                
+                MessageDialog('Exception', message, gtk.MESSAGE_ERROR, self.parent).show()
+
     # Return messge to given object
     def rtobjectWrite(self, message):
-        if self.rtobject != None and self.typeString != '':
+        if self.rtobject is not None and self.typeString != '':
             if self.typeString == 'gtk.Label':
                 self.rtobject.set_text(message)
             elif self.typeString == 'gtk.TreeView':

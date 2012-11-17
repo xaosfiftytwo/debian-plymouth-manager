@@ -4,7 +4,6 @@ import os
 import threading
 import functions
 import re
-import sys
 from execcmd import ExecCmd
 from config import Config
 
@@ -35,10 +34,10 @@ class SavePlymouthTheme(threading.Thread):
                 gbPath = grubPath
                 if boot == 'burg':
                     gbPath = burgPath
-                
+
                 if 'None:' in self.theme:
                     self.delete = True
-                
+
                 # Filter out all custom parameters in GRUB_CMDLINE_LINUX_DEFAULT: we want to save them again
                 # Read grub
                 if boot == 'grub':
@@ -57,7 +56,7 @@ class SavePlymouthTheme(threading.Thread):
                 custParms = custParms.strip()
 
                 if custParms != '':
-                    print cutParms
+                    print custParms
                     # Cleanup the left overs
                     custParms = re.sub(' +', ' ', custParms.strip())
                     custParms = ' ' + custParms
@@ -70,12 +69,12 @@ class SavePlymouthTheme(threading.Thread):
                     #gbGfxMode = "sed -i 's/^#GRUB_GFXMODE.*/GRUB_GFXMODE=800x600/g' " + gbPath
                     #gbGfxMode = "sed -i -e 's/\(GRUB_GFXMODE=\).*/\\1" + self.resolution + "/' " + gbPath
                     uvesafb = "echo \"options uvesafb mode_option=" + self.resolution + "-16 mtrr=3 scroll=ywrap\" > " + uvesafbPath
-                
+
                 print gbLinDef
-                
+
                 ec = ExecCmd(self.log)
                 #ec.run('ping -c 10 www.google.com')
-                
+
                 # grub
                 msg = 'Edit ' + gbPath + ': GRUB_CMDLINE_LINUX_DEFAULT'
                 self.log.write(msg, 'save.run', 'info')
@@ -83,13 +82,13 @@ class SavePlymouthTheme(threading.Thread):
                 #msg = 'Edit ' + grubPath + ': GRUB_GFXMODE'
                 #print msg
                 #ec.run(gbGfxMode, msg)
-                
+
                 # modules
                 if os.path.isfile(modulesPath):
                     modFile = open(modulesPath, 'r')
                     modText = modFile.read()
                     modFile.close()
-                    
+
                     # Search for values
                     searchVal = 'uvesafb'
                     matchObj = re.search(searchVal, modText)
@@ -109,11 +108,11 @@ class SavePlymouthTheme(threading.Thread):
                         if self.delete:
                             self.log.write("Delete " + searchVal + " from " + modulesPath, 'save.run', 'info')
                             modText = modText.replace(searchVal, '')
-                            
+
                     modFile = open(modulesPath, 'w')
                     modFile.write(modText)
                     modFile.close()
-                    
+
                 # uvesafb
                 if self.delete:
                     msg = 'Delete ' + uvesafbPath
@@ -123,7 +122,7 @@ class SavePlymouthTheme(threading.Thread):
                     msg = 'Create ' + uvesafbPath
                     self.log.write(msg, 'save.run', 'info')
                     ec.run(uvesafb, msg)
-                
+
                 # Update
                 if not self.delete:
                     ec.run(cmdSetTheme)
@@ -134,6 +133,6 @@ class SavePlymouthTheme(threading.Thread):
                 ec.run(cmdUpdInit)
             else:
                 print "This boot is not supported"
-        
+
         except Exception, detail:
             self.log.write(detail, 'save.run', 'exception')

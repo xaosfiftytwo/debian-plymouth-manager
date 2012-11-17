@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 try:
-    import os
     import sys
     import pygtk
     pygtk.require('2.0')
@@ -19,10 +18,11 @@ try:
 except Exception, detail:
     print detail
     sys.exit(1)
-    
+
+
 #class for the main window
 class DebianPlymouthManager:
-    
+
     conf = Config('dpm.conf')
     version = conf.getValue('Program', 'version')
     currentThemeName = ''
@@ -52,22 +52,21 @@ class DebianPlymouthManager:
         self.lblCurrentSettings = self.builder.get_object('lblCurrentSettings')
         self.spinner = self.builder.get_object('spinner')
         self.statusbar = self.builder.get_object('statusbar')
-        
+
         # Add events
         signals = {
-            'on_btnInstallTheme_clicked' : self.installTheme,
-            'on_btnRemoveTheme_clicked' : self.removeTheme,
-            'on_btnPreviewTheme_clicked' : self.previewTheme,
-            'on_btnSetTheme_clicked' : self.setTheme,
-            'on_tvInstalled_cursor_changed' : self.changeTheme,
-            'on_tvResolution_cursor_changed' : self.changeRes,
-            'on_eventbox_button_release_event' : self.about,
-            'on_ManagerWindow_destroy' : self.destroy
+            'on_btnInstallTheme_clicked': self.installTheme,
+            'on_btnRemoveTheme_clicked': self.removeTheme,
+            'on_btnPreviewTheme_clicked': self.previewTheme,
+            'on_btnSetTheme_clicked': self.setTheme,
+            'on_tvInstalled_cursor_changed': self.changeTheme,
+            'on_tvResolution_cursor_changed': self.changeRes,
+            'on_eventbox_button_release_event': self.about,
+            'on_ManagerWindow_destroy': self.destroy
         }
         self.builder.connect_signals(signals)
-        
         self.window.show()
-        
+
     def fillResolutions(self):
         listRes = functions.getResolutions('800x600', '', True)
         # Get current resolution and set setcursor
@@ -81,7 +80,7 @@ class DebianPlymouthManager:
         else:
             #self.lblCurrentSettings.set_text(self.noPlym)
             ind = len(listRes) - 1
-            
+
         if len(listRes) > 0:
             functions.fillTreeview(self.tvResolution, listRes, ['str'], [-1], ind, 700)
             # Fill resolution settings
@@ -90,7 +89,6 @@ class DebianPlymouthManager:
                 self.currentResolution = curRes
             else:
                 self.currentResolution = ''
-                
 
     def fillInstalled(self):
         listInst = functions.getInstalledThemes()
@@ -108,7 +106,7 @@ class DebianPlymouthManager:
             self.selectedThemeName = self.noPlym
             #self.lblCurrentSettings.set_text(self.noPlym)
             ind = len(listInst) - 1
-            
+
         if len(listInst) > 0:
             functions.fillTreeview(self.tvInstalled, listInst, ['str'], [-1], ind, 700)
             # Fill resolution settings
@@ -117,32 +115,30 @@ class DebianPlymouthManager:
                 self.currentThemeName = curTheme
             else:
                 self.currentThemeName = ''
-            
+
     def fillAvailable(self):
         listavl = functions.getAvailableThemes()
         functions.fillTreeview(self.tvAvailable, listavl, ['str'], [-1], 0)
-    
+
     def main(self, argv):
         # Handle arguments
         try:
             opts, args = getopt.getopt(argv, 'dl:', ['debug', 'log'])
         except getopt.GetoptError:
-            usage()
             sys.exit(2)
         for opt, arg in opts:
             if opt in ('-d', '--debug'):
                 self.debug = True
             elif opt in ('-l', '--log'):
                 self.logPath = arg
-        
+
         # Initialize logging
-        logFile = ''
         if self.debug:
             if self.logPath == '':
                 self.logPath = 'dpm.log'
         self.log = Logger(self.logPath, 'debug', True, self.statusbar)
         functions.log = self.log
-        
+
         # Fill screen resolutions treeview
         self.fillResolutions()
 
@@ -159,21 +155,21 @@ class DebianPlymouthManager:
         if self.currentThemeName == '':
             self.currentThemeName = self.selectedThemeName
         self.lblCurrentSettings.set_text(self.currentThemeName + curRes)
-        
+
         selRes = ''
         if self.selectedResolution != '' and self.selectedThemeName != self.noPlym:
             selRes = ' (' + self.selectedResolution + ')'
         self.lblSelectedSettings.set_text(self.selectedThemeName + selRes)
-        
+
         # Show version number in status bar
         functions.pushMessage(self.statusbar, self.version)
-        
+
         # Show window
         gtk.main()
-    
+
     def destroy(self, widget, data=None):
         gtk.main_quit()
-        
+
     def about(self, widget, event):
         self.about = self.builder.get_object('About')
         author = 'Author: ' + self.conf.getValue('Program', 'author')
@@ -201,13 +197,13 @@ class DebianPlymouthManager:
 
     def aptThreadResult(self, ok):
         self.threadOk = ok
-    
+
     def installTheme(self, widget):
         self.threadAction = 'install'
         theme = functions.getSelectedValue(self.tvAvailable)
         self.threadPackage = functions.getPackageName(theme)
         if self.threadPackage != '':
-            dialog = QuestionDialog('Install theme', 'Continue installing theme:\n' + self.threadPackage, self.window.get_icon())
+            dialog = QuestionDialog('Install theme', 'Continue installing theme:\n' + self.threadPackage, self.window)
             go = dialog.show()
             if (go):
                 self.toggleGuiElements(True)
@@ -230,7 +226,7 @@ class DebianPlymouthManager:
         self.threadAction = 'uninstall'
         self.threadPackage = functions.getRemovablePackageName(self.selectedThemeName)
         if self.threadPackage != '':
-            dialog = QuestionDialog('Uninstall theme', 'Continue uninstalling theme:\n' + self.threadPackage, self.window.get_icon())
+            dialog = QuestionDialog('Uninstall theme', 'Continue uninstalling theme:\n' + self.threadPackage, self.window)
             go = dialog.show()
             if (go):
                 self.toggleGuiElements(True)
@@ -248,11 +244,11 @@ class DebianPlymouthManager:
             msg = 'The package cannot be uninstalled: ' + self.threadPackage + '\nIt is part of a meta package.\nTry apt instead'
             self.log.write(msg, 'dpm.removeTheme', 'debug')
             MessageDialog(title, msg, gtk.MESSAGE_INFO, self.window.get_icon()).show()
-            
+
     def checkAptThread(self):
         # As long there's a thread active, keep spinning
         if threading.active_count() > 1:
-            return True        
+            return True
         # Thread is done: buttons sensitive again
         self.toggleGuiElements(False)
         self.log.write('Done ' + self.threadAction + 'ing package: ' + self.threadPackage, 'dpm.checkAptThread', 'info')
@@ -261,15 +257,14 @@ class DebianPlymouthManager:
             msg = 'Theme successfully ' + self.threadAction + 'ed:\n' + self.threadPackage
         else:
             msg = 'Could not ' + self.threadAction + ' theme:\n' + self.threadPackage + '\nTry apt instead.'
-        
+
         self.log.write(msg, 'dpm.checkAptThread', 'debug')
-        MessageDialog(title, msg , gtk.MESSAGE_INFO, self.window.get_icon()).show()
+        MessageDialog(title, msg, gtk.MESSAGE_INFO, self.window.get_icon()).show()
         return False
-            
+
     def previewTheme(self, widget):
         functions.previewPlymouth()
-        
-    
+
     def setTheme(self, widget):
         self.toggleGuiElements(True)
         self.log.write('Save setting: ' + self.selectedThemeName + ' (' + self.selectedResolution + ')', 'dpm.setTheme', 'info')
@@ -285,7 +280,7 @@ class DebianPlymouthManager:
         # As long there's a thread active, keep spinning
         if threading.active_count() > 1:
             self.spinner.start()
-            return True        
+            return True
         # Thread is done: stop spinner and make button sensitive again
         self.toggleGuiElements(False)
         # Show message that we're done
@@ -294,9 +289,9 @@ class DebianPlymouthManager:
         title = 'Save settings'
         msg = 'Theme: ' + self.selectedThemeName + '\nResolution: ' + self.selectedResolution + '\n\nDone'
         self.log.write(msg, 'dpm.checkSaveThread', 'debug')
-        MessageDialog(title, msg , gtk.MESSAGE_INFO, self.window.get_icon()).show()
+        MessageDialog(title, msg, gtk.MESSAGE_INFO, self.window.get_icon()).show()
         return False
-    
+
     def toggleGuiElements(self, startSave):
         if startSave:
             self.btnSetTheme.set_sensitive(False)
@@ -319,7 +314,7 @@ class DebianPlymouthManager:
             self.fillInstalled()
             self.fillAvailable()
             self.fillResolutions()
-            
+
 
 
 if __name__ == '__main__':
