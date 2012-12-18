@@ -1,0 +1,17 @@
+753634f71f41542e2d78d63c5e666701  ./usr/lib/spm/execapt.py
+fd00747e2500b9efca6d5ffd466ce749  ./usr/lib/spm/dialogs.py
+a29e8d2ccb3b617fa61290b02775baf4  ./usr/lib/spm/save.py
+4f2ec4c3a819bee4b4acdbabcb265ce5  ./usr/lib/spm/spm.py
+7581e7491510ef0860161387c4c8c34f  ./usr/lib/spm/functions.py
+bf81d038557f5c10875a7a1710e8b3aa  ./usr/lib/spm/spm.conf
+5ce6e32822cec17518e798fa9f6a279b  ./usr/lib/spm/main.py
+61c1f9bf9cdf300e69450ee57e178881  ./usr/lib/spm/logger.py
+54b041157c70188fe9475c6c2ae415c2  ./usr/lib/spm/config.py
+f8aa89cde94788230c0bcfd0642d36ca  ./usr/lib/spm/execcmd.py
+040a9fa578ec1a738fc18959ca872bf4  ./usr/bin/spm
+c76e8410256f0e8d7abfdd91db7fd0e7  ./usr/share/spm/logo.png
+22e9b7d87605b1bed53b84ca9d601fec  ./usr/share/spm/banner.png
+a8a323a843b860009b6b40069e3cb25a  ./usr/share/spm/spm.glade
+be2bb6ba1b56b773a6599919736d5dba  ./usr/share/spm/arrow-ud.png
+1f878e0f2f6e42058ffde602439ac692  ./usr/share/spm/arrow-lr.png
+df6388c92dc24e99fc8990dccd25c53d  ./usr/share/applications/spm.desktop

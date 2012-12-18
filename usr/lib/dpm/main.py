@@ -6,13 +6,13 @@ import functions
 import getopt
 import sys
 import string
-from config import Config
 from logger import Logger
+
 
 # Help
 def usage():
     # Show usage
-    hlp = """Usage: debian-plymouth-manager [options]
+    hlp = """Usage: spm [options]
 
 Options:
   -d (--debug): print debug information to log file in user directory
@@ -48,38 +48,48 @@ functions.log = log
 if debug:
     if os.path.isfile(log.logPath):
         open(log.logPath, 'w').close()
-    log.write('Write debug information to file: ' + log.logPath, 'main', 'info')
+    log.write('Write debug information to file: %s' % log.logPath, 'main', 'info')
+
+# Log some basic environmental information
+machineInfo = functions.getSystemVersionInfo()
+log.write('Machine info: %s' % machineInfo, 'main', 'info')
+version = functions.getPackageVersion('ddm')
+log.write('DDM version: %s' % version, 'main', 'info')
+
+# There were issues with apt-listbugs
+# Warn the user for any errors that might accur when apt-listbugs is installed
+if functions.isPackageInstalled('apt-listbugs'):
+    log.write('apt-listbugs is installed and might interfere with driver installation', 'main', 'warning')
 
 # Set variables
 scriptDir = os.path.dirname(os.path.realpath(__file__))
-conf = Config('dpm.conf')
-livePath = conf.getValue('Paths', 'live')
-ubiquityPath = conf.getValue('Paths', 'ubiquity')
 
-# Pass arguments to dpm.py: replace - with : -> because kdesudo assumes these options are meant for him...
-# Isn't there another way?
+# Pass arguments to ddm.py: replace - with : -> because kdesudo assumes these options are meant for him...
+# TODO: Isn't there another way?
 args = ' '.join(sys.argv[1:])
 if len(args) > 0:
     args = ' ' + string.replace(args, '-', ':')
-    # Pass the log path to dpm.py
+    # Pass the log path to ddm.py
     if debug:
         args += ' :l ' + log.logPath
 
-if not functions.isRunningLive() or force:
-    if functions.getDistribution().lower() != 'debian':
-        # Not Debian
-        log.write('Not running Debian: exiting', 'main', 'error')
-    else:
+if functions.getDistribution() == 'debian':
+    # Do not run in live environment
+    if not functions.isRunningLive() or force:
         dpmPath = os.path.join(scriptDir, 'dpm.py' + args)
 
         # Add launcher string, only when not root
         launcher = ''
         if os.geteuid() > 0:
             if os.path.exists('/usr/bin/kdesudo'):
-                launcher = 'kdesudo -i /usr/share/linuxmint/logo.png -d --comment "<b>Please enter your password</b>"'
+                launcher = 'kdesudo -i /usr/share/dpm/logo.png -d --comment "<b>Please enter your password</b>"'
             elif os.path.exists('/usr/bin/gksu'):
                 launcher = 'gksu --message "<b>Please enter your password</b>"'
 
         cmd = '%s python %s' % (launcher, dpmPath)
         log.write('Startup command: ' + cmd, 'main', 'debug')
         os.system(cmd)
+    else:
+        log.write('Use --force to run DPM in a live environment', 'main', 'warning')
+else:
+    log.write('DPM can only run in Debian based distributions', 'main', 'warning')

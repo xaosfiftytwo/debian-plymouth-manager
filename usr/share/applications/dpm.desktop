@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Debian Plymouth Manager
+Comment=Debian Plymouth Manager
+Exec=/usr/bin/dpm
+Icon=/usr/share/dpm/logo.png
+Terminal=False
+Type=Application
+Categories=System;

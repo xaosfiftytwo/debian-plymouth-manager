@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Plymouth Manager for Debian
-GenericName=Debian Plymouth Manager
-Comment=Install the operating system to disk
-Exec=/usr/bin/debian-plymouth-manager
-Icon=/usr/share/debian-plymouth-manager/logo.png
-Terminal=False
-Type=Application
-Categories=System;

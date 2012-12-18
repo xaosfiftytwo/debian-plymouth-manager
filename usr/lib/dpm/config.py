@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 
+# Class to handle configuration files
+# Example:
+# [SectionName]
+# OptionName = OptionValue
+
 import os
 import ConfigParser
 
