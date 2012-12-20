@@ -69,7 +69,6 @@ class DPM:
         self.selectedAvailableTheme = None
         self.selectedRemoveTheme = None
         self.selectedGrubResolution = None
-        self.currentMenu = None
         self.threadPackage = None
         self.queue = Queue.Queue()
         self.noPlymouth = 'None: no plymouth splash'
@@ -129,127 +128,127 @@ class DPM:
                     eb[1].modify_bg(gtk.STATE_NORMAL, self.clrMenuBg)
 
     def showMenuThemes(self, widget=None, event=None):
-        self.currentMenu = menuItems[0]
-        self.changeMenuBackground(menuItems[0], True)
-        self.lblTitle.set_text(self.lblMenuThemes.get_text())
+        if self.selectedMenuItem != menuItems[0]:
+            self.changeMenuBackground(menuItems[0], True)
+            self.lblTitle.set_text(self.lblMenuThemes.get_text())
 
-        # Clear treeviews
-        self.tv1Handler.clearTreeView()
-        self.tv2Handler.clearTreeView()
+            # Clear treeviews
+            self.tv1Handler.clearTreeView()
+            self.tv2Handler.clearTreeView()
 
-        # Set object properties
-        self.btn1.set_label('Set Plymouth Theme')
-        self.btn2.set_label('Preview')
-        self.btn2.show()
-        self.fixed2.show()
-        self.sw2.show()
+            # Set object properties
+            self.btn1.set_label('Set Plymouth Theme')
+            self.btn2.set_label('Preview')
+            self.btn2.show()
+            self.fixed2.show()
+            self.sw2.show()
 
-        # Show Installed Themes
-        self.lblTitle1.set_text('Installed Themes')
-        # Clone the installedThemes list
-        listInst = list(self.installedThemes)
-        listInst.append(self.noPlymouth)
-        # Get current theme and set setcursor
-        ind = -1
-        if self.currentTheme:
-            try:
-                ind = listInst.index(self.currentTheme)
-            except:
-                # Theme is set but removed from system
-                ind = 0
+            # Show Installed Themes
+            self.lblTitle1.set_text('Installed Themes')
+            # Clone the installedThemes list
+            listInst = list(self.installedThemes)
+            listInst.append(self.noPlymouth)
+            # Get current theme and set setcursor
+            ind = -1
+            if self.currentTheme:
+                try:
+                    ind = listInst.index(self.currentTheme)
+                except:
+                    # Theme is set but removed from system
+                    ind = 0
 
-        if len(listInst) > 0:
-            self.tv1Handler.fillTreeview(listInst, ['str'], [-1], ind, 700)
+            if len(listInst) > 0:
+                self.tv1Handler.fillTreeview(listInst, ['str'], [-1], ind, 700)
 
-        # Show Resolutios
-        self.lblTitle2.set_text('Resolutions')
-        ind = -1
-        if self.currentResolution:
-            try:
-                ind = self.resolutions.index(self.currentResolution)
-            except:
-                ind = 0
+            # Show Resolutios
+            self.lblTitle2.set_text('Resolutions')
+            ind = -1
+            if self.currentResolution:
+                try:
+                    ind = self.resolutions.index(self.currentResolution)
+                except:
+                    ind = 0
 
-        if len(self.resolutions) > 0:
-            self.tv2Handler.fillTreeview(self.resolutions, ['str'], [-1], ind, 700)
+            if len(self.resolutions) > 0:
+                self.tv2Handler.fillTreeview(self.resolutions, ['str'], [-1], ind, 700)
 
     def showMenuInstall(self, widget=None, event=None):
-        self.currentMenu = menuItems[1]
-        self.changeMenuBackground(menuItems[1], True)
-        self.lblTitle.set_text(self.lblMenuInstall.get_text())
+        if self.selectedMenuItem != menuItems[1]:
+            self.changeMenuBackground(menuItems[1], True)
+            self.lblTitle.set_text(self.lblMenuInstall.get_text())
 
-        # Clear treeviews
-        self.tv1Handler.clearTreeView()
-        self.tv2Handler.clearTreeView()
+            # Clear treeviews
+            self.tv1Handler.clearTreeView()
+            self.tv2Handler.clearTreeView()
 
-        # Set object properties
-        self.btn1.set_label('Install Theme')
-        self.btn2.set_label('Remove Theme')
-        self.btn2.show()
-        self.fixed2.show()
-        self.sw2.show()
+            # Set object properties
+            self.btn1.set_label('Install Theme')
+            self.btn2.set_label('Remove Theme')
+            self.btn2.show()
+            self.fixed2.show()
+            self.sw2.show()
 
-        # Show Available Themes
-        self.lblTitle1.set_text('Available Themes')
-        if len(self.availableThemes) > 0:
-            self.tv1Handler.fillTreeview(self.availableThemes, ['str'], [-1], 0)
+            # Show Available Themes
+            self.lblTitle1.set_text('Available Themes')
+            if len(self.availableThemes) > 0:
+                self.tv1Handler.fillTreeview(self.availableThemes, ['str'], [-1], 0)
 
-        # Show Installed Themes
-        self.lblTitle2.set_text('Installed Themes')
-        if len(self.installedThemes) > 0:
-            self.tv2Handler.fillTreeview(self.installedThemes, ['str'], [-1], 0)
+            # Show Installed Themes
+            self.lblTitle2.set_text('Installed Themes')
+            if len(self.installedThemes) > 0:
+                self.tv2Handler.fillTreeview(self.installedThemes, ['str'], [-1], 0)
 
     def showMenuGrub(self, widget=None, event=None):
-        self.currentMenu = menuItems[2]
-        self.changeMenuBackground(menuItems[2], True)
-        self.lblTitle.set_text(self.lblMenuGrub.get_text())
+        if self.selectedMenuItem != menuItems[2]:
+            self.changeMenuBackground(menuItems[2], True)
+            self.lblTitle.set_text(self.lblMenuGrub.get_text())
 
-        # Clear treeviews
-        self.tv1Handler.clearTreeView()
-        self.tv2Handler.clearTreeView()
+            # Clear treeviews
+            self.tv1Handler.clearTreeView()
+            self.tv2Handler.clearTreeView()
 
-        # Set object properties
-        self.btn1.set_label('Set Grub Resolution')
-        self.btn2.hide()
-        self.fixed2.hide()
-        self.sw2.hide()
+            # Set object properties
+            self.btn1.set_label('Set Grub Resolution')
+            self.btn2.hide()
+            self.fixed2.hide()
+            self.sw2.hide()
 
-        # Show Resolutios
-        self.lblTitle1.set_text('Grub Resolutions')
-        ind = -1
-        if self.currentGrubResolution:
-            try:
-                ind = self.resolutions.index(self.currentGrubResolution)
-            except:
-                ind = 0
+            # Show Resolutios
+            self.lblTitle1.set_text('Grub Resolutions')
+            ind = -1
+            if self.currentGrubResolution:
+                try:
+                    ind = self.resolutions.index(self.currentGrubResolution)
+                except:
+                    ind = 0
 
-        if len(self.resolutions) > 0:
-            self.tv1Handler.fillTreeview(self.resolutions, ['str'], [-1], ind, 700)
+            if len(self.resolutions) > 0:
+                self.tv1Handler.fillTreeview(self.resolutions, ['str'], [-1], ind, 700)
 
     # ===============================================
     # Treeview functions
     # ===============================================
 
     def tv1Changed(self, widget):
-        if self.currentMenu == menuItems[0]:
+        if self.selectedMenuItem == menuItems[0]:
             # Themes Menu
             self.selectedTheme = self.tv1Handler.getSelectedValue()
             self.log.write('Themes menu - seleceted theme: %s' % self.selectedTheme, 'dpm.tv1Changed', 'debug')
-        elif self.currentMenu == menuItems[1]:
+        elif self.selectedMenuItem == menuItems[1]:
             # Install Menu
             self.selectedAvailableTheme = self.tv1Handler.getSelectedValue()
             self.log.write('Install menu - seleceted available theme: %s' % self.selectedAvailableTheme, 'dpm.tv1Changed', 'debug')
-        elif self.currentMenu == menuItems[2]:
+        elif self.selectedMenuItem == menuItems[2]:
             # Grub Menu
             self.selectedGrubResolution = self.tv1Handler.getSelectedValue()
             self.log.write('Grub menu - seleceted grub resolution: %s' % self.selectedGrubResolution, 'dpm.tv1Changed', 'debug')
 
     def tv2Changed(self, widget):
-        if self.currentMenu == menuItems[0]:
+        if self.selectedMenuItem == menuItems[0]:
             # Themes Menu
             self.selectedResolution = self.tv2Handler.getSelectedValue()
             self.log.write('Themes menu - seleceted resolution: %s' % self.selectedResolution, 'dpm.tv2Changed', 'debug')
-        elif self.currentMenu == menuItems[1]:
+        elif self.selectedMenuItem == menuItems[1]:
             # Install Menu
             self.selectedRemoveTheme = self.tv2Handler.getSelectedValue()
             self.log.write('Install menu - seleceted theme to remove: %s' % self.selectedRemoveTheme, 'dpm.tv2Changed', 'debug')
@@ -259,24 +258,24 @@ class DPM:
     # ===============================================
 
     def btn1Clicked(self, widget):
-        if self.currentMenu == menuItems[0]:
+        if self.selectedMenuItem == menuItems[0]:
             # Themes
             self.setTheme()
-        elif self.currentMenu == menuItems[1]:
+        elif self.selectedMenuItem == menuItems[1]:
             # Install
             self.installTheme()
-        elif self.currentMenu == menuItems[2]:
+        elif self.selectedMenuItem == menuItems[2]:
             # Grub
             self.setGrubResolution()
 
     def btn2Clicked(self, widget):
-        if self.currentMenu == menuItems[0]:
+        if self.selectedMenuItem == menuItems[0]:
             # Themes
             self.preview()
-        elif self.currentMenu == menuItems[1]:
+        elif self.selectedMenuItem == menuItems[1]:
             # Install
             self.removeTheme()
-        elif self.currentMenu == menuItems[2]:
+        elif self.selectedMenuItem == menuItems[2]:
             # Grub
             pass
 
@@ -457,7 +456,7 @@ class DPM:
         self.debug = False
         self.logPath = ''
         try:
-            opts, args = getopt.getopt(argv, 'dl:', ['debug', 'log'])
+            opts, args = getopt.getopt(argv, 'dfl:', ['debug', 'force', 'log'])
         except getopt.GetoptError:
             sys.exit(2)
         for opt, arg in opts:

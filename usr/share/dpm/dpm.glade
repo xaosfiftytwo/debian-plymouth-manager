@@ -3,8 +3,8 @@
   <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkWindow" id="dpmWindow">
     <property name="can_focus">False</property>
-    <property name="border_width">10</property>
-    <property name="title" translatable="yes">Device Driver Manager</property>
+    <property name="border_width">5</property>
+    <property name="title" translatable="yes">Debian Plymouth Manager</property>
     <property name="role">ddm</property>
     <property name="window_position">mouse</property>
     <property name="icon">logo.png</property>
@@ -44,7 +44,7 @@
                     <property name="label" translatable="yes"> Debian Plymouth Manager</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
-                      <attribute name="size" value="20000"/>
+                      <attribute name="size" value="24000"/>
                     </attributes>
                   </object>
                   <packing>
@@ -123,7 +123,6 @@
                                   <object class="GtkImage" id="imgMenuThemes">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xpad">6</property>
                                     <property name="pixbuf">theme.png</property>
                                   </object>
                                   <packing>
@@ -153,7 +152,7 @@
                                     <property name="label" translatable="yes">Themes</property>
                                     <attributes>
                                       <attribute name="weight" value="bold"/>
-                                      <attribute name="size" value="14000"/>
+                                      <attribute name="size" value="16000"/>
                                     </attributes>
                                   </object>
                                   <packing>
@@ -188,7 +187,6 @@
                                   <object class="GtkImage" id="imgMenuInstall">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xpad">5</property>
                                     <property name="pixbuf">install.png</property>
                                   </object>
                                   <packing>
@@ -218,7 +216,7 @@
                                     <property name="label" translatable="yes">Install</property>
                                     <attributes>
                                       <attribute name="weight" value="bold"/>
-                                      <attribute name="size" value="14000"/>
+                                      <attribute name="size" value="16000"/>
                                     </attributes>
                                   </object>
                                   <packing>
@@ -253,7 +251,6 @@
                                   <object class="GtkImage" id="imgMenuGrub">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xpad">5</property>
                                     <property name="pixbuf">grub.png</property>
                                   </object>
                                   <packing>
@@ -283,7 +280,7 @@
                                     <property name="label" translatable="yes">Grub</property>
                                     <attributes>
                                       <attribute name="weight" value="bold"/>
-                                      <attribute name="size" value="14000"/>
+                                      <attribute name="size" value="16000"/>
                                     </attributes>
                                   </object>
                                   <packing>
@@ -374,7 +371,7 @@
             </child>
             <child>
               <object class="GtkImage" id="sep5">
-                <property name="width_request">15</property>
+                <property name="width_request">5</property>
                 <property name="height_request">5</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -387,7 +384,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkFrame" id="frmDrivers">
+              <object class="GtkFrame" id="frmForm">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label_xalign">0</property>
@@ -397,26 +394,14 @@
                   <object class="GtkAlignment" id="alignment2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="left_padding">10</property>
-                    <property name="right_padding">10</property>
+                    <property name="top_padding">5</property>
+                    <property name="bottom_padding">5</property>
+                    <property name="left_padding">5</property>
+                    <property name="right_padding">5</property>
                     <child>
                       <object class="GtkVBox" id="box4">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkImage" id="sep14">
-                            <property name="width_request">5</property>
-                            <property name="height_request">5</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="pixbuf">empty.png</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
                         <child>
                           <object class="GtkLabel" id="lblTitle">
                             <property name="visible">True</property>
@@ -431,7 +416,7 @@
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
-                            <property name="position">1</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
@@ -454,7 +439,7 @@
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
-                            <property name="position">2</property>
+                            <property name="position">1</property>
                           </packing>
                         </child>
                         <child>
@@ -479,7 +464,7 @@
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
-                            <property name="position">3</property>
+                            <property name="position">2</property>
                           </packing>
                         </child>
                         <child>
@@ -502,7 +487,7 @@
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
-                            <property name="position">4</property>
+                            <property name="position">3</property>
                           </packing>
                         </child>
                         <child>
@@ -527,7 +512,7 @@
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
-                            <property name="position">5</property>
+                            <property name="position">4</property>
                           </packing>
                         </child>
                         <child>
@@ -541,7 +526,7 @@
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">6</property>
+                            <property name="position">5</property>
                           </packing>
                         </child>
                         <child>
@@ -602,21 +587,7 @@
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
-                            <property name="position">7</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkImage" id="sep13">
-                            <property name="width_request">5</property>
-                            <property name="height_request">5</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="pixbuf">empty.png</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">8</property>
+                            <property name="position">6</property>
                           </packing>
                         </child>
                       </object>
