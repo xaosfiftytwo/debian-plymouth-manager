@@ -6,7 +6,7 @@
     <property name="border_width">5</property>
     <property name="title" translatable="yes">Debian Plymouth Manager</property>
     <property name="role">ddm</property>
-    <property name="window_position">mouse</property>
+    <property name="window_position">center-always</property>
     <property name="icon">logo.png</property>
     <signal name="destroy" handler="on_dpmWindow_destroy" swapped="no"/>
     <child>

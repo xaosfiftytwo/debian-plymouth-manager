@@ -58,6 +58,7 @@ class DPM:
 
         # Read from config file
         self.cfg = Config('dpm.conf')
+        self.clrTitleFg = gtk.gdk.Color(self.cfg.getValue('COLORS', 'title_fg'))
         self.clrTitleBg = gtk.gdk.Color(self.cfg.getValue('COLORS', 'title_bg'))
         self.clrMenuSelect = gtk.gdk.Color(self.cfg.getValue('COLORS', 'menu_select'))
         self.clrMenuHover = gtk.gdk.Color(self.cfg.getValue('COLORS', 'menu_hover'))
@@ -127,8 +128,8 @@ class DPM:
                 if eb[0] != self.selectedMenuItem or select:
                     eb[1].modify_bg(gtk.STATE_NORMAL, self.clrMenuBg)
 
-    def showMenuThemes(self, widget=None, event=None):
-        if self.selectedMenuItem != menuItems[0]:
+    def showMenuThemes(self, widget=None, event=None, refresh=False):
+        if self.selectedMenuItem != menuItems[0] or refresh:
             self.changeMenuBackground(menuItems[0], True)
             self.lblTitle.set_text(self.lblMenuThemes.get_text())
 
@@ -172,8 +173,8 @@ class DPM:
             if len(self.resolutions) > 0:
                 self.tv2Handler.fillTreeview(self.resolutions, ['str'], [-1], ind, 700)
 
-    def showMenuInstall(self, widget=None, event=None):
-        if self.selectedMenuItem != menuItems[1]:
+    def showMenuInstall(self, widget=None, event=None, refresh=False):
+        if self.selectedMenuItem != menuItems[1] or refresh:
             self.changeMenuBackground(menuItems[1], True)
             self.lblTitle.set_text(self.lblMenuInstall.get_text())
 
@@ -198,8 +199,8 @@ class DPM:
             if len(self.installedThemes) > 0:
                 self.tv2Handler.fillTreeview(self.installedThemes, ['str'], [-1], 0)
 
-    def showMenuGrub(self, widget=None, event=None):
-        if self.selectedMenuItem != menuItems[2]:
+    def showMenuGrub(self, widget=None, event=None, refresh=False):
+        if self.selectedMenuItem != menuItems[2] or refresh:
             self.changeMenuBackground(menuItems[2], True)
             self.lblTitle.set_text(self.lblMenuGrub.get_text())
 
@@ -313,7 +314,8 @@ class DPM:
         self.currentTheme = self.plymouth.getCurrentTheme()
         self.installedThemes = self.plymouth.getInstalledThemes()
         self.availableThemes = self.plymouth.getAvailableThemes()
-        self.showMenuThemes()
+        if self.selectedMenuItem == menuItems[0]:
+            self.showMenuThemes(None, None, True)
 
         # Thread is done: stop spinner and make button sensitive again
         self.toggleGuiElements(False)
@@ -407,7 +409,8 @@ class DPM:
         # Get the new data
         self.installedThemes = self.plymouth.getInstalledThemes()
         self.availableThemes = self.plymouth.getAvailableThemes()
-        self.showMenuInstall()
+        if self.selectedMenuItem == menuItems[1]:
+            self.showMenuInstall(None, None, True)
 
         self.toggleGuiElements(False)
         title = '%s%s theme' % (self.threadAction[0].capitalize(), self.threadAction[1:])
@@ -440,6 +443,10 @@ class DPM:
             return True
 
         # Thread is done
+        self.currentGrubResolution = self.grub.getCurrentResolution()
+        if self.selectedMenuItem == menuItems[2]:
+            self.showMenuGrub(None, None, True)
+
         self.toggleGuiElements(False)
         title = "Grub resolution"
         msg = "Grub resolution saved: %s" % self.selectedGrubResolution
@@ -475,7 +482,11 @@ class DPM:
 
         # Set background and forground colors
         self.ebTitle.modify_bg(gtk.STATE_NORMAL, self.clrTitleBg)
-        self.lblDPM.modify_fg(gtk.STATE_NORMAL, self.clrMenuBg)
+        self.lblMenuThemes.modify_fg(gtk.STATE_NORMAL, self.clrTitleBg)
+        self.lblMenuInstall.modify_fg(gtk.STATE_NORMAL, self.clrTitleBg)
+        self.lblMenuGrub.modify_fg(gtk.STATE_NORMAL, self.clrTitleBg)
+        self.lblTitle.modify_fg(gtk.STATE_NORMAL, self.clrTitleBg)
+        self.lblDPM.modify_fg(gtk.STATE_NORMAL, self.clrTitleFg)
         self.ebMenu.modify_bg(gtk.STATE_NORMAL, self.clrMenuBg)
         self.ebMenuThemes.modify_bg(gtk.STATE_NORMAL, self.clrMenuBg)
         self.ebMenuInstall.modify_bg(gtk.STATE_NORMAL, self.clrMenuBg)

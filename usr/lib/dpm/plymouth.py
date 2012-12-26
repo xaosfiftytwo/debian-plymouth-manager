@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+# http://wiki.debian.org/plymouth
+# https://wiki.ubuntu.com/Plymouth
+
 import re
 import os
 import threading
@@ -111,8 +114,6 @@ class Plymouth():
 
 
 # Handles plymouth saving (threaded)
-# http://forums.debian.net/viewtopic.php?p=412003&sid=5b0e017880c2a69334fc9963682dc206#p412003
-# https://idyllictux.wordpress.com/2010/04/26/lucidubuntu-10-04-high-resolution-plymouth-virtual-terminal-for-atinvidia-cards-with-proprietaryrestricted-driver/
 class PlymouthSave(threading.Thread):
     def __init__(self, loggerObject, theme, resolution):
         threading.Thread.__init__(self)
@@ -139,7 +140,8 @@ class PlymouthSave(threading.Thread):
                 kmsLines = []
                 kmsLines.append([kmsDrv[2], 'intel_agp'])
                 kmsLines.append(['all', 'drm'])
-                kmsLines.append([kmsDrv[0], 'nouveau modeset=1'])
+                # nouveau causes a tremendous amount of trouble when you switch to nvidia later on (blacklisting not enough)
+                #kmsLines.append([kmsDrv[0], 'nouveau modeset=1'])
                 kmsLines.append([kmsDrv[1], 'radeon modeset=1'])
                 kmsLines.append([kmsDrv[2], 'i915 modeset=1'])
 
@@ -157,18 +159,20 @@ class PlymouthSave(threading.Thread):
                 f.write('\n# KMS\n')
                 for line in kmsLines:
                     if kmsDrv[0] in module and (line[0] == kmsDrv[0] or line[0] == 'all'):
-                        self.log.write('Append line to modules: %s' % line[1], 'PlymouthSave.run', 'debug')
                         f.write('%s\n' % line[1])
                     elif kmsDrv[1] in module and (line[0] == kmsDrv[1] or line[0] == 'all'):
-                        self.log.write('Append line to modules: %s' % line[1], 'PlymouthSave.run', 'debug')
                         f.write('%s\n' % line[1])
                     elif kmsDrv[2] in module and (line[0] == kmsDrv[2] or line[0] == 'all'):
-                        self.log.write('Append line to modules: %s' % line[1], 'PlymouthSave.run', 'debug')
                         f.write('%s\n' % line[1])
                     elif line[0] == 'all':
-                        self.log.write('Append line to modules: %s' % line[1], 'PlymouthSave.run', 'debug')
                         f.write('%s\n' % line[1])
                 f.close()
+
+                # Read modules just for debugging purposes
+                f = open(self.modulesPath, 'r')
+                newModules = f.read()
+                f.close()
+                self.log.write('\nNew modules:\n%s\n' % newModules, 'PlymouthSave.run', 'debug')
 
                 # Edit grub
                 cmd = 'sed -i -e \'/GRUB_CMDLINE_LINUX_DEFAULT=/ c GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"\' %s' % boot
@@ -179,6 +183,12 @@ class PlymouthSave(threading.Thread):
                 else:
                     cmd = 'sed -i -e \'/GRUB_GFXMODE=/ i \GRUB_GFXPAYLOAD_LINUX=%s\' %s' % (self.resolution, boot)
                     self.ec.run(cmd)
+
+                # Read grub for debugging purposes
+                f = open(boot, 'r')
+                newGrub = f.read()
+                f.close()
+                self.log.write('\nNew grub:\n%s\n' % newGrub, 'PlymouthSave.run', 'debug')
 
                 # Set the theme
                 self.ec.run('%s %s' % (self.setThemePath, self.theme))

@@ -6,7 +6,9 @@ import functions
 import getopt
 import sys
 import string
+import gtk
 from logger import Logger
+from dialogs import MessageDialogSave
 
 
 # Help
@@ -56,11 +58,6 @@ log.write('Machine info: %s' % machineInfo, 'main', 'info')
 version = functions.getPackageVersion('ddm')
 log.write('DDM version: %s' % version, 'main', 'info')
 
-# There were issues with apt-listbugs
-# Warn the user for any errors that might accur when apt-listbugs is installed
-if functions.isPackageInstalled('apt-listbugs'):
-    log.write('apt-listbugs is installed and might interfere with driver installation', 'main', 'warning')
-
 # Set variables
 scriptDir = os.path.dirname(os.path.realpath(__file__))
 
@@ -90,6 +87,12 @@ if functions.getDistribution() == 'debian':
         log.write('Startup command: ' + cmd, 'main', 'debug')
         os.system(cmd)
     else:
-        log.write('Use --force to run DPM in a live environment', 'main', 'warning')
+        title = 'DPM - Live environment'
+        msg = 'DPM cannot run in a live environment\n\nTo force start, use the --force argument'
+        MessageDialogSave(title, msg, gtk.MESSAGE_INFO).show()
+        log.write(msg, 'main', 'warning')
 else:
-    log.write('DPM can only run in Debian based distributions', 'main', 'warning')
+    title = 'DPM - Debian based'
+    msg = 'DPM can only run on Debian based distributions'
+    MessageDialogSave(title, msg, gtk.MESSAGE_INFO).show()
+    log.write(msg, 'main', 'warning')
