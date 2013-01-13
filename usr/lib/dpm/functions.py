@@ -116,18 +116,17 @@ def getFilesAndFoldersRecursively(directoryPath, files=True, dirs=True):
 def replaceStringInFile(findStringOrRegExp, replString, filePath):
     if os.path.exists(filePath):
         tmpFile = '%s.tmp' % filePath
-        tmpWritten = False
-
-        with open(tmpFile, 'w') as tmp:
-            f = open(filePath, 'r')
-            oldText = f.read()
-            f.close()
-            newTxt = re.sub(findStringOrRegExp, replString, oldText, flags=re.IGNORECASE)
-            tmp.write(newTxt)
-            tmpWritten = True
-
-        if tmpWritten:
-            shutil.copy(tmpFile, filePath)
+        # Get the data
+        f = open(filePath)
+        data = f.read()
+        f.close()
+        # Write the temporary file with new data
+        tmp = open(tmpFile, "w")
+        tmp.write(re.sub(findStringOrRegExp, replString, data))
+        tmp.close()
+        # Overwrite the original with the temporary file
+        shutil.copy(tmpFile, filePath)
+        os.remove(tmpFile)
 
 
 # Create a backup file with date/time
@@ -505,6 +504,20 @@ def hasWireless():
                 wl = True
                 break
     return wl
+
+
+# Get the wireless interface (usually wlan0)
+def getWirelessInterface():
+    wi = None
+    cmd = 'iwconfig'
+    ec = ExecCmd(log)
+    wiList = ec.run(cmd, False)
+    for line in wiList:
+        reObj = re.search('([a-z0-9]*).*ESSID', line)
+        if reObj:
+            wi = reObj.group(1)
+            break
+    return wi
 
 
 # Check if we're running live

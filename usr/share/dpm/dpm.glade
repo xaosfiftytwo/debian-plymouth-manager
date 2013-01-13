@@ -152,7 +152,7 @@
                                     <property name="label" translatable="yes">Themes</property>
                                     <attributes>
                                       <attribute name="weight" value="bold"/>
-                                      <attribute name="size" value="16000"/>
+                                      <attribute name="size" value="14000"/>
                                     </attributes>
                                   </object>
                                   <packing>
@@ -216,7 +216,7 @@
                                     <property name="label" translatable="yes">Install</property>
                                     <attributes>
                                       <attribute name="weight" value="bold"/>
-                                      <attribute name="size" value="16000"/>
+                                      <attribute name="size" value="14000"/>
                                     </attributes>
                                   </object>
                                   <packing>
@@ -280,7 +280,7 @@
                                     <property name="label" translatable="yes">Grub</property>
                                     <attributes>
                                       <attribute name="weight" value="bold"/>
-                                      <attribute name="size" value="16000"/>
+                                      <attribute name="size" value="14000"/>
                                     </attributes>
                                   </object>
                                   <packing>

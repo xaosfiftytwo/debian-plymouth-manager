@@ -157,6 +157,8 @@ class DPM:
                 except:
                     # Theme is set but removed from system
                     ind = 0
+            else:
+                ind = len(listInst) - 1
 
             if len(listInst) > 0:
                 self.tv1Handler.fillTreeview(listInst, ['str'], [-1], ind, 700)
@@ -295,6 +297,8 @@ class DPM:
 
     def setTheme(self):
         self.toggleGuiElements(True)
+        if not self.selectedResolution:
+            self.selectedResolution = self.tv2Handler.getValue(self.tv2Handler.getRowCount() - 1)
         self.log.write('Save setting: %s (%s)' % (self.selectedTheme, self.selectedResolution), 'dpm.setTheme', 'info')
         # Start saving in a separate thread
         t = PlymouthSave(self.log, self.selectedTheme, self.selectedResolution)
@@ -310,8 +314,12 @@ class DPM:
             return True
 
         # Get the new data
-        self.currentResolution = self.plymouth.getCurrentResolution()
         self.currentTheme = self.plymouth.getCurrentTheme()
+        self.currentResolution = None
+        if self.currentTheme != self.noPlymouth:
+            self.currentResolution = self.plymouth.getCurrentResolution()
+        else:
+            self.selectedResolution = None
         self.installedThemes = self.plymouth.getInstalledThemes()
         self.availableThemes = self.plymouth.getAvailableThemes()
         if self.selectedMenuItem == menuItems[0]:
@@ -322,7 +330,7 @@ class DPM:
         self.log.write('Done saving settings: %s (%s)' % (self.selectedTheme, self.selectedResolution), 'dpm.checkSaveThread', 'info')
 
         title = 'Save settings'
-        msg = 'Theme: %s\nResolution: %s\n\nDone' % (self.selectedTheme, self.selectedResolution)
+        msg = 'Theme: %s\nResolution: %s\n\nDone' % (self.selectedTheme, str(self.selectedResolution))
         self.log.write(msg, 'dpm.checkSaveThread', 'debug')
         MessageDialogSave(title, msg, gtk.MESSAGE_INFO, self.window).show()
         return False

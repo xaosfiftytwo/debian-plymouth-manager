@@ -215,6 +215,11 @@ class TreeViewHandler(gobject.GObject):
         (model, pathlist) = self.treeview.get_selection().get_selected_rows()
         return model.get_value(model.get_iter(pathlist[0]), colNr)
 
+    # Get the value for a specific path (= row number)
+    def getValue(self, path, colNr=0):
+        model = self.treeview.get_model()
+        return model.get_value(model.get_iter(path), colNr)
+
     # Return all the values in a given column
     def getColumnValues(self, colNr=0):
         cv = []

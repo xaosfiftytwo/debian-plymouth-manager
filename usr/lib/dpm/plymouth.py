@@ -31,8 +31,6 @@ class Plymouth():
         self.grub = Grub(self.log)
         self.avlThemesSearchstr = 'plymouth-themes'
         self.conf = Config('dpm.conf')
-        self.grubPath = self.conf.getValue('Paths', 'grub')
-        self.burgPath = self.conf.getValue('Paths', 'burg')
         self.setThemePath = self.conf.getValue('Paths', 'settheme')
 
     # Get a list of installed Plymouth themes
@@ -47,9 +45,17 @@ class Plymouth():
     def getCurrentTheme(self):
         curTheme = None
         if os.path.isfile(self.setThemePath):
-            curThemeList = self.ec.run(self.setThemePath, False)
-            if curThemeList:
-                curTheme = curThemeList[0]
+            boot = self.grub.getConfig()
+            if boot is not None:
+                f = open(boot, 'r')
+                grubCont = f.read()
+                f.close()
+                matchObj = re.search('GRUB_CMDLINE_LINUX_DEFAULT="(.*)"', grubCont)
+                if matchObj:
+                    if 'splash' in matchObj.group(1):
+                        curThemeList = self.ec.run(self.setThemePath, False)
+                        if curThemeList:
+                            curTheme = curThemeList[0]
         return curTheme
 
     # Get a list of Plymouth themes in the repositories that can be installed
@@ -115,17 +121,21 @@ class Plymouth():
 
 # Handles plymouth saving (threaded)
 class PlymouthSave(threading.Thread):
-    def __init__(self, loggerObject, theme, resolution):
+    def __init__(self, loggerObject, theme=None, resolution=None):
         threading.Thread.__init__(self)
         self.log = loggerObject
         self.ec = ExecCmd(self.log)
         self.grub = Grub(self.log)
-        self.theme = theme
-        self.resolution = resolution
+        self.theme = None
+        self.resolution = None
         self.plymouth = Plymouth(self.log)
         self.conf = Config('dpm.conf')
         self.modulesPath = self.conf.getValue('Paths', 'modules')
         self.setThemePath = self.conf.getValue('Paths', 'settheme')
+        self.installedThemes = self.plymouth.getInstalledThemes()
+        if theme in self.installedThemes:
+            self.theme = theme
+            self.resolution = resolution
 
     # Save given theme and resolution
     def run(self):
@@ -155,18 +165,19 @@ class PlymouthSave(threading.Thread):
                 self.ec.run("sed 's/^i915 modeset.*//g' %s -i" % self.modulesPath, False)
                 self.ec.run("sed '/^$/d' %s -i" % self.modulesPath, False)    # Remove empty lines
 
-                f = open(self.modulesPath, 'a')
-                f.write('\n# KMS\n')
-                for line in kmsLines:
-                    if kmsDrv[0] in module and (line[0] == kmsDrv[0] or line[0] == 'all'):
-                        f.write('%s\n' % line[1])
-                    elif kmsDrv[1] in module and (line[0] == kmsDrv[1] or line[0] == 'all'):
-                        f.write('%s\n' % line[1])
-                    elif kmsDrv[2] in module and (line[0] == kmsDrv[2] or line[0] == 'all'):
-                        f.write('%s\n' % line[1])
-                    elif line[0] == 'all':
-                        f.write('%s\n' % line[1])
-                f.close()
+                if self.theme and self.resolution:
+                    f = open(self.modulesPath, 'a')
+                    f.write('\n# KMS\n')
+                    for line in kmsLines:
+                        if kmsDrv[0] in module and (line[0] == kmsDrv[0] or line[0] == 'all'):
+                            f.write('%s\n' % line[1])
+                        elif kmsDrv[1] in module and (line[0] == kmsDrv[1] or line[0] == 'all'):
+                            f.write('%s\n' % line[1])
+                        elif kmsDrv[2] in module and (line[0] == kmsDrv[2] or line[0] == 'all'):
+                            f.write('%s\n' % line[1])
+                        elif line[0] == 'all':
+                            f.write('%s\n' % line[1])
+                    f.close()
 
                 # Read modules just for debugging purposes
                 f = open(self.modulesPath, 'r')
@@ -175,14 +186,18 @@ class PlymouthSave(threading.Thread):
                 self.log.write('\nNew modules:\n%s\n' % newModules, 'PlymouthSave.run', 'debug')
 
                 # Edit grub
-                cmd = 'sed -i -e \'/GRUB_CMDLINE_LINUX_DEFAULT=/ c GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"\' %s' % boot
+                cmd = 'sed -i -e \'/GRUB_CMDLINE_LINUX_DEFAULT=/ c GRUB_CMDLINE_LINUX_DEFAULT="quiet"\' %s' % boot
+                if self.theme:
+                    cmd = 'sed -i -e \'/GRUB_CMDLINE_LINUX_DEFAULT=/ c GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"\' %s' % boot
                 self.ec.run(cmd)
-                if functions.doesFileContainString(boot, 'GRUB_GFXPAYLOAD_LINUX'):
-                    cmd = 'sed -i -e \'/GRUB_GFXPAYLOAD_LINUX=/ c GRUB_GFXPAYLOAD_LINUX=%s\' %s' % (self.resolution, boot)
-                    self.ec.run(cmd)
-                else:
-                    cmd = 'sed -i -e \'/GRUB_GFXMODE=/ i \GRUB_GFXPAYLOAD_LINUX=%s\' %s' % (self.resolution, boot)
-                    self.ec.run(cmd)
+
+                cmd = "sed 's/^GRUB_GFXPAYLOAD_LINUX.*//g' %s -i" % boot
+                if self.theme and self.resolution:
+                    if functions.doesFileContainString(boot, 'GRUB_GFXPAYLOAD_LINUX'):
+                        cmd = 'sed -i -e \'/GRUB_GFXPAYLOAD_LINUX=/ c GRUB_GFXPAYLOAD_LINUX=%s\' %s' % (self.resolution, boot)
+                    else:
+                        cmd = 'sed -i -e \'/GRUB_GFXMODE=/ i \GRUB_GFXPAYLOAD_LINUX=%s\' %s' % (self.resolution, boot)
+                self.ec.run(cmd)
 
                 # Read grub for debugging purposes
                 f = open(boot, 'r')
@@ -191,7 +206,8 @@ class PlymouthSave(threading.Thread):
                 self.log.write('\nNew grub:\n%s\n' % newGrub, 'PlymouthSave.run', 'debug')
 
                 # Set the theme
-                self.ec.run('%s %s' % (self.setThemePath, self.theme))
+                if self.theme:
+                    self.ec.run('%s %s' % (self.setThemePath, self.theme))
 
                 # Update grub and initram
                 if 'grub' in boot:
