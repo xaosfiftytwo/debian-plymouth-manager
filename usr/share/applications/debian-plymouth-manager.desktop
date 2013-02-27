@@ -1,0 +1,20 @@
+[Desktop Entry]
+Categories=System;
+Comment[en_US]=Debian Plymouth Manager
+Comment=Debian Plymouth Manager
+Exec=/usr/bin/debian-plymouth-manager
+GenericName[en_US]=
+GenericName=
+Icon=/usr/share/debian-plymouth-manager/logo.png
+MimeType=
+Name[en_US]=Debian Plymouth Manager
+Name=Debian Plymouth Manager
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=

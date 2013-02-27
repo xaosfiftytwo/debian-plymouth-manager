@@ -33,7 +33,7 @@ class DPM:
     def __init__(self):
         # Load window and widgets
         self.builder = gtk.Builder()
-        self.builder.add_from_file('/usr/share/dpm/dpm.glade')
+        self.builder.add_from_file('/usr/share/debian-plymouth-manager/debian-plymouth-manager.glade')
         self.window = self.builder.get_object('dpmWindow')
         self.ebTitle = self.builder.get_object('ebTitle')
         self.lblDPM = self.builder.get_object('lblDPM')
@@ -57,7 +57,7 @@ class DPM:
         self.fixed2 = self.builder.get_object('fixed2')
 
         # Read from config file
-        self.cfg = Config('dpm.conf')
+        self.cfg = Config('debian-plymouth-manager.conf')
         self.clrTitleFg = gtk.gdk.Color(self.cfg.getValue('COLORS', 'title_fg'))
         self.clrTitleBg = gtk.gdk.Color(self.cfg.getValue('COLORS', 'title_bg'))
         self.clrMenuSelect = gtk.gdk.Color(self.cfg.getValue('COLORS', 'menu_select'))
@@ -236,7 +236,7 @@ class DPM:
         if self.selectedMenuItem == menuItems[0]:
             # Themes Menu
             self.selectedTheme = self.tv1Handler.getSelectedValue()
-            self.log.write('Themes menu - seleceted theme: %s' % self.selectedTheme, 'dpm.tv1Changed', 'debug')
+            self.log.write('Themes menu - seleceted theme: %s' % self.selectedTheme, 'debian-plymouth-manager.tv1Changed', 'debug')
         elif self.selectedMenuItem == menuItems[1]:
             # Install Menu
             self.selectedAvailableTheme = self.tv1Handler.getSelectedValue()
@@ -483,7 +483,7 @@ class DPM:
         # Initialize logging
         if self.debug:
             if self.logPath == '':
-                self.logPath = 'dpm.log'
+                self.logPath = 'debian-plymouth-manager.log'
         self.log = Logger(self.logPath, 'debug', True, self.statusbar)
         functions.log = self.log
         self.ec = ExecCmd(self.log)
@@ -500,7 +500,7 @@ class DPM:
         self.ebMenuInstall.modify_bg(gtk.STATE_NORMAL, self.clrMenuBg)
 
         # Set some variables
-        self.version = functions.getPackageVersion('dpm')
+        self.version = functions.getPackageVersion('debian-plymouth-manager')
         self.distribution = functions.getDistribution()
         self.plymouth = Plymouth(self.log)
         self.grub = Grub(self.log)

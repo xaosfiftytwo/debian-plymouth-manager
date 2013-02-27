@@ -1,0 +1,17 @@
+Source: debian-plymouth-manager
+Section: admin
+Priority: optional
+Maintainer: Schoelje <schoelje@schoelje.nl>
+Build-Depends: debhelper (>= 5)
+Standards-Version: 3.7.2
+
+Package: debian-plymouth-manager
+Architecture: all
+Maintainer: Schoelje <schoelje@schoelje.nl>
+Installed-Size: 74
+Depends: plymouth, plymouth-drm (>= 0.8.5.1-5), plymouth-x11
+Provides: debian-plymouth-manager
+Section: admin
+Priority: optional
+Description: Debian Plymouth Manager.
+

@@ -1,0 +1,11 @@
+debian-plymouth-manager (2.0.1) debian; urgency=low
+
+  * Name change (there is already a DPM package)
+
+ -- Schoelje <schoelje@solydxk.com>  Wed, 27 Jan 2012 08:38:00 +0100
+
+debian-plymouth-manager (2.0.0) debian; urgency=low
+
+  * Initial version 2.0.0
+
+ -- Schoelje <schoelje@solydxk.com>  Tue, 23 Jan 2012 08:38:00 +0100

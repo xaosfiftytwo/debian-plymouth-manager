@@ -18,7 +18,7 @@ set -e
 
 case "$1" in    
     configure|upgrade|update|reconfigure)	
-	# Remove settings from previous DPM: debian-plymouth-manager
+	# Remove settings from old debian-plymouth-manager
 	sed 's/^ *//; s/ *$//' /etc/initramfs-tools/modules -i
 	sed 's/^uvesafb$//g' /etc/initramfs-tools/modules -i
 	sed 's/^vga16fb$//g' /etc/initramfs-tools/modules -i

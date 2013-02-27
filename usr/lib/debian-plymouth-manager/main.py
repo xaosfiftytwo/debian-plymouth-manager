@@ -44,7 +44,7 @@ for opt, arg in opts:
 # Initialize logging
 logFile = ''
 if debug:
-    logFile = 'dpm.log'
+    logFile = 'debian-plymouth-manager.log'
 log = Logger(logFile)
 functions.log = log
 if debug:
@@ -73,13 +73,13 @@ if len(args) > 0:
 if functions.getDistribution() == 'debian':
     # Do not run in live environment
     if not functions.isRunningLive() or force:
-        dpmPath = os.path.join(scriptDir, 'dpm.py' + args)
+        dpmPath = os.path.join(scriptDir, 'debian-plymouth-manager.py' + args)
 
         # Add launcher string, only when not root
         launcher = ''
         if os.geteuid() > 0:
             if os.path.exists('/usr/bin/kdesudo'):
-                launcher = 'kdesudo -i /usr/share/dpm/logo.png -d --comment "<b>Please enter your password</b>"'
+                launcher = 'kdesudo -i /usr/share/debian-plymouth-manager/logo.png -d --comment "<b>Please enter your password</b>"'
             elif os.path.exists('/usr/bin/gksu'):
                 launcher = 'gksu --message "<b>Please enter your password</b>"'
 

@@ -6,6 +6,8 @@ import re
 import operator
 import string
 import shutil
+import apt
+import commands
 from datetime import datetime
 from execcmd import ExecCmd
 try:
@@ -305,16 +307,21 @@ def getDistributionReleaseNumber():
 
 # Get the system's desktop
 def getDesktopEnvironment():
-    desktop = os.environ.get('DESKTOP_SESSION')
-    if desktop is None or desktop == 'default':
-        # Dirty: KDE_FULL_SESSION does not always exist: also check if kdm exists
-        if 'KDE_FULL_SESSION' in os.environ or os.path.isfile('/usr/bin/kdm'):
-            desktop = 'kde'
-        elif 'GNOME_DESKTOP_SESSION_ID' in os.environ or 'XDG_CURRENT_DESKTOP' in os.environ:
-            desktop = 'gnome'
-        elif 'MATE_DESKTOP_SESSION_ID' in os.environ:
-            desktop = 'mate'
-    return desktop
+    desktop_environment = 'generic'
+    if os.environ.get('KDE_FULL_SESSION') == 'true':
+        desktop_environment = 'kde'
+    elif os.environ.get('GNOME_DESKTOP_SESSION_ID'):
+        desktop_environment = 'gnome'
+    elif os.environ.get('MATE_DESKTOP_SESSION_ID'):
+        desktop_environment = 'mate'
+    else:
+        try:
+            info = commands.getoutput('xprop -root _DT_SAVE_MODE')
+            if ' = "xfce4"' in info:
+                desktop_environment = 'xfce'
+        except (OSError, RuntimeError):
+            pass
+    return desktop_environment
 
 
 # Get valid screen resolutions
@@ -369,26 +376,18 @@ def getResolutions(minRes='', maxRes='', reverseOrder=False, getUvesafbResolutio
 def getPackageStatus(packageName):
     status = ''
     try:
-        cmdChk = 'apt-cache policy %s' % str(packageName)
-        ec = ExecCmd(log)
-        packageCheck = ec.run(cmdChk, False)
-
-        for line in packageCheck:
-            instChk = re.search('installed:.*\d.*', line.lower())
-            if not instChk:
-                instChk = re.search('installed.*', line.lower())
-                if instChk:
-                    # Package is not installed
-                    log.write('Package not installed: %s' % str(packageName), 'drivers.getPackageStatus', 'debug')
-                    status = packageStatus[1]
-                    break
-            else:
-                # Package is installed
-                log.write('Package is installed: %s' % str(packageName), 'drivers.getPackageStatus', 'debug')
-                status = packageStatus[0]
-                break
-        # Package is not found: uninstallable
-        if not status:
+        cache = apt.Cache()
+        pkg = cache[packageName]
+        if pkg.installed is not None:
+            # Package is installed
+            log.write('Package is installed: %s' % str(packageName), 'drivers.getPackageStatus', 'debug')
+            status = packageStatus[0]
+        elif pkg.candidate is not None:
+            # Package is not installed
+            log.write('Package not installed: %s' % str(packageName), 'drivers.getPackageStatus', 'debug')
+            status = packageStatus[1]
+        else:
+            # Package is not found: uninstallable
             log.write('Package not found: %s' % str(packageName), 'drivers.getPackageStatus', 'warning')
             status = packageStatus[2]
     except:
@@ -402,10 +401,7 @@ def getPackageStatus(packageName):
 # Check if a package is installed
 def isPackageInstalled(packageName):
     isInstalled = False
-    cmd = 'dpkg -s %s | grep Status' % packageName
-    ec = ExecCmd(log)
-    packageList = ec.run(cmd, False)
-    if len(packageList) == 1:
+    if getPackageVersion(packageName) != '':
         isInstalled = True
     return isInstalled
 
@@ -413,19 +409,27 @@ def isPackageInstalled(packageName):
 # List all dependencies of a package
 def getPackageDependencies(packageName, reverseDepends=False):
     retList = []
-    cmd = 'apt-cache depends %s | grep " Depends:" | sed -e "s/ Depends: //"' % packageName
-    if reverseDepends:
-        cmd = 'apt-cache rdepends %s | grep "^ "' % packageName
-    ec = ExecCmd(log)
-    depList = ec.run(cmd, False)
-    if depList:
-        for line in depList:
-            if line[0:2] != 'E:':
-                matchObj = re.search('([a-z0-9\-]+)', line)
-                if matchObj:
-                    if matchObj.group(1) != '':
-                        retList.append(matchObj.group(1))
-
+    try:
+        if reverseDepends:
+            cmd = 'apt-cache rdepends %s | grep "^ "' % packageName
+            ec = ExecCmd(log)
+            depList = ec.run(cmd, False)
+            if depList:
+                for line in depList:
+                    if line[0:2] != 'E:':
+                        matchObj = re.search('([a-z0-9\-]+)', line)
+                        if matchObj:
+                            if matchObj.group(1) != '':
+                                retList.append(matchObj.group(1))
+        else:
+            cache = apt.Cache()
+            pkg = cache[packageName]
+            for basedeps in pkg.installed.dependencies:
+                for dep in basedeps:
+                    if dep.version != '':
+                        retList.append(dep.name)
+    except:
+        pass
     return retList
 
 
@@ -467,56 +471,60 @@ def killProcessByName(processName):
 # Get the package version number
 def getPackageVersion(packageName, candidate=False):
     version = ''
-    cmd = 'apt-cache policy %s | grep Installed' % packageName
-    if candidate:
-        cmd = 'apt-cache policy %s | grep Candidate' % packageName
-    ec = ExecCmd(log)
-    versionList = ec.run(cmd, False)
-    for line in versionList:
-        versionObj = re.search(':\s([\d\.:]*)', line.lower())
-        if versionObj:
-            version = versionObj.group(1)
+    try:
+        cache = apt.Cache()
+        pkg = cache[packageName]
+        if candidate:
+            version = pkg.candidate.version
+        elif pkg.installed is not None:
+            version = pkg.installed.version
+    except:
+        pass
     return version
 
 
-# Get the package description (first line)
-def getPackageDescription(packageName):
-    name = ''
-    cmd = 'apt-cache show %s | grep Description[\-a-z]*:' % packageName
-    ec = ExecCmd(log)
-    nameList = ec.run(cmd, False)
-    for line in nameList:
-        nameObj = re.search(':\s(.*)', line)
-        if nameObj:
-            name = nameObj.group(1)
-    return name
+# Get the package description
+def getPackageDescription(packageName, firstLineOnly=True):
+    descr = ''
+    try:
+        cache = apt.Cache()
+        pkg = cache[packageName]
+        descr = pkg.installed.description
+        if firstLineOnly:
+            lines = descr.split('\n')
+            if lines:
+                descr = lines[0]
+    except:
+        pass
+    return descr
 
 
 # Check if system has wireless (not necessarily a wireless connection)
 def hasWireless():
-    wl = False
-    cmd = 'iwconfig | grep "Access Point"'
-    ec = ExecCmd(log)
-    wlList = ec.run(cmd, False)
-    if wlList:
-        for line in wlList:
-            if 'Access Point' in line:
-                wl = True
-                break
-    return wl
+    wi = getWirelessInterface()
+    if wi is not None:
+        return True
+    else:
+        return False
 
 
 # Get the wireless interface (usually wlan0)
 def getWirelessInterface():
     wi = None
+    rtsFound = False
     cmd = 'iwconfig'
     ec = ExecCmd(log)
     wiList = ec.run(cmd, False)
-    for line in wiList:
-        reObj = re.search('([a-z0-9]*).*ESSID', line)
-        if reObj:
-            wi = reObj.group(1)
-            break
+    for line in reversed(wiList):
+        if not rtsFound:
+            reObj = re.search('\bRTS\b', line)
+            if reObj:
+                rtsFound = True
+        else:
+            reObj = re.search('^[a-z0-9]+', line)
+            if reObj:
+                wi = reObj.group(0)
+                break
     return wi
 
 

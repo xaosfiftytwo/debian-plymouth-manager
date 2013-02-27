@@ -30,7 +30,7 @@ class Plymouth():
         self.ec = ExecCmd(self.log)
         self.grub = Grub(self.log)
         self.avlThemesSearchstr = 'plymouth-themes'
-        self.conf = Config('dpm.conf')
+        self.conf = Config('debian-plymouth-manager.conf')
         self.setThemePath = self.conf.getValue('Paths', 'settheme')
 
     # Get a list of installed Plymouth themes
@@ -65,7 +65,7 @@ class Plymouth():
         avlThemes = []
 
         for line in availableThemes:
-            matchObj = re.search('plymouth-themes-([a-zA-Z0-9-]*)', line)
+            matchObj = re.search('%s-([a-zA-Z0-9-]*)' % self.avlThemesSearchstr, line)
             if matchObj:
                 theme = matchObj.group(1)
                 if not 'all' in theme:
@@ -129,7 +129,7 @@ class PlymouthSave(threading.Thread):
         self.theme = None
         self.resolution = None
         self.plymouth = Plymouth(self.log)
-        self.conf = Config('dpm.conf')
+        self.conf = Config('debian-plymouth-manager.conf')
         self.modulesPath = self.conf.getValue('Paths', 'modules')
         self.setThemePath = self.conf.getValue('Paths', 'settheme')
         self.installedThemes = self.plymouth.getInstalledThemes()
