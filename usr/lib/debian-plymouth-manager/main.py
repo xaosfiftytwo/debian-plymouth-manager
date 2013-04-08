@@ -55,8 +55,8 @@ if debug:
 # Log some basic environmental information
 machineInfo = functions.getSystemVersionInfo()
 log.write('Machine info: %s' % machineInfo, 'main', 'info')
-version = functions.getPackageVersion('ddm')
-log.write('DDM version: %s' % version, 'main', 'info')
+version = functions.getPackageVersion('debian-plymouth-manager')
+log.write('Debian Plymouth Manager version: %s' % version, 'main', 'info')
 
 # Set variables
 scriptDir = os.path.dirname(os.path.realpath(__file__))

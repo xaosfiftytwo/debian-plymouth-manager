@@ -7,7 +7,10 @@ import operator
 import string
 import shutil
 import apt
+import pwd
+import grp
 import commands
+import fnmatch
 from datetime import datetime
 from execcmd import ExecCmd
 try:
@@ -21,8 +24,36 @@ packageStatus = ['installed', 'notinstalled', 'uninstallable']
 # Logging object set from parent
 log = object
 
+
 # General ================================================
 
+def locate(pattern, root=os.curdir, locateDirsOnly=False):
+    '''Locate all files matching supplied filename pattern in and below
+    supplied root directory.'''
+    for path, dirs, files in os.walk(os.path.abspath(root)):
+        if locateDirsOnly:
+            obj = dirs
+        else:
+            obj = files
+        for objname in fnmatch.filter(obj, pattern):
+            yield os.path.join(path, objname)
+
+# Get a list with users, home directory, and a list with groups of that user
+def getUsers(homeUsers=True):
+    users = []
+    userGroups = []
+    groups = grp.getgrall()
+    for p in pwd.getpwall():
+        for g in groups:
+            for u in g.gr_mem:
+                if u == p.pw_name:
+                    userGroups.append(g.gr_name)
+        if homeUsers:
+            if p.pw_uid > 500 and p.pw_uid < 1500:
+                users.append([p.pw_name, p.pw_dir, userGroups])
+        else:
+            users.append([p.pw_name, p.pw_dir, userGroups])
+    return users
 
 def repaintGui():
     # Force repaint: ugly, but gui gets repainted so fast that gtk objects don't show it
@@ -221,7 +252,7 @@ def getLinuxHeadersAndImage(getLatest=False, includeLatestRegExp='', excludeLate
 # Get the current kernel release
 def getKernelRelease():
     ec = ExecCmd(log)
-    kernelRelease = ec.run('uname -r')[0]
+    kernelRelease = ec.run('uname -r', False)[0]
     return kernelRelease
 
 
@@ -232,22 +263,10 @@ def getGraphicsCards(pciId=None):
     ec = ExecCmd(log)
     hwGraph = ec.run(cmdGraph, False)
     for line in hwGraph:
-        graphMatch = re.search(':\s(.*)\[', line)
+        graphMatch = re.search(':\s(.*)\[(\w*):(\w*)\]', line)
         if graphMatch and (pciId is None or pciId.lower() + ':' in line.lower()):
-            graphicsCard.append(graphMatch.group(1))
+            graphicsCard.append([graphMatch.group(1), graphMatch.group(2), graphMatch.group(3)])
     return graphicsCard
-
-
-def getGraphicsCardsManufacturerPciId():
-    pciId = []
-    cmdGraph = 'lspci -nn | grep VGA'
-    ec = ExecCmd(log)
-    hwGraph = ec.run(cmdGraph, False)
-    for line in hwGraph:
-        idMatch = re.search('\[(\w*):(\w*)\]', line)
-        if idMatch:
-            pciId.append([idMatch.group(1), idMatch.group(2)])
-    return pciId
 
 
 # Get system version information
@@ -325,13 +344,22 @@ def getDesktopEnvironment():
 
 
 # Get valid screen resolutions
-def getResolutions(minRes='', maxRes='', reverseOrder=False, getUvesafbResolutions=False):
-    vbeModes = '/sys/bus/platform/drivers/uvesafb/uvesafb.0/vbe_modes'
-    cmd = "xrandr | grep '^\s' | cut -d' ' -f4"
-    if getUvesafbResolutions and os.path.exists(vbeModes):
-        cmd = "cat %s | cut -d'-' -f1" % vbeModes
-    ec = ExecCmd(log)
-    cmdList = ec.run(cmd, False)
+def getResolutions(minRes='', maxRes='', reverseOrder=False, getVesaResolutions=False):
+    cmd = None
+    cmdList = ['640x480', '800x600', '1024x768', '1280x1024', '1600x1200']
+
+    if getVesaResolutions:
+        vbeModes = '/sys/bus/platform/drivers/uvesafb/uvesafb.0/vbe_modes'
+        if os.path.exists(vbeModes):
+            cmd = "cat %s | cut -d'-' -f1" % vbeModes
+        elif isPackageInstalled('v86d') and isPackageInstalled('hwinfo'):
+            cmd = 'sudo hwinfo --framebuffer | grep "Mode " | cut -d' ' -f5'
+    else:
+        cmd = "xrandr | grep '^\s' | cut -d' ' -f4"
+
+    if cmd is not None:
+        ec = ExecCmd(log)
+        cmdList = ec.run(cmd, False)
     # Remove any duplicates from the list
     resList = list(set(cmdList))
 
@@ -388,11 +416,11 @@ def getPackageStatus(packageName):
             status = packageStatus[1]
         else:
             # Package is not found: uninstallable
-            log.write('Package not found: %s' % str(packageName), 'drivers.getPackageStatus', 'warning')
+            log.write('Package not found: %s' % str(packageName), 'drivers.getPackageStatus', 'debug')
             status = packageStatus[2]
     except:
         # If something went wrong: assume that package is uninstallable
-        log.write('Could not get status info for package: %s' % str(packageName), 'drivers.getPackageStatus', 'error')
+        log.write('Could not get status info for package: %s' % str(packageName), 'drivers.getPackageStatus', 'debug')
         status = packageStatus[2]
 
     return status
@@ -401,8 +429,15 @@ def getPackageStatus(packageName):
 # Check if a package is installed
 def isPackageInstalled(packageName):
     isInstalled = False
-    if getPackageVersion(packageName) != '':
-        isInstalled = True
+    cmd = 'dpkg-query -l %s | grep ^i' % packageName
+    if '*' in packageName:
+        cmd = 'aptitude search %s | grep ^i' % packageName
+    ec = ExecCmd(log)
+    pckList = ec.run(cmd, False)
+    for line in pckList:
+        if line[:1] == 'i':
+            isInstalled = True
+            break
     return isInstalled
 
 
@@ -531,12 +566,11 @@ def getWirelessInterface():
 # Check if we're running live
 def isRunningLive():
     live = False
-    # Debian live mount directory
-    dirLive = '/live'
-    # Ubuntu live mount directory
-    dirUbiquity = '/rofs'
-    if os.path.exists(dirLive) or os.path.exists(dirUbiquity):
-        live = True
+    liveDirs = ['/live', '/lib/live', '/rofs']
+    for ld in liveDirs:
+        if os.path.exists(ld):
+            live = True
+            break
     return live
 
 

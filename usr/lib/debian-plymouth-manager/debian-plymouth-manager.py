@@ -504,7 +504,7 @@ class DPM:
         self.distribution = functions.getDistribution()
         self.plymouth = Plymouth(self.log)
         self.grub = Grub(self.log)
-        self.resolutions = functions.getResolutions('800x600', '', True)
+        self.resolutions = functions.getResolutions('800x600', '', True, True)
         self.currentResolution = self.plymouth.getCurrentResolution()
         self.currentGrubResolution = self.grub.getCurrentResolution()
         self.currentTheme = self.plymouth.getCurrentTheme()

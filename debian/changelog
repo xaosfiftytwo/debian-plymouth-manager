@@ -1,11 +1,23 @@
+debian-plymouth-manager (2.0.3) debian; urgency=low
+
+  * Some minor bugs resolved
+
+ -- Schoelje <schoelje@solydxk.com>  Thu, 03 Apr 2013 11:30:00 +0100
+
+debian-plymouth-manager (2.0.2) debian; urgency=low
+
+  * List safe resolutions if (u)vesafb cannot be retrieved
+
+ -- Schoelje <schoelje@solydxk.com>  Tue, 25 Mar 2013 22:00:00 +0100
+ 
 debian-plymouth-manager (2.0.1) debian; urgency=low
 
   * Name change (there is already a DPM package)
 
- -- Schoelje <schoelje@solydxk.com>  Wed, 27 Jan 2012 08:38:00 +0100
+ -- Schoelje <schoelje@solydxk.com>  Wed, 27 Jan 2013 08:38:00 +0100
 
 debian-plymouth-manager (2.0.0) debian; urgency=low
 
   * Initial version 2.0.0
 
- -- Schoelje <schoelje@solydxk.com>  Tue, 23 Jan 2012 08:38:00 +0100
+ -- Schoelje <schoelje@solydxk.com>  Tue, 23 Jan 2013 08:38:00 +0100
