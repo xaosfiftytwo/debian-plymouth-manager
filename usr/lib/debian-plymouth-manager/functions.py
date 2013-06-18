@@ -11,6 +11,8 @@ import pwd
 import grp
 import commands
 import fnmatch
+import urllib2
+import gettext
 from datetime import datetime
 from execcmd import ExecCmd
 try:
@@ -23,6 +25,9 @@ packageStatus = ['installed', 'notinstalled', 'uninstallable']
 
 # Logging object set from parent
 log = object
+
+# i18n
+gettext.install("ddm", "/usr/share/locale")
 
 
 # General ================================================
@@ -55,6 +60,13 @@ def getUsers(homeUsers=True):
             users.append([p.pw_name, p.pw_dir, userGroups])
     return users
 
+# Get the login name of the current user
+def getUserLoginName():
+    p = os.popen('logname','r')
+    userName = string.strip(p.readline())
+    p.close()
+    return userName
+
 def repaintGui():
     # Force repaint: ugly, but gui gets repainted so fast that gtk objects don't show it
     while gtk.events_pending():
@@ -72,13 +84,14 @@ def getTypeString(object):
 
 
 # Convert string to number
-def strToNumber(string, toInt=False):
+def strToNumber(stringnr, toInt=False):
     nr = 0
+    stringnr = stringnr.strip()
     try:
         if toInt:
-            nr = int(string)
+            nr = int(stringnr)
         else:
-            nr = float(string)
+            nr = float(stringnr)
     except ValueError:
         nr = 0
     return nr
@@ -104,7 +117,7 @@ def sortListOnColumn(lst, columsList):
 # Return a list with images from a given path
 def getImgsFromDir(directoryPath):
     extensions = ['.png', '.jpg', '.jpeg', '.gif']
-    log.write('Search for extensions: %s' % str(extensions), 'functions.getImgsFromDir', 'debug')
+    log.write(_("Search for extensions: %(ext)s") % { "ext": str(extensions) }, 'functions.getImgsFromDir', 'debug')
     imgs = getFilesFromDir(directoryPath, False, extensions)
     return imgs
 
@@ -122,12 +135,12 @@ def getFilesFromDir(directoryPath, recursive=False, extensionList=None):
                 if os.path.splitext(fle)[1] == ext:
                     path = os.path.join(directoryPath, fle)
                     files.append(path)
-                    log.write('File with extension found: %s' % path, 'functions.getFilesFromDir', 'debug')
+                    log.write(_("File with extension found: %(path)s") % { "path": path }, 'functions.getFilesFromDir', 'debug')
                     break
         else:
             path = os.path.join(directoryPath, fle)
             files.append(path)
-            log.write('File found: %s' % path, 'functions.getFilesFromDir', 'debug')
+            log.write(_("File found: %(path)s") % { "path": path }, 'functions.getFilesFromDir', 'debug')
     return files
 
 
@@ -256,17 +269,17 @@ def getKernelRelease():
     return kernelRelease
 
 
-# Get the system's graphic card
-def getGraphicsCards(pciId=None):
-    graphicsCard = []
-    cmdGraph = 'lspci -nn | grep VGA'
+# Get the system's video cards
+def getVideoCards(pciId=None):
+    videoCard = []
+    cmdVideo = 'lspci -nn | grep VGA'
     ec = ExecCmd(log)
-    hwGraph = ec.run(cmdGraph, False)
-    for line in hwGraph:
-        graphMatch = re.search(':\s(.*)\[(\w*):(\w*)\]', line)
-        if graphMatch and (pciId is None or pciId.lower() + ':' in line.lower()):
-            graphicsCard.append([graphMatch.group(1), graphMatch.group(2), graphMatch.group(3)])
-    return graphicsCard
+    hwVideo = ec.run(cmdVideo, False)
+    for line in hwVideo:
+        videoMatch = re.search(':\s(.*)\[(\w*):(\w*)\]', line)
+        if videoMatch and (pciId is None or pciId.lower() + ':' in line.lower()):
+            videoCard.append([videoMatch.group(1), videoMatch.group(2), videoMatch.group(3)])
+    return videoCard
 
 
 # Get system version information
@@ -353,7 +366,7 @@ def getResolutions(minRes='', maxRes='', reverseOrder=False, getVesaResolutions=
         if os.path.exists(vbeModes):
             cmd = "cat %s | cut -d'-' -f1" % vbeModes
         elif isPackageInstalled('v86d') and isPackageInstalled('hwinfo'):
-            cmd = 'sudo hwinfo --framebuffer | grep "Mode " | cut -d' ' -f5'
+            cmd = "sudo hwinfo --framebuffer | grep '0x0' | cut -d' ' -f5"
     else:
         cmd = "xrandr | grep '^\s' | cut -d' ' -f4"
 
@@ -390,7 +403,7 @@ def getResolutions(minRes='', maxRes='', reverseOrder=False, getVesaResolutions=
                 itemH = strToNumber(itemList[1], True)
                 # Check if it can be added
                 if itemW >= minW and itemH >= minH and (maxW == 0 or itemW <= maxW) and (maxH == 0 or itemH <= maxH):
-                    log.write('Resolution added: %s' % item, 'functions.getResolutions', 'debug')
+                    log.write(_("Resolution added: %(res)s") % { "res": item }, 'functions.getResolutions', 'debug')
                     avlResTmp.append([itemW, itemH])
 
     # Sort the list and return as readable resolution strings
@@ -408,36 +421,50 @@ def getPackageStatus(packageName):
         pkg = cache[packageName]
         if pkg.installed is not None:
             # Package is installed
-            log.write('Package is installed: %s' % str(packageName), 'drivers.getPackageStatus', 'debug')
+            log.write(_("Package is installed: %(package)s") % { "package": str(packageName) }, 'drivers.getPackageStatus', 'debug')
             status = packageStatus[0]
         elif pkg.candidate is not None:
             # Package is not installed
-            log.write('Package not installed: %s' % str(packageName), 'drivers.getPackageStatus', 'debug')
+            log.write(_("Package not installed: %(package)s") % { "package": str(packageName) }, 'drivers.getPackageStatus', 'debug')
             status = packageStatus[1]
         else:
             # Package is not found: uninstallable
-            log.write('Package not found: %s' % str(packageName), 'drivers.getPackageStatus', 'debug')
+            log.write(_("Package not found: %(package)s") % { "package": str(packageName) }, 'drivers.getPackageStatus', 'debug')
             status = packageStatus[2]
     except:
         # If something went wrong: assume that package is uninstallable
-        log.write('Could not get status info for package: %s' % str(packageName), 'drivers.getPackageStatus', 'debug')
+        log.write(_("Could not get status info for package: %(package)s") % { "package": str(packageName) }, 'drivers.getPackageStatus', 'debug')
         status = packageStatus[2]
 
     return status
 
 
 # Check if a package is installed
-def isPackageInstalled(packageName):
+def isPackageInstalled(packageName, alsoCheckVersion=True):
     isInstalled = False
-    cmd = 'dpkg-query -l %s | grep ^i' % packageName
-    if '*' in packageName:
-        cmd = 'aptitude search %s | grep ^i' % packageName
-    ec = ExecCmd(log)
-    pckList = ec.run(cmd, False)
-    for line in pckList:
-        if line[:1] == 'i':
-            isInstalled = True
-            break
+    try:
+        cmd = 'dpkg-query -l %s | grep ^i' % packageName
+        if '*' in packageName:
+            cmd = 'aptitude search %s | grep ^i' % packageName
+        ec = ExecCmd(log)
+        pckList = ec.run(cmd, False)
+        for line in pckList:
+            matchObj = re.search('([a-z]+)\s+([a-z0-9\-_\.]*)', line)
+            if matchObj:
+                if matchObj.group(1)[:1] == 'i':
+                    if alsoCheckVersion:
+                        cache = apt.Cache()
+                        pkg = cache[matchObj.group(2)]
+                        if pkg.installed.version == pkg.candidate.version:
+                            isInstalled = True
+                            break
+                    else:
+                        isInstalled = True
+                        break
+            if isInstalled:
+                break
+    except:
+        pass
     return isInstalled
 
 
@@ -584,3 +611,12 @@ def getDivertedFiles(mustContain=None):
     ec = ExecCmd(log)
     divertedFiles = ec.run(cmd, False)
     return divertedFiles
+
+# Check for internet connection
+def hasInternetConnection(testUrl='http://google.com'):
+    try:
+        urllib2.urlopen(testUrl, timeout=1)
+        return True
+    except urllib2.URLError:
+        pass
+    return False

@@ -1,7 +1,11 @@
 #!/usr/bin/env python -u
 
 import threading
+import gettext
 from execcmd import ExecCmd
+
+# i18n
+gettext.install("debian-plymouth-manager", "/usr/share/locale")
 
 
 class ExecuteApt(threading.Thread):
@@ -19,7 +23,7 @@ class ExecuteApt(threading.Thread):
             # Check if an error occured
             for line in lst:
                 if line[:2] == 'E:':
-                    self.log.write('Error returned: %s' % line, 'execapt.run', 'error')
+                    self.log.write(_("Error returned: %(err)s") % { "err": line }, 'execapt.run', 'error')
                     self.queue.put(line)
                     break
         except Exception, detail:

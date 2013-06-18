@@ -7,6 +7,7 @@ import re
 import os
 import threading
 import functions
+import gettext
 from glob import glob
 from execcmd import ExecCmd
 from config import Config
@@ -21,6 +22,9 @@ manufacturerDrivers = [
 ['INTEL', ['intel', 'fbdev', 'vesa']],
 ['VBOXVIDEO', ['vboxvideo']]
 ]
+
+# i18n
+gettext.install("debian-plymouth-manager", "/usr/share/locale")
 
 
 # Handles general plymouth functions
@@ -92,7 +96,7 @@ class Plymouth():
                 if matchObj:
                     package = matchObj.group(1)
                     break
-        self.log.write('Package found %s' % package, 'plymouth.getRemovablePackageName', 'debug')
+        self.log.write(_("Package found %(pck)s") % { "pck": package }, 'plymouth.getRemovablePackageName', 'debug')
         return package
 
     # Get valid package name of a Plymouth theme (does not have to exist in the repositories)
@@ -112,10 +116,10 @@ class Plymouth():
                 matchObj = re.search('^GRUB_GFXPAYLOAD_LINUX=(.*)', line)
                 if matchObj:
                     res = matchObj.group(1)
-                    self.log.write('Current Plymouth resolution: %s' % res, 'plymouth.getCurrentResolution', 'debug')
+                    self.log.write(_("Current Plymouth resolution: %(res)s") % { "res": res }, 'plymouth.getCurrentResolution', 'debug')
                     break
         else:
-            self.log.write('Neither grub nor burg found in /etc/default', 'plymouth.getCurrentResolution', 'error')
+            self.log.write(_("Neither grub nor burg found in /etc/default"), 'plymouth.getCurrentResolution', 'error')
         return res
 
 
@@ -183,7 +187,7 @@ class PlymouthSave(threading.Thread):
                 f = open(self.modulesPath, 'r')
                 newModules = f.read()
                 f.close()
-                self.log.write('\nNew modules:\n%s\n' % newModules, 'PlymouthSave.run', 'debug')
+                self.log.write(_("\nNew modules:\n%(modules)s\n") % { "modules": newModules }, 'PlymouthSave.run', 'debug')
 
                 # Edit grub
                 cmd = 'sed -i -e \'/GRUB_CMDLINE_LINUX_DEFAULT=/ c GRUB_CMDLINE_LINUX_DEFAULT="quiet"\' %s' % boot
@@ -203,7 +207,7 @@ class PlymouthSave(threading.Thread):
                 f = open(boot, 'r')
                 newGrub = f.read()
                 f.close()
-                self.log.write('\nNew grub:\n%s\n' % newGrub, 'PlymouthSave.run', 'debug')
+                self.log.write(_("\nNew grub:\n%(grub)s\n") % { "grub": newGrub }, 'PlymouthSave.run', 'debug')
 
                 # Set the theme
                 if self.theme:
@@ -216,7 +220,7 @@ class PlymouthSave(threading.Thread):
                     self.ec.run('update-burg')
                 self.ec.run('update-initramfs -u -k all')
             else:
-                self.log.write('Cannot save Plymouth theme:\nNo grub or burg config file in /etc/default.', 'PlymouthSave.run', 'error')
+                self.log.write(_("Cannot save Plymouth theme:\nNo grub or burg config file in /etc/default."), 'PlymouthSave.run', 'error')
 
         except Exception, detail:
             self.log.write(detail, 'PlymouthSave.run', 'exception')
@@ -249,7 +253,7 @@ class PlymouthSave(threading.Thread):
                 module = self.matchModuleInString(prevLine)
                 break
 
-        self.log.write('Used graphics driver: %s' % module, 'PlymouthSave.getUsedModule', 'info')
+        self.log.write(_("Used graphics driver: %(drv)s") % { "drv": module }, 'PlymouthSave.getUsedModule', 'info')
         return module
 
     # Return the module found in a string (used by getUsedModule)

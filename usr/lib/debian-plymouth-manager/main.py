@@ -7,8 +7,12 @@ import getopt
 import sys
 import string
 import gtk
+import gettext
 from logger import Logger
 from dialogs import MessageDialogSave
+
+# i18n
+gettext.install("debian-plymouth-manager", "/usr/share/locale")
 
 
 # Help
@@ -50,13 +54,13 @@ functions.log = log
 if debug:
     if os.path.isfile(log.logPath):
         open(log.logPath, 'w').close()
-    log.write('Write debug information to file: %s' % log.logPath, 'main', 'info')
+    log.write(_("Write debug information to file: %(path)s") % { "path": log.logPath }, 'main', 'info')
 
 # Log some basic environmental information
 machineInfo = functions.getSystemVersionInfo()
-log.write('Machine info: %s' % machineInfo, 'main', 'info')
+log.write(_("Machine info: %(info)s") % { "info": machineInfo }, 'main', 'info')
 version = functions.getPackageVersion('debian-plymouth-manager')
-log.write('Debian Plymouth Manager version: %s' % version, 'main', 'info')
+log.write(_("Debian Plymouth Manager version: %(version)s") % { "version": version }, 'main', 'info')
 
 # Set variables
 scriptDir = os.path.dirname(os.path.realpath(__file__))
@@ -78,21 +82,20 @@ if functions.getDistribution() == 'debian':
         # Add launcher string, only when not root
         launcher = ''
         if os.geteuid() > 0:
+            launcher = "gksu --message \"<b>%s</b>\"" % _("Please enter your password")
             if os.path.exists('/usr/bin/kdesudo'):
-                launcher = 'kdesudo -i /usr/share/debian-plymouth-manager/logo.png -d --comment "<b>Please enter your password</b>"'
-            elif os.path.exists('/usr/bin/gksu'):
-                launcher = 'gksu --message "<b>Please enter your password</b>"'
+                launcher = "kdesudo -i /usr/share/debian-plymouth-manager/logo.png -d --comment \"<b>%s</b>\"" % _("Please enter your password")
 
         cmd = '%s python %s' % (launcher, dpmPath)
-        log.write('Startup command: ' + cmd, 'main', 'debug')
+        log.write(_("Startup command: %(cmd)s") % { "cmd": cmd }, 'main', 'debug')
         os.system(cmd)
     else:
-        title = 'DPM - Live environment'
-        msg = 'DPM cannot run in a live environment\n\nTo force start, use the --force argument'
+        title = _("DPM - Live environment")
+        msg = _("DPM cannot run in a live environment\n\nTo force start, use the --force argument")
         MessageDialogSave(title, msg, gtk.MESSAGE_INFO).show()
         log.write(msg, 'main', 'warning')
 else:
-    title = 'DPM - Debian based'
-    msg = 'DPM can only run on Debian based distributions'
+    title = _("DPM - Debian based")
+    msg = _("DPM can only run on Debian based distributions")
     MessageDialogSave(title, msg, gtk.MESSAGE_INFO).show()
     log.write(msg, 'main', 'warning')

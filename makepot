@@ -1,0 +1,3 @@
+#!/bin/bash
+
+xgettext --language=Python --keyword=_ --output=debian-plymouth-manager.pot usr/lib/debian-plymouth-manager/execapt.py usr/lib/debian-plymouth-manager/execcmd.py usr/lib/debian-plymouth-manager/functions.py usr/lib/debian-plymouth-manager/main.py usr/lib/debian-plymouth-manager/treeview.py usr/lib/debian-plymouth-manager/debian-plymouth-manager.py usr/lib/debian-plymouth-manager/plymouth.py usr/lib/debian-plymouth-manager/grub.py

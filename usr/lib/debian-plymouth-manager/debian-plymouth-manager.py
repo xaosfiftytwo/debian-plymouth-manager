@@ -12,6 +12,7 @@ try:
     import glib
     import string
     import getopt
+    import gettext
     from plymouth import Plymouth, PlymouthSave
     from config import Config
     from treeview import TreeViewHandler
@@ -26,14 +27,18 @@ except Exception, detail:
 
 menuItems = ['themes', 'install', 'grub']
 
+# i18n
+gettext.install("debian-plymouth-manager", "/usr/share/locale")
+
 
 #class for the main window
 class DPM:
 
     def __init__(self):
+        self.scriptDir = os.path.dirname(os.path.realpath(__file__))
         # Load window and widgets
         self.builder = gtk.Builder()
-        self.builder.add_from_file('/usr/share/debian-plymouth-manager/debian-plymouth-manager.glade')
+        self.builder.add_from_file(os.path.join(self.scriptDir, '../../share/debian-plymouth-manager/debian-plymouth-manager.glade'))
         self.window = self.builder.get_object('dpmWindow')
         self.ebTitle = self.builder.get_object('ebTitle')
         self.lblDPM = self.builder.get_object('lblDPM')
@@ -63,6 +68,11 @@ class DPM:
         self.clrMenuSelect = gtk.gdk.Color(self.cfg.getValue('COLORS', 'menu_select'))
         self.clrMenuHover = gtk.gdk.Color(self.cfg.getValue('COLORS', 'menu_hover'))
         self.clrMenuBg = gtk.gdk.Color(self.cfg.getValue('COLORS', 'menu_bg'))
+
+        # Translations
+        self.lblMenuThemes.set_text(_("Themes"))
+        self.lblMenuInstall.set_text(_("Install"))
+        self.lblMenuGrub.set_text(_("Grub"))
 
         self.selectedMenuItem = None
         self.selectedTheme = None
@@ -138,14 +148,14 @@ class DPM:
             self.tv2Handler.clearTreeView()
 
             # Set object properties
-            self.btn1.set_label('Set Plymouth Theme')
-            self.btn2.set_label('Preview')
+            self.btn1.set_label(_("Set Plymouth Theme"))
+            self.btn2.set_label(_("Preview"))
             self.btn2.show()
             self.fixed2.show()
             self.sw2.show()
 
             # Show Installed Themes
-            self.lblTitle1.set_text('Installed Themes')
+            self.lblTitle1.set_text(_("Installed Themes"))
             # Clone the installedThemes list
             listInst = list(self.installedThemes)
             listInst.append(self.noPlymouth)
@@ -161,10 +171,10 @@ class DPM:
                 ind = len(listInst) - 1
 
             if len(listInst) > 0:
-                self.tv1Handler.fillTreeview(listInst, ['str'], [-1], ind, 700)
+                self.tv1Handler.fillTreeview(listInst, ['str'], ind, 700)
 
             # Show Resolutios
-            self.lblTitle2.set_text('Resolutions')
+            self.lblTitle2.set_text(_("Resolutions"))
             ind = -1
             if self.currentResolution:
                 try:
@@ -173,7 +183,7 @@ class DPM:
                     ind = 0
 
             if len(self.resolutions) > 0:
-                self.tv2Handler.fillTreeview(self.resolutions, ['str'], [-1], ind, 700)
+                self.tv2Handler.fillTreeview(self.resolutions, ['str'], ind, 700)
 
     def showMenuInstall(self, widget=None, event=None, refresh=False):
         if self.selectedMenuItem != menuItems[1] or refresh:
@@ -185,21 +195,21 @@ class DPM:
             self.tv2Handler.clearTreeView()
 
             # Set object properties
-            self.btn1.set_label('Install Theme')
-            self.btn2.set_label('Remove Theme')
+            self.btn1.set_label(_("Install Theme"))
+            self.btn2.set_label(_("Remove Theme"))
             self.btn2.show()
             self.fixed2.show()
             self.sw2.show()
 
             # Show Available Themes
-            self.lblTitle1.set_text('Available Themes')
+            self.lblTitle1.set_text(_("Available Themes"))
             if len(self.availableThemes) > 0:
-                self.tv1Handler.fillTreeview(self.availableThemes, ['str'], [-1], 0)
+                self.tv1Handler.fillTreeview(self.availableThemes, ['str'], 0)
 
             # Show Installed Themes
-            self.lblTitle2.set_text('Installed Themes')
+            self.lblTitle2.set_text(_("Installed Themes"))
             if len(self.installedThemes) > 0:
-                self.tv2Handler.fillTreeview(self.installedThemes, ['str'], [-1], 0)
+                self.tv2Handler.fillTreeview(self.installedThemes, ['str'], 0)
 
     def showMenuGrub(self, widget=None, event=None, refresh=False):
         if self.selectedMenuItem != menuItems[2] or refresh:
@@ -211,13 +221,13 @@ class DPM:
             self.tv2Handler.clearTreeView()
 
             # Set object properties
-            self.btn1.set_label('Set Grub Resolution')
+            self.btn1.set_label(_("Set Grub Resolution"))
             self.btn2.hide()
             self.fixed2.hide()
             self.sw2.hide()
 
             # Show Resolutios
-            self.lblTitle1.set_text('Grub Resolutions')
+            self.lblTitle1.set_text(_("Grub Resolutions"))
             ind = -1
             if self.currentGrubResolution:
                 try:
@@ -236,25 +246,25 @@ class DPM:
         if self.selectedMenuItem == menuItems[0]:
             # Themes Menu
             self.selectedTheme = self.tv1Handler.getSelectedValue()
-            self.log.write('Themes menu - seleceted theme: %s' % self.selectedTheme, 'debian-plymouth-manager.tv1Changed', 'debug')
+            self.log.write(_("Themes menu - seleceted theme: %(theme)s") % { "theme": self.selectedTheme }, 'debian-plymouth-manager.tv1Changed', 'debug')
         elif self.selectedMenuItem == menuItems[1]:
             # Install Menu
             self.selectedAvailableTheme = self.tv1Handler.getSelectedValue()
-            self.log.write('Install menu - seleceted available theme: %s' % self.selectedAvailableTheme, 'dpm.tv1Changed', 'debug')
+            self.log.write(_("Install menu - seleceted available theme: %(theme)s") % { "theme": self.selectedAvailableTheme }, 'dpm.tv1Changed', 'debug')
         elif self.selectedMenuItem == menuItems[2]:
             # Grub Menu
             self.selectedGrubResolution = self.tv1Handler.getSelectedValue()
-            self.log.write('Grub menu - seleceted grub resolution: %s' % self.selectedGrubResolution, 'dpm.tv1Changed', 'debug')
+            self.log.write(_("Grub menu - seleceted grub resolution: %(res)s") % { "res": self.selectedGrubResolution }, 'dpm.tv1Changed', 'debug')
 
     def tv2Changed(self, widget):
         if self.selectedMenuItem == menuItems[0]:
             # Themes Menu
             self.selectedResolution = self.tv2Handler.getSelectedValue()
-            self.log.write('Themes menu - seleceted resolution: %s' % self.selectedResolution, 'dpm.tv2Changed', 'debug')
+            self.log.write(_("Themes menu - seleceted resolution: %(res)s") % { "res": self.selectedResolution }, 'dpm.tv2Changed', 'debug')
         elif self.selectedMenuItem == menuItems[1]:
             # Install Menu
             self.selectedRemoveTheme = self.tv2Handler.getSelectedValue()
-            self.log.write('Install menu - seleceted theme to remove: %s' % self.selectedRemoveTheme, 'dpm.tv2Changed', 'debug')
+            self.log.write(_("Install menu - seleceted theme to remove: %(theme)s") % { "theme": self.selectedRemoveTheme }, 'dpm.tv2Changed', 'debug')
 
     # ===============================================
     # Button functions
@@ -291,20 +301,20 @@ class DPM:
         if self.currentTheme == self.selectedTheme and self.currentResolution == self.selectedResolution:
             self.plymouth.previewPlymouth()
         else:
-            title = 'Preview'
-            msg = 'You must save before you can preview:\n\nTheme: %s\nResolution: %s' % (self.selectedTheme, self.selectedResolution)
+            title = _("Preview")
+            msg = _("You must save before you can preview:\n\nTheme: %(theme)s\nResolution: %(res)s") % { "theme": self.selectedTheme, "res": self.selectedResolution }
             MessageDialogSave(title, msg, gtk.MESSAGE_INFO, self.window).show()
 
     def setTheme(self):
         self.toggleGuiElements(True)
         if not self.selectedResolution:
             self.selectedResolution = self.tv2Handler.getValue(self.tv2Handler.getRowCount() - 1)
-        self.log.write('Save setting: %s (%s)' % (self.selectedTheme, self.selectedResolution), 'dpm.setTheme', 'info')
+        self.log.write(_("Save setting: %(theme)s (%(res)s)") % { "theme": self.selectedTheme, "res": self.selectedResolution }, 'dpm.setTheme', 'info')
         # Start saving in a separate thread
         t = PlymouthSave(self.log, self.selectedTheme, self.selectedResolution)
         t.start()
         # Run spinner as long as the thread is alive
-        self.log.write('Check every 5 miliseconds if thread is still active', 'dpm.setTheme', 'debug')
+        #self.log.write(_("Check every 5 miliseconds if thread is still active"), 'dpm.setTheme', 'debug')
         glib.timeout_add(5, self.checkSaveThread)
 
     def checkSaveThread(self):
@@ -327,10 +337,10 @@ class DPM:
 
         # Thread is done: stop spinner and make button sensitive again
         self.toggleGuiElements(False)
-        self.log.write('Done saving settings: %s (%s)' % (self.selectedTheme, self.selectedResolution), 'dpm.checkSaveThread', 'info')
+        self.log.write(_("Done saving settings: %(theme)s (%(res)s)") % { "theme": self.selectedTheme, "res": self.selectedResolution }, 'dpm.checkSaveThread', 'info')
 
-        title = 'Save settings'
-        msg = 'Theme: %s\nResolution: %s\n\nDone' % (self.selectedTheme, str(self.selectedResolution))
+        title = _("Save settings")
+        msg = _("Theme: %(theme)s\nResolution: %(res)s\n\nDone") % { "theme": self.selectedTheme, "res": str(self.selectedResolution) }
         self.log.write(msg, 'dpm.checkSaveThread', 'debug')
         MessageDialogSave(title, msg, gtk.MESSAGE_INFO, self.window).show()
         return False
@@ -352,14 +362,14 @@ class DPM:
     # ===============================================
 
     def installTheme(self):
-        self.threadAction = 'install'
+        self.threadAction = _("install")
         self.threadPackage = self.plymouth.getPackageName(self.selectedAvailableTheme)
         if self.threadPackage:
-            dialog = QuestionDialog('Install theme', 'Continue installing theme:\n%s' % self.threadPackage, self.window)
+            dialog = QuestionDialog(_("Install theme"), _("Continue installing theme:\n%(theme)s") % { "theme": self.threadPackage }, self.window)
             go = dialog.show()
             if (go):
                 self.toggleGuiElements(True)
-                self.log.write('Start installing theme: %s' % self.threadPackage, 'dpm.installTheme', 'info')
+                self.log.write(_("Start installing theme: %(theme)s") % { "theme": self.threadPackage }, 'dpm.installTheme', 'info')
 
                 #  Start apt in a separate thread
                 cmd = 'apt-get install -y --force-yes %s' % self.threadPackage
@@ -368,40 +378,40 @@ class DPM:
                 t.start()
                 self.queue.join()
 
-                self.log.write('Check every 5 miliseconds if thread is still active', 'dpm.installTheme', 'debug')
+                #self.log.write(_("Check every 5 miliseconds if thread is still active"), 'dpm.installTheme', 'debug')
                 glib.timeout_add(5, self.checkAptThread)
             else:
-                self.log.write('User cancel install theme: %s' % self.threadPackage, 'dpm.installTheme', 'info')
+                self.log.write(_("User cancel install theme: %(theme)s") % { "theme": self.threadPackage }, 'dpm.installTheme', 'info')
         else:
-            title = '%s%s theme' % (self.threadAction[0].capitalize(), self.threadAction[1:])
-            msg = 'The package cannot be installed: %s\nTry apt instead' % self.threadPackage
+            title = _("%(act1)s%(act2)s theme") % { "act1": self.threadAction[0].capitalize(), "act2": self.threadAction[1:] }
+            msg = _("The package cannot be installed: %(pck)s\nTry apt instead") % { "pck": self.threadPackage }
             self.log.write(msg, 'dpm.installTheme', 'debug')
             MessageDialogSave(title, msg, gtk.MESSAGE_INFO, self.window).show()
 
     def removeTheme(self):
-        self.threadAction = 'remove'
+        self.threadAction = _("remove")
         self.threadPackage = self.plymouth.getRemovablePackageName(self.selectedRemoveTheme)
         if self.threadPackage:
-            dialog = QuestionDialog('Remove theme', 'Continue removing theme:\n%s' % self.threadPackage, self.window)
+            dialog = QuestionDialog(_("Remove theme"), _("Continue removing theme:\n%(theme)s") % { "theme": self.threadPackage }, self.window)
             go = dialog.show()
             if (go):
                 self.toggleGuiElements(True)
 
                 # Start apt in a separate thread
-                self.log.write('Start removing theme: %s' % self.threadPackage, 'dpm.removeTheme', 'info')
+                self.log.write(_("Start removing theme: %(theme)s") % { "theme": self.threadPackage }, 'dpm.removeTheme', 'info')
                 cmd = 'apt-get purge -y --force-yes %s' % self.threadPackage
                 t = ExecuteApt(self.log, cmd, self.queue)
                 t.daemon = True
                 t.start()
                 self.queue.join()
 
-                self.log.write('Check every 5 miliseconds if thread is still active', 'dpm.removeTheme', 'debug')
+                #self.log.write(_("Check every 5 miliseconds if thread is still active"), 'dpm.removeTheme', 'debug')
                 glib.timeout_add(5, self.checkAptThread)
             else:
-                self.log.write('User cancel remove theme: %s' % self.threadPackage, 'dpm.removeTheme', 'info')
+                self.log.write(_("User cancel remove theme: %(theme)s") % { "theme": self.threadPackage }, 'dpm.removeTheme', 'info')
         else:
-            title = '%s%s theme' % (self.threadAction[0].capitalize(), self.threadAction[1:])
-            msg = 'The package cannot be removed: %s\nIt is part of a meta package.\nTry apt instead' % self.selectedRemoveTheme
+            title = _("%(act1)s%(act2)s theme") % { "act1": self.threadAction[0].capitalize(), "act2": self.threadAction[1:] }
+            msg = _("The package cannot be removed: %(pck)s\nIt is part of a meta package.\nTry apt instead") % { "pck": self.selectedRemoveTheme }
             self.log.write(msg, 'dpm.removeTheme', 'debug')
             MessageDialogSave(title, msg, gtk.MESSAGE_INFO, self.window).show()
 
@@ -421,11 +431,11 @@ class DPM:
             self.showMenuInstall(None, None, True)
 
         self.toggleGuiElements(False)
-        title = '%s%s theme' % (self.threadAction[0].capitalize(), self.threadAction[1:])
+        title = _("%(act1)s%(act2)s theme") % { "act1": self.threadAction[0].capitalize(), "act2": self.threadAction[1:] }
         if aptError:
-            msg = 'Could not %s theme:\n%s\nTry apt instead.\n\nError message:\n%s' % (self.threadAction, self.threadPackage, aptError)
+            msg = _("Could not %(action)s theme:\n%(theme)s\nTry apt instead.\n\nError message:\n%(err)s") % { "action": self.threadAction, "theme": self.threadPackage, "err": aptError }
         else:
-            msg = 'Theme successfully %sed:\n%s' % (self.threadAction, self.threadPackage)
+            msg = _("%(action)s successfully of:\n%(pck)s") % { "action": self.threadAction[0].capitalize() + self.threadAction[1:], "pck": self.threadPackage }
 
         self.log.write(msg, 'dpm.checkAptThread', 'debug')
         MessageDialogSave(title, msg, gtk.MESSAGE_INFO, self.window).show()
@@ -437,12 +447,12 @@ class DPM:
 
     def setGrubResolution(self):
         self.toggleGuiElements(True)
-        self.log.write('Save grub resolution: %s' % self.selectedGrubResolution, 'dpm.setGrubResolution', 'info')
+        self.log.write(_("Save grub resolution: %(res)s") % { "res": self.selectedGrubResolution }, 'dpm.setGrubResolution', 'info')
         # Start saving in a separate thread
         t = GrubSave(self.log, self.selectedGrubResolution)
         t.start()
         # Run spinner as long as the thread is alive
-        self.log.write('Check every 5 miliseconds if thread is still active', 'dpm.setGrubResolution', 'debug')
+        #self.log.write(_("Check every 5 miliseconds if thread is still active"), 'dpm.setGrubResolution', 'debug')
         glib.timeout_add(5, self.checkGrubThread)
 
     def checkGrubThread(self):
@@ -456,8 +466,8 @@ class DPM:
             self.showMenuGrub(None, None, True)
 
         self.toggleGuiElements(False)
-        title = "Grub resolution"
-        msg = "Grub resolution saved: %s" % self.selectedGrubResolution
+        title = _("Grub resolution")
+        msg = _("Grub resolution saved: %(res)s") % { "res": self.selectedGrubResolution }
         self.log.write(msg, 'dpm.setGrubResolution', 'info')
         MessageDialogSave(title, msg, gtk.MESSAGE_INFO, self.window).show()
         return False
@@ -504,7 +514,7 @@ class DPM:
         self.distribution = functions.getDistribution()
         self.plymouth = Plymouth(self.log)
         self.grub = Grub(self.log)
-        self.resolutions = functions.getResolutions('800x600', '', True, True)
+        self.resolutions = functions.getResolutions('800x600', '', True, False)
         self.currentResolution = self.plymouth.getCurrentResolution()
         self.currentGrubResolution = self.grub.getCurrentResolution()
         self.currentTheme = self.plymouth.getCurrentTheme()
