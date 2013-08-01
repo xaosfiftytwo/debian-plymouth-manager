@@ -236,7 +236,7 @@ class DPM:
                     ind = 0
 
             if len(self.resolutions) > 0:
-                self.tv1Handler.fillTreeview(self.resolutions, ['str'], [-1], ind, 700)
+                self.tv1Handler.fillTreeview(self.resolutions, ['str'], ind, 700)
 
     # ===============================================
     # Treeview functions
