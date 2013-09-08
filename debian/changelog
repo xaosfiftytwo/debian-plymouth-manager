@@ -1,3 +1,53 @@
+debian-plymouth-manager (2.1.3) debian; urgency=low
+
+  * Added French translation
+
+ -- Schoelje <schoelje@solydxk.com>  Sat, 07 Sep 2013 22:30:00 +0100
+ 
+debian-plymouth-manager (2.1.2) debian; urgency=low
+
+  * Grub section not showing resolutions
+
+ -- Schoelje <schoelje@solydxk.com>  Sat, 06 Jul 2013 18:00:00 +0100
+
+debian-plymouth-manager (2.1.1) debian; urgency=low
+
+  * Added German translation
+  * Make GUI objects size with textual contents
+  * Changed resolutions from Vesa safe to Xrandr
+
+ -- Schoelje <schoelje@solydxk.com>  Wed, 12 Jun 2013 15:00:00 +0100
+
+debian-plymouth-manager (2.0.9) debian; urgency=low
+
+  * Added Catalan translation
+
+ -- Schoelje <schoelje@solydxk.com>  Wed, 05 Jun 2013 19:00:00 +0100
+
+debian-plymouth-manager (2.0.8) debian; urgency=low
+
+  * Moved translations to standard directory /usr/share/locale
+
+ -- Schoelje <schoelje@solydxk.com>  Wed, 06 Jun 2013 10:00:00 +0100
+
+debian-plymouth-manager (2.0.7) debian; urgency=low
+
+  * Included Spanish and Dutch translations
+
+ -- Schoelje <schoelje@solydxk.com>  Wed, 29 May 2013 20:00:00 +0100
+
+debian-plymouth-manager (2.0.5) debian; urgency=low
+
+  * Grub settings were not saved
+
+ -- Schoelje <schoelje@solydxk.com>  Tue, 21 May 2013 10:00:00 +0100
+
+debian-plymouth-manager (2.0.4) debian; urgency=low
+
+  * No resolutions listed whith v86d driver
+
+ -- Schoelje <schoelje@solydxk.com>  Sat, 05 May 2013 20:00:00 +0100
+
 debian-plymouth-manager (2.0.3) debian; urgency=low
 
   * Some minor bugs resolved
