@@ -246,25 +246,25 @@ class DPM:
         if self.selectedMenuItem == menuItems[0]:
             # Themes Menu
             self.selectedTheme = self.tv1Handler.getSelectedValue()
-            self.log.write(_("Themes menu - seleceted theme: %(theme)s") % { "theme": self.selectedTheme }, 'debian-plymouth-manager.tv1Changed', 'debug')
+            self.log.write("Themes menu - seleceted theme: %(theme)s" % { "theme": self.selectedTheme }, 'debian-plymouth-manager.tv1Changed', 'debug')
         elif self.selectedMenuItem == menuItems[1]:
             # Install Menu
             self.selectedAvailableTheme = self.tv1Handler.getSelectedValue()
-            self.log.write(_("Install menu - seleceted available theme: %(theme)s") % { "theme": self.selectedAvailableTheme }, 'dpm.tv1Changed', 'debug')
+            self.log.write("Install menu - seleceted available theme: %(theme)s" % { "theme": self.selectedAvailableTheme }, 'dpm.tv1Changed', 'debug')
         elif self.selectedMenuItem == menuItems[2]:
             # Grub Menu
             self.selectedGrubResolution = self.tv1Handler.getSelectedValue()
-            self.log.write(_("Grub menu - seleceted grub resolution: %(res)s") % { "res": self.selectedGrubResolution }, 'dpm.tv1Changed', 'debug')
+            self.log.write("Grub menu - seleceted grub resolution: %(res)s" % { "res": self.selectedGrubResolution }, 'dpm.tv1Changed', 'debug')
 
     def tv2Changed(self, widget):
         if self.selectedMenuItem == menuItems[0]:
             # Themes Menu
             self.selectedResolution = self.tv2Handler.getSelectedValue()
-            self.log.write(_("Themes menu - seleceted resolution: %(res)s") % { "res": self.selectedResolution }, 'dpm.tv2Changed', 'debug')
+            self.log.write("Themes menu - seleceted resolution: %(res)s" % { "res": self.selectedResolution }, 'dpm.tv2Changed', 'debug')
         elif self.selectedMenuItem == menuItems[1]:
             # Install Menu
             self.selectedRemoveTheme = self.tv2Handler.getSelectedValue()
-            self.log.write(_("Install menu - seleceted theme to remove: %(theme)s") % { "theme": self.selectedRemoveTheme }, 'dpm.tv2Changed', 'debug')
+            self.log.write("Install menu - seleceted theme to remove: %(theme)s" % { "theme": self.selectedRemoveTheme }, 'dpm.tv2Changed', 'debug')
 
     # ===============================================
     # Button functions
@@ -314,7 +314,7 @@ class DPM:
         t = PlymouthSave(self.log, self.selectedTheme, self.selectedResolution)
         t.start()
         # Run spinner as long as the thread is alive
-        #self.log.write(_("Check every 5 miliseconds if thread is still active"), 'dpm.setTheme', 'debug')
+        #self.log.write("Check every 5 miliseconds if thread is still active", 'dpm.setTheme', 'debug')
         glib.timeout_add(5, self.checkSaveThread)
 
     def checkSaveThread(self):
@@ -378,7 +378,7 @@ class DPM:
                 t.start()
                 self.queue.join()
 
-                #self.log.write(_("Check every 5 miliseconds if thread is still active"), 'dpm.installTheme', 'debug')
+                #self.log.write("Check every 5 miliseconds if thread is still active", 'dpm.installTheme', 'debug')
                 glib.timeout_add(5, self.checkAptThread)
             else:
                 self.log.write(_("User cancel install theme: %(theme)s") % { "theme": self.threadPackage }, 'dpm.installTheme', 'info')
@@ -405,7 +405,7 @@ class DPM:
                 t.start()
                 self.queue.join()
 
-                #self.log.write(_("Check every 5 miliseconds if thread is still active"), 'dpm.removeTheme', 'debug')
+                #self.log.write("Check every 5 miliseconds if thread is still active", 'dpm.removeTheme', 'debug')
                 glib.timeout_add(5, self.checkAptThread)
             else:
                 self.log.write(_("User cancel remove theme: %(theme)s") % { "theme": self.threadPackage }, 'dpm.removeTheme', 'info')
@@ -452,7 +452,7 @@ class DPM:
         t = GrubSave(self.log, self.selectedGrubResolution)
         t.start()
         # Run spinner as long as the thread is alive
-        #self.log.write(_("Check every 5 miliseconds if thread is still active"), 'dpm.setGrubResolution', 'debug')
+        #self.log.write("Check every 5 miliseconds if thread is still active", 'dpm.setGrubResolution', 'debug')
         glib.timeout_add(5, self.checkGrubThread)
 
     def checkGrubThread(self):
@@ -520,8 +520,8 @@ class DPM:
         self.currentTheme = self.plymouth.getCurrentTheme()
         self.installedThemes = self.plymouth.getInstalledThemes()
         self.availableThemes = self.plymouth.getAvailableThemes()
-        self.tv1Handler = TreeViewHandler(self.log, self.tv1)
-        self.tv2Handler = TreeViewHandler(self.log, self.tv2)
+        self.tv1Handler = TreeViewHandler(self.tv1, self.log)
+        self.tv2Handler = TreeViewHandler(self.tv2, self.log)
 
         self.showMenuThemes()
 

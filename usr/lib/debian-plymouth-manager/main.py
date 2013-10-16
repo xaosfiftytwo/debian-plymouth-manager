@@ -87,7 +87,7 @@ if functions.getDistribution() == 'debian':
                 launcher = "kdesudo -i /usr/share/debian-plymouth-manager/logo.png -d --comment \"<b>%s</b>\"" % _("Please enter your password")
 
         cmd = '%s python %s' % (launcher, dpmPath)
-        log.write(_("Startup command: %(cmd)s") % { "cmd": cmd }, 'main', 'debug')
+        log.write("Startup command: %(cmd)s" % { "cmd": cmd }, 'main', 'debug')
         os.system(cmd)
     else:
         title = _("DPM - Live environment")

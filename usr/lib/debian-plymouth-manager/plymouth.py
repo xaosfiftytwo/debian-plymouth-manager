@@ -96,7 +96,7 @@ class Plymouth():
                 if matchObj:
                     package = matchObj.group(1)
                     break
-        self.log.write(_("Package found %(pck)s") % { "pck": package }, 'plymouth.getRemovablePackageName', 'debug')
+        self.log.write("Package found %(pck)s" % { "pck": package }, 'plymouth.getRemovablePackageName', 'debug')
         return package
 
     # Get valid package name of a Plymouth theme (does not have to exist in the repositories)
@@ -116,7 +116,7 @@ class Plymouth():
                 matchObj = re.search('^GRUB_GFXPAYLOAD_LINUX=(.*)', line)
                 if matchObj:
                     res = matchObj.group(1)
-                    self.log.write(_("Current Plymouth resolution: %(res)s") % { "res": res }, 'plymouth.getCurrentResolution', 'debug')
+                    self.log.write("Current Plymouth resolution: %(res)s" % { "res": res }, 'plymouth.getCurrentResolution', 'debug')
                     break
         else:
             self.log.write(_("Neither grub nor burg found in /etc/default"), 'plymouth.getCurrentResolution', 'error')
@@ -187,7 +187,7 @@ class PlymouthSave(threading.Thread):
                 f = open(self.modulesPath, 'r')
                 newModules = f.read()
                 f.close()
-                self.log.write(_("\nNew modules:\n%(modules)s\n") % { "modules": newModules }, 'PlymouthSave.run', 'debug')
+                self.log.write("\nNew modules:\n%(modules)s\n" % { "modules": newModules }, 'PlymouthSave.run', 'debug')
 
                 # Edit grub
                 cmd = 'sed -i -e \'/GRUB_CMDLINE_LINUX_DEFAULT=/ c GRUB_CMDLINE_LINUX_DEFAULT="quiet"\' %s' % boot
@@ -207,7 +207,7 @@ class PlymouthSave(threading.Thread):
                 f = open(boot, 'r')
                 newGrub = f.read()
                 f.close()
-                self.log.write(_("\nNew grub:\n%(grub)s\n") % { "grub": newGrub }, 'PlymouthSave.run', 'debug')
+                self.log.write("\nNew grub:\n%(grub)s\n" % { "grub": newGrub }, 'PlymouthSave.run', 'debug')
 
                 # Set the theme
                 if self.theme:

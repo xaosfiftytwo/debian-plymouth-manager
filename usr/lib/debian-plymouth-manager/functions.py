@@ -27,7 +27,7 @@ packageStatus = ['installed', 'notinstalled', 'uninstallable']
 log = object
 
 # i18n
-gettext.install("ddm", "/usr/share/locale")
+gettext.install("debian-plymouth-manager", "/usr/share/locale")
 
 
 # General ================================================
@@ -97,6 +97,23 @@ def strToNumber(stringnr, toInt=False):
     return nr
 
 
+# Check if parameter is a number
+def isNumeric(n):
+        try:
+            n = complex(n)
+            return True
+        except:
+            try:
+                n = float(n, 0)
+                return True
+            except:
+                try:
+                    n = int(n, 0)
+                    return True
+                except:
+                    return False
+
+
 # Check if parameter is a list
 def isList(lst):
     return isinstance(lst, list)
@@ -117,7 +134,7 @@ def sortListOnColumn(lst, columsList):
 # Return a list with images from a given path
 def getImgsFromDir(directoryPath):
     extensions = ['.png', '.jpg', '.jpeg', '.gif']
-    log.write(_("Search for extensions: %(ext)s") % { "ext": str(extensions) }, 'functions.getImgsFromDir', 'debug')
+    log.write("Search for extensions: %(ext)s" % { "ext": str(extensions) }, 'functions.getImgsFromDir', 'debug')
     imgs = getFilesFromDir(directoryPath, False, extensions)
     return imgs
 
@@ -135,12 +152,12 @@ def getFilesFromDir(directoryPath, recursive=False, extensionList=None):
                 if os.path.splitext(fle)[1] == ext:
                     path = os.path.join(directoryPath, fle)
                     files.append(path)
-                    log.write(_("File with extension found: %(path)s") % { "path": path }, 'functions.getFilesFromDir', 'debug')
+                    log.write("File with extension found: %(path)s" % { "path": path }, 'functions.getFilesFromDir', 'debug')
                     break
         else:
             path = os.path.join(directoryPath, fle)
             files.append(path)
-            log.write(_("File found: %(path)s") % { "path": path }, 'functions.getFilesFromDir', 'debug')
+            log.write("File found: %(path)s" % { "path": path }, 'functions.getFilesFromDir', 'debug')
     return files
 
 
@@ -223,43 +240,63 @@ def popMessage(statusbar, contextString='message'):
 # System ========================================================
 
 # Get linux-headers and linux-image package names
-# If getLatest is set to True, the latest version of the packages is returned rather than the packages for the currently booted kernel.
+# If getLatest is set to True, the latest version of the packages is returned.
 # includeLatestRegExp is a regular expression that must be part of the package name (in conjuction with getLatest=True).
 # excludeLatestRegExp is a regular expression that must NOT be part of the package name (in conjuction with getLatest=True).
-def getLinuxHeadersAndImage(getLatest=False, includeLatestRegExp='', excludeLatestRegExp=''):
-    returnList = []
-    lhList = []
+def getKernelPackages(getLatest=False, includeLatestRegExp='', excludeLatestRegExp=''):
+    lst = []
     ec = ExecCmd(log)
     if getLatest:
-        lst = ec.run('aptitude search linux-headers', False)
-        for item in lst:
-            lhMatch = re.search('linux-headers-\d+\.[a-zA-Z0-9-\.]*', item)
-            if lhMatch:
-                lh = lhMatch.group(0)
-                addLh = True
-                if includeLatestRegExp != '':
-                    inclMatch = re.search(includeLatestRegExp, lh)
-                    if not inclMatch:
-                        addLh = False
-                if excludeLatestRegExp != '':
-                    exclMatch = re.search(excludeLatestRegExp, lh)
-                    if exclMatch:
-                        addLh = False
+        cmdList = ec.run('apt-get -s dist-upgrade | grep "linux-image" | grep ^Inst', False)
+        if not cmdList:
+            # Already the latest kernel: get all linux-image packages of the current version
+            kernelRelease = getKernelRelease()
+            if 'amd64' in kernelRelease:
+                cmd = "aptitude search -w 150 linux-image-%s" % kernelRelease
+            else:
+                pos = kernelRelease.find('486')
+                if pos == 0:
+                    pos = kernelRelease.find('686')
+                if pos > 0:
+                    kernelRelease = kernelRelease[0:pos - 1]
+                cmd = "aptitude search -w 150 linux-image-%s" % kernelRelease
 
-                # Append to list
-                if addLh:
-                    lhList.append(lh)
+            cmdList = ec.run(cmd, False)
+
+        for item in cmdList:
+            if not '-dbg' in item:
+                obj = re.search('linux\-image\-[a-z0-9\-\.]*', item)
+                if obj:
+                    img = obj.group(0)
+                    addImg = True
+                    if includeLatestRegExp != '':
+                        inclObj = re.search(includeLatestRegExp, img)
+                        if not inclObj:
+                            addImg = False
+                    if excludeLatestRegExp != '':
+                        exclObj = re.search(excludeLatestRegExp, img)
+                        if exclObj:
+                            addImg = False
+
+                    # Append to list
+                    if addImg:
+                        lst.append(img)
+                        lst.append(string.replace(img, "image", "headers"))
+
+        if not lst:
+            # Get the current linux header package
+            cmdList = ec.run('echo linux-image-$(uname -r)', False)
+            img = cmdList[0]
+            lst.append(img)
+            lst.append(string.replace(img, "image", "headers"))
     else:
         # Get the current linux header package
-        linHeader = ec.run('echo linux-headers-$(uname -r)', False)
-        lhList.append(linHeader[0])
+        cmdList = ec.run('echo linux-image-$(uname -r)', False)
+        img = cmdList[0]
+        lst.append(img)
+        lst.append(string.replace(img, "image", "headers"))
 
-    # Sort the list and add the linux-image package name
-    if lhList:
-        lhList.sort(reverse=True)
-        returnList.append(lhList[0])
-        returnList.append('linux-image-' + lhList[0][14:])
-    return returnList
+    return lst
 
 
 # Get the current kernel release
@@ -296,13 +333,22 @@ def getSystemVersionInfo():
 
 
 # Get the system's distribution
-def getDistribution():
+def getDistribution(returnBaseDistribution=True):
     distribution = ''
-    sysInfo = getSystemVersionInfo().lower()
-    if 'debian' in sysInfo:
-        distribution = 'debian'
-    elif 'ubuntu' in sysInfo:
-        distribution = 'ubuntu'
+    if returnBaseDistribution:
+        sysInfo = getSystemVersionInfo().lower()
+        if 'debian' in sysInfo:
+            distribution = 'debian'
+        elif 'ubuntu' in sysInfo:
+            distribution = 'ubuntu'
+        elif 'arm' in sysInfo:
+            distribution = 'arm'
+    else:
+        if os.path.exists('/etc/solydxk/info'):
+            ec = ExecCmd(log)
+            lst = ec.run("cat /etc/solydxk/info | grep EDITION | cut -d'=' -f 2", False)
+            if lst:
+                distribution = lst[0]
     return distribution
 
 
@@ -403,7 +449,7 @@ def getResolutions(minRes='', maxRes='', reverseOrder=False, getVesaResolutions=
                 itemH = strToNumber(itemList[1], True)
                 # Check if it can be added
                 if itemW >= minW and itemH >= minH and (maxW == 0 or itemW <= maxW) and (maxH == 0 or itemH <= maxH):
-                    log.write(_("Resolution added: %(res)s") % { "res": item }, 'functions.getResolutions', 'debug')
+                    log.write("Resolution added: %(res)s" % { "res": item }, 'functions.getResolutions', 'debug')
                     avlResTmp.append([itemW, itemH])
 
     # Sort the list and return as readable resolution strings
@@ -421,19 +467,19 @@ def getPackageStatus(packageName):
         pkg = cache[packageName]
         if pkg.installed is not None:
             # Package is installed
-            log.write(_("Package is installed: %(package)s") % { "package": str(packageName) }, 'drivers.getPackageStatus', 'debug')
+            log.write("Package is installed: %(package)s" % { "package": str(packageName) }, 'drivers.getPackageStatus', 'debug')
             status = packageStatus[0]
         elif pkg.candidate is not None:
             # Package is not installed
-            log.write(_("Package not installed: %(package)s") % { "package": str(packageName) }, 'drivers.getPackageStatus', 'debug')
+            log.write("Package not installed: %(package)s" % { "package": str(packageName) }, 'drivers.getPackageStatus', 'debug')
             status = packageStatus[1]
         else:
             # Package is not found: uninstallable
-            log.write(_("Package not found: %(package)s") % { "package": str(packageName) }, 'drivers.getPackageStatus', 'debug')
+            log.write("Package not found: %(package)s" % { "package": str(packageName) }, 'drivers.getPackageStatus', 'debug')
             status = packageStatus[2]
     except:
         # If something went wrong: assume that package is uninstallable
-        log.write(_("Could not get status info for package: %(package)s") % { "package": str(packageName) }, 'drivers.getPackageStatus', 'debug')
+        log.write("Could not get status info for package: %(package)s" % { "package": str(packageName) }, 'drivers.getPackageStatus', 'debug')
         status = packageStatus[2]
 
     return status
@@ -445,7 +491,7 @@ def isPackageInstalled(packageName, alsoCheckVersion=True):
     try:
         cmd = 'dpkg-query -l %s | grep ^i' % packageName
         if '*' in packageName:
-            cmd = 'aptitude search %s | grep ^i' % packageName
+            cmd = 'aptitude search -w 150 %s | grep ^i' % packageName
         ec = ExecCmd(log)
         pckList = ec.run(cmd, False)
         for line in pckList:
@@ -620,3 +666,15 @@ def hasInternetConnection(testUrl='http://google.com'):
     except urllib2.URLError:
         pass
     return False
+
+# Get default terminal
+def getDefaultTerminal():
+    terminal = None
+    cmd = "update-alternatives --display x-terminal-emulator"
+    ec = ExecCmd(log)
+    terminalList = ec.run(cmd, False)
+    for line in terminalList:
+        reObj = re.search("\'(\/.*)\'", line)
+        if reObj:
+            terminal = reObj.group(1)
+    return terminal
