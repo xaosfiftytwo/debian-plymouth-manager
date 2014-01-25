@@ -16,7 +16,7 @@ try:
     from plymouth import Plymouth, PlymouthSave
     from config import Config
     from treeview import TreeViewHandler
-    from dialogs import MessageDialogSave, QuestionDialog
+    from dialogs import MessageDialogSafe, QuestionDialog
     from logger import Logger
     from execcmd import ExecCmd
     from execapt import ExecuteApt
@@ -303,7 +303,7 @@ class DPM:
         else:
             title = _("Preview")
             msg = _("You must save before you can preview:\n\nTheme: %(theme)s\nResolution: %(res)s") % { "theme": self.selectedTheme, "res": self.selectedResolution }
-            MessageDialogSave(title, msg, gtk.MESSAGE_INFO, self.window).show()
+            MessageDialogSafe(title, msg, gtk.MESSAGE_INFO, self.window).show()
 
     def setTheme(self):
         self.toggleGuiElements(True)
@@ -342,7 +342,7 @@ class DPM:
         title = _("Save settings")
         msg = _("Theme: %(theme)s\nResolution: %(res)s\n\nDone") % { "theme": self.selectedTheme, "res": str(self.selectedResolution) }
         self.log.write(msg, 'dpm.checkSaveThread', 'debug')
-        MessageDialogSave(title, msg, gtk.MESSAGE_INFO, self.window).show()
+        MessageDialogSafe(title, msg, gtk.MESSAGE_INFO, self.window).show()
         return False
 
     def toggleGuiElements(self, startSave):
@@ -386,7 +386,7 @@ class DPM:
             title = _("%(act1)s%(act2)s theme") % { "act1": self.threadAction[0].capitalize(), "act2": self.threadAction[1:] }
             msg = _("The package cannot be installed: %(pck)s\nTry apt instead") % { "pck": self.threadPackage }
             self.log.write(msg, 'dpm.installTheme', 'debug')
-            MessageDialogSave(title, msg, gtk.MESSAGE_INFO, self.window).show()
+            MessageDialogSafe(title, msg, gtk.MESSAGE_INFO, self.window).show()
 
     def removeTheme(self):
         self.threadAction = _("remove")
@@ -413,7 +413,7 @@ class DPM:
             title = _("%(act1)s%(act2)s theme") % { "act1": self.threadAction[0].capitalize(), "act2": self.threadAction[1:] }
             msg = _("The package cannot be removed: %(pck)s\nIt is part of a meta package.\nTry apt instead") % { "pck": self.selectedRemoveTheme }
             self.log.write(msg, 'dpm.removeTheme', 'debug')
-            MessageDialogSave(title, msg, gtk.MESSAGE_INFO, self.window).show()
+            MessageDialogSafe(title, msg, gtk.MESSAGE_INFO, self.window).show()
 
     def checkAptThread(self):
         # As long there's a thread active, keep spinning
@@ -438,7 +438,7 @@ class DPM:
             msg = _("%(action)s successfully of:\n%(pck)s") % { "action": self.threadAction[0].capitalize() + self.threadAction[1:], "pck": self.threadPackage }
 
         self.log.write(msg, 'dpm.checkAptThread', 'debug')
-        MessageDialogSave(title, msg, gtk.MESSAGE_INFO, self.window).show()
+        MessageDialogSafe(title, msg, gtk.MESSAGE_INFO, self.window).show()
         return False
 
     # ===============================================
@@ -469,7 +469,7 @@ class DPM:
         title = _("Grub resolution")
         msg = _("Grub resolution saved: %(res)s") % { "res": self.selectedGrubResolution }
         self.log.write(msg, 'dpm.setGrubResolution', 'info')
-        MessageDialogSave(title, msg, gtk.MESSAGE_INFO, self.window).show()
+        MessageDialogSafe(title, msg, gtk.MESSAGE_INFO, self.window).show()
         return False
 
     # ===============================================
