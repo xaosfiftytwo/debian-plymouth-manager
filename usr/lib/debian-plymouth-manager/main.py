@@ -9,7 +9,7 @@ import string
 import gtk
 import gettext
 from logger import Logger
-from dialogs import MessageDialogSave
+from dialogs import MessageDialogSafe
 
 # i18n
 gettext.install("debian-plymouth-manager", "/usr/share/locale")
@@ -82,7 +82,7 @@ if functions.getDistribution() == 'debian':
         # Add launcher string, only when not root
         launcher = ''
         if os.geteuid() > 0:
-            launcher = "gksu --message \"<b>%s</b>\"" % _("Please enter your password")
+            launcher = "gksudo --message \"<b>%s</b>\"" % _("Please enter your password")
             if os.path.exists('/usr/bin/kdesudo'):
                 launcher = "kdesudo -i /usr/share/debian-plymouth-manager/logo.png -d --comment \"<b>%s</b>\"" % _("Please enter your password")
 

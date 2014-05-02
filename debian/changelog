@@ -1,3 +1,22 @@
+debian-plymouth-manager (2.2.0) debian; urgency=low
+
+  * Resolved untranslatable labels
+
+ -- Schoelje <schoelje@solydxk.com>  Tue, 22 Apr 2014 11:00:00 +0100
+
+debian-plymouth-manager (2.1.9) debian; urgency=low
+
+  * Added Russian translation
+  * Adapted Dutch translation
+
+ -- Schoelje <schoelje@solydxk.com>  Tue, 01 Apr 2014 18:00:00 +0100
+
+debian-plymouth-manager (2.1.7) debian; urgency=low
+
+  * Changed driver to uvesafb
+
+ -- Schoelje <schoelje@solydxk.com>  Tue, 11 Mar 2014 18:00:00 +0100
+
 debian-plymouth-manager (2.1.6) debian; urgency=low
 
   * Added Czech translation
@@ -7,7 +26,7 @@ debian-plymouth-manager (2.1.6) debian; urgency=low
 
 debian-plymouth-manager (2.1.5) debian; urgency=low
 
-  * Adapted French translateion
+  * Adapted French translation
 
  -- Schoelje <schoelje@solydxk.com>  Mon, 21 Oct 2013 19:00:00 +0100
 

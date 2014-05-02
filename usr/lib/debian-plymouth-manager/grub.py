@@ -31,11 +31,11 @@ class Grub():
     def getCurrentResolution(self):
         res = None
         boot = self.getConfig()
-        if boot:
-            f = open(boot, 'r')
-            grubLines = f.read().splitlines()
-            f.close()
-            for line in grubLines:
+        if boot is not None:
+            lines = []
+            with open(boot, 'r') as f:
+                lines = f.read().splitlines()
+            for line in lines:
                 # Search text for resolution
                 matchObj = re.search('^GRUB_GFXMODE=(.*)', line)
                 if matchObj:

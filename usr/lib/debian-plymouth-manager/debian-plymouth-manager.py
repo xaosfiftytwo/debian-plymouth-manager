@@ -70,6 +70,9 @@ class DPM:
         self.clrMenuBg = gtk.gdk.Color(self.cfg.getValue('COLORS', 'menu_bg'))
 
         # Translations
+        title = _("Debian Plymouth Manager")
+        self.window.set_title(title)
+        self.lblDPM.set_text(title)
         self.lblMenuThemes.set_text(_("Themes"))
         self.lblMenuInstall.set_text(_("Install"))
         self.lblMenuGrub.set_text(_("Grub"))
