@@ -92,10 +92,10 @@ if functions.getDistribution() == 'debian':
     else:
         title = _("DPM - Live environment")
         msg = _("DPM cannot run in a live environment\n\nTo force start, use the --force argument")
-        MessageDialogSave(title, msg, gtk.MESSAGE_INFO).show()
+        MessageDialogSafe(title, msg, gtk.MESSAGE_INFO).show()
         log.write(msg, 'main', 'warning')
 else:
     title = _("DPM - Debian based")
     msg = _("DPM can only run on Debian based distributions")
-    MessageDialogSave(title, msg, gtk.MESSAGE_INFO).show()
+    MessageDialogSafe(title, msg, gtk.MESSAGE_INFO).show()
     log.write(msg, 'main', 'warning')
