@@ -247,7 +247,8 @@ class PlymouthSave(threading.Thread):
                     self.ec.run('update-grub')
                 else:
                     self.ec.run('update-burg')
-                self.ec.run('update-initramfs -u -k all')
+                if self.theme is not None:
+                    self.ec.run('update-initramfs -u -k all')
 
         except Exception, detail:
             self.log.write(detail, 'PlymouthSave.run', 'exception')

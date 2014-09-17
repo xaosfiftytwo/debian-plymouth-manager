@@ -84,7 +84,7 @@ if functions.getDistribution() == 'debian':
         if os.geteuid() > 0:
             launcher = "gksudo --message \"<b>%s</b>\"" % _("Please enter your password")
             if os.path.exists('/usr/bin/kdesudo'):
-                launcher = "kdesudo -i /usr/share/debian-plymouth-manager/logo.png -d --comment \"<b>%s</b>\"" % _("Please enter your password")
+                launcher = "kdesudo -i 'debian-plymouth-manager' -d --comment \"<b>%s</b>\"" % _("Please enter your password")
 
         cmd = '%s python %s' % (launcher, dpmPath)
         log.write("Startup command: %(cmd)s" % { "cmd": cmd }, 'main', 'debug')

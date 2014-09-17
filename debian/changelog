@@ -1,3 +1,33 @@
+debian-plymouth-manager (2.2.5) debian; urgency=low
+
+  * Changed icon to use with the Evolvere icon theme
+
+ -- Schoelje <schoelje@solydxk.com>  Fri, 12 Sep 2014 15:00:00 +0100
+
+debian-plymouth-manager (2.2.4) debian; urgency=low
+
+  * Skip update-initramfs when removing Plymouth theme: only update-grub
+
+ -- Schoelje <schoelje@solydxk.com>  Wed, 27 Aug 2014 20:00:00 +0100
+
+debian-plymouth-manager (2.2.3) debian; urgency=low
+
+  * Removed some dependencies
+
+ -- Schoelje <schoelje@solydxk.com>  Tue, 19 Aug 2014 12:00:00 +0100
+
+debian-plymouth-manager (2.2.2) debian; urgency=low
+
+  * Moved locale to solydxk-locale
+
+ -- Schoelje <schoelje@solydxk.com>  Thu, 26 May 2014 08:00:00 +0100
+
+debian-plymouth-manager (2.2.1) debian; urgency=low
+
+  * Resolved bug not starting
+
+ -- Schoelje <schoelje@solydxk.com>  Mon, 05 May 2014 22:00:00 +0100
+
 debian-plymouth-manager (2.2.0) debian; urgency=low
 
   * Resolved untranslatable labels

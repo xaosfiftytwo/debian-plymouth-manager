@@ -40,42 +40,26 @@ class DPM:
         self.builder = gtk.Builder()
         self.builder.add_from_file(os.path.join(self.scriptDir, '../../share/debian-plymouth-manager/debian-plymouth-manager.glade'))
         self.window = self.builder.get_object('dpmWindow')
-        self.ebTitle = self.builder.get_object('ebTitle')
-        self.lblDPM = self.builder.get_object('lblDPM')
         self.lblTitle = self.builder.get_object('lblTitle')
         self.tv1 = self.builder.get_object('tv1')
         self.tv2 = self.builder.get_object('tv2')
         self.sw2 = self.builder.get_object('sw2')
         self.statusbar = self.builder.get_object('statusbar')
-        self.ebMenu = self.builder.get_object('ebMenu')
-        self.ebMenuThemes = self.builder.get_object('ebMenuThemes')
-        self.lblMenuThemes = self.builder.get_object('lblMenuThemes')
-        self.ebMenuInstall = self.builder.get_object('ebMenuInstall')
-        self.lblMenuInstall = self.builder.get_object('lblMenuInstall')
-        self.ebMenuGrub = self.builder.get_object('ebMenuGrub')
-        self.lblMenuGrub = self.builder.get_object('lblMenuGrub')
+        self.btnThemes = self.builder.get_object('btnThemes')
+        self.btnInstall = self.builder.get_object('btnInstall')
+        self.btnGrub = self.builder.get_object('btnGrub')
         self.spinner = self.builder.get_object('spinner')
         self.btn1 = self.builder.get_object('btn1')
         self.btn2 = self.builder.get_object('btn2')
         self.lblTitle1 = self.builder.get_object('lblTitle1')
         self.lblTitle2 = self.builder.get_object('lblTitle2')
-        self.fixed2 = self.builder.get_object('fixed2')
-
-        # Read from config file
-        self.cfg = Config('debian-plymouth-manager.conf')
-        self.clrTitleFg = gtk.gdk.Color(self.cfg.getValue('COLORS', 'title_fg'))
-        self.clrTitleBg = gtk.gdk.Color(self.cfg.getValue('COLORS', 'title_bg'))
-        self.clrMenuSelect = gtk.gdk.Color(self.cfg.getValue('COLORS', 'menu_select'))
-        self.clrMenuHover = gtk.gdk.Color(self.cfg.getValue('COLORS', 'menu_hover'))
-        self.clrMenuBg = gtk.gdk.Color(self.cfg.getValue('COLORS', 'menu_bg'))
 
         # Translations
         title = _("Debian Plymouth Manager")
         self.window.set_title(title)
-        self.lblDPM.set_text(title)
-        self.lblMenuThemes.set_text(_("Themes"))
-        self.lblMenuInstall.set_text(_("Install"))
-        self.lblMenuGrub.set_text(_("Grub"))
+        self.btnThemes.set_label(_("Themes"))
+        self.btnInstall.set_label(_("Install"))
+        self.btnGrub.set_label(_("Grub"))
 
         self.selectedMenuItem = None
         self.selectedTheme = None
@@ -85,26 +69,10 @@ class DPM:
         self.selectedGrubResolution = None
         self.threadPackage = None
         self.queue = Queue.Queue()
-        self.noPlymouth = 'None: no plymouth splash'
+        self.noPlymouth = _('None: no plymouth splash')
 
-        # Add events
-        signals = {
-            'on_ebMenuThemes_button_release_event': self.showMenuThemes,
-            'on_ebMenuThemes_enter_notify_event': self.changeMenuThemes,
-            'on_ebMenuThemes_leave_notify_event': self.cleanMenu,
-            'on_ebMenuInstall_button_release_event': self.showMenuInstall,
-            'on_ebMenuInstall_enter_notify_event': self.changeMenuInstall,
-            'on_ebMenuInstall_leave_notify_event': self.cleanMenu,
-            'on_ebMenuGrub_button_release_event': self.showMenuGrub,
-            'on_ebMenuGrub_enter_notify_event': self.changeMenuGrub,
-            'on_ebMenuGrub_leave_notify_event': self.cleanMenu,
-            'on_tv1_cursor_changed': self.tv1Changed,
-            'on_tv2_cursor_changed': self.tv2Changed,
-            'on_btn1_clicked': self.btn1Clicked,
-            'on_btn2_clicked': self.btn2Clicked,
-            'on_dpmWindow_destroy': self.destroy
-        }
-        self.builder.connect_signals(signals)
+        # Connect the signals and show the window
+        self.builder.connect_signals(self)
 
         self.window.show()
 
@@ -112,39 +80,10 @@ class DPM:
     # Menu section functions
     # ===============================================
 
-    def cleanMenu(self, widget, event):
-        self.changeMenuBackground(self.selectedMenuItem)
-
-    def changeMenuThemes(self, widget, event):
-        self.changeMenuBackground(menuItems[0])
-
-    def changeMenuInstall(self, widget, event):
-        self.changeMenuBackground(menuItems[1])
-
-    def changeMenuGrub(self, widget, event):
-        self.changeMenuBackground(menuItems[2])
-
-    def changeMenuBackground(self, menuItem, select=False):
-        ebs = []
-        ebs.append([menuItems[0], self.ebMenuThemes])
-        ebs.append([menuItems[1], self.ebMenuInstall])
-        ebs.append([menuItems[2], self.ebMenuGrub])
-        for eb in ebs:
-            if eb[0] == menuItem:
-                if select:
-                    self.selectedMenuItem = menuItem
-                    eb[1].modify_bg(gtk.STATE_NORMAL, self.clrMenuSelect)
-                else:
-                    if eb[0] != self.selectedMenuItem:
-                        eb[1].modify_bg(gtk.STATE_NORMAL, self.clrMenuHover)
-            else:
-                if eb[0] != self.selectedMenuItem or select:
-                    eb[1].modify_bg(gtk.STATE_NORMAL, self.clrMenuBg)
-
-    def showMenuThemes(self, widget=None, event=None, refresh=False):
+    def on_btnThemes_clicked(self, widget=None, event=None, refresh=False):
         if self.selectedMenuItem != menuItems[0] or refresh:
-            self.changeMenuBackground(menuItems[0], True)
-            self.lblTitle.set_text(self.lblMenuThemes.get_text())
+            self.selectedMenuItem = menuItems[0]
+            self.lblTitle.set_label(self.btnThemes.get_label())
 
             # Clear treeviews
             self.tv1Handler.clearTreeView()
@@ -154,11 +93,11 @@ class DPM:
             self.btn1.set_label(_("Set Plymouth Theme"))
             self.btn2.set_label(_("Preview"))
             self.btn2.show()
-            self.fixed2.show()
+            self.lblTitle2.set_visible(True)
             self.sw2.show()
 
             # Show Installed Themes
-            self.lblTitle1.set_text(_("Installed Themes"))
+            self.lblTitle1.set_label(_("Installed Themes"))
             # Clone the installedThemes list
             listInst = list(self.installedThemes)
             listInst.append(self.noPlymouth)
@@ -177,7 +116,7 @@ class DPM:
                 self.tv1Handler.fillTreeview(listInst, ['str'], ind, 700)
 
             # Show Resolutios
-            self.lblTitle2.set_text(_("Resolutions"))
+            self.lblTitle2.set_label(_("Resolutions"))
             ind = -1
             if self.currentResolution:
                 try:
@@ -188,10 +127,10 @@ class DPM:
             if len(self.resolutions) > 0:
                 self.tv2Handler.fillTreeview(self.resolutions, ['str'], ind, 700)
 
-    def showMenuInstall(self, widget=None, event=None, refresh=False):
+    def on_btnInstall_clicked(self, widget=None, event=None, refresh=False):
         if self.selectedMenuItem != menuItems[1] or refresh:
-            self.changeMenuBackground(menuItems[1], True)
-            self.lblTitle.set_text(self.lblMenuInstall.get_text())
+            self.selectedMenuItem = menuItems[1]
+            self.lblTitle.set_label(self.btnInstall.get_label())
 
             # Clear treeviews
             self.tv1Handler.clearTreeView()
@@ -201,23 +140,23 @@ class DPM:
             self.btn1.set_label(_("Install Theme"))
             self.btn2.set_label(_("Remove Theme"))
             self.btn2.show()
-            self.fixed2.show()
+            self.lblTitle2.set_visible(True)
             self.sw2.show()
 
             # Show Available Themes
-            self.lblTitle1.set_text(_("Available Themes"))
+            self.lblTitle1.set_label(_("Available Themes"))
             if len(self.availableThemes) > 0:
                 self.tv1Handler.fillTreeview(self.availableThemes, ['str'], 0)
 
             # Show Installed Themes
-            self.lblTitle2.set_text(_("Installed Themes"))
+            self.lblTitle2.set_label(_("Installed Themes"))
             if len(self.installedThemes) > 0:
                 self.tv2Handler.fillTreeview(self.installedThemes, ['str'], 0)
 
-    def showMenuGrub(self, widget=None, event=None, refresh=False):
+    def on_btnGrub_clicked(self, widget=None, event=None, refresh=False):
         if self.selectedMenuItem != menuItems[2] or refresh:
-            self.changeMenuBackground(menuItems[2], True)
-            self.lblTitle.set_text(self.lblMenuGrub.get_text())
+            self.selectedMenuItem = menuItems[2]
+            self.lblTitle.set_label(self.btnGrub.get_label())
 
             # Clear treeviews
             self.tv1Handler.clearTreeView()
@@ -226,7 +165,7 @@ class DPM:
             # Set object properties
             self.btn1.set_label(_("Set Grub Resolution"))
             self.btn2.hide()
-            self.fixed2.hide()
+            self.lblTitle2.set_visible(False)
             self.sw2.hide()
 
             # Show Resolutios
@@ -245,7 +184,7 @@ class DPM:
     # Treeview functions
     # ===============================================
 
-    def tv1Changed(self, widget):
+    def on_tv1_cursor_changed(self, widget):
         if self.selectedMenuItem == menuItems[0]:
             # Themes Menu
             self.selectedTheme = self.tv1Handler.getSelectedValue()
@@ -259,7 +198,7 @@ class DPM:
             self.selectedGrubResolution = self.tv1Handler.getSelectedValue()
             self.log.write("Grub menu - seleceted grub resolution: %(res)s" % { "res": self.selectedGrubResolution }, 'dpm.tv1Changed', 'debug')
 
-    def tv2Changed(self, widget):
+    def on_tv2_cursor_changed(self, widget):
         if self.selectedMenuItem == menuItems[0]:
             # Themes Menu
             self.selectedResolution = self.tv2Handler.getSelectedValue()
@@ -273,7 +212,7 @@ class DPM:
     # Button functions
     # ===============================================
 
-    def btn1Clicked(self, widget):
+    def on_btn1_clicked(self, widget):
         if self.selectedMenuItem == menuItems[0]:
             # Themes
             self.setTheme()
@@ -284,7 +223,7 @@ class DPM:
             # Grub
             self.setGrubResolution()
 
-    def btn2Clicked(self, widget):
+    def on_btn2_clicked(self, widget):
         if self.selectedMenuItem == menuItems[0]:
             # Themes
             self.preview()
@@ -336,7 +275,7 @@ class DPM:
         self.installedThemes = self.plymouth.getInstalledThemes()
         self.availableThemes = self.plymouth.getAvailableThemes()
         if self.selectedMenuItem == menuItems[0]:
-            self.showMenuThemes(None, None, True)
+            self.on_btnThemes_clicked(None, None, True)
 
         # Thread is done: stop spinner and make button sensitive again
         self.toggleGuiElements(False)
@@ -431,7 +370,7 @@ class DPM:
         self.installedThemes = self.plymouth.getInstalledThemes()
         self.availableThemes = self.plymouth.getAvailableThemes()
         if self.selectedMenuItem == menuItems[1]:
-            self.showMenuInstall(None, None, True)
+            self.on_btnInstall_clicked(None, None, True)
 
         self.toggleGuiElements(False)
         title = _("%(act1)s%(act2)s theme") % { "act1": self.threadAction[0].capitalize(), "act2": self.threadAction[1:] }
@@ -466,7 +405,7 @@ class DPM:
         # Thread is done
         self.currentGrubResolution = self.grub.getCurrentResolution()
         if self.selectedMenuItem == menuItems[2]:
-            self.showMenuGrub(None, None, True)
+            self.on_btnGrub_clicked(None, None, True)
 
         self.toggleGuiElements(False)
         title = _("Grub resolution")
@@ -501,17 +440,6 @@ class DPM:
         functions.log = self.log
         self.ec = ExecCmd(self.log)
 
-        # Set background and forground colors
-        self.ebTitle.modify_bg(gtk.STATE_NORMAL, self.clrTitleBg)
-        self.lblMenuThemes.modify_fg(gtk.STATE_NORMAL, self.clrTitleBg)
-        self.lblMenuInstall.modify_fg(gtk.STATE_NORMAL, self.clrTitleBg)
-        self.lblMenuGrub.modify_fg(gtk.STATE_NORMAL, self.clrTitleBg)
-        self.lblTitle.modify_fg(gtk.STATE_NORMAL, self.clrTitleBg)
-        self.lblDPM.modify_fg(gtk.STATE_NORMAL, self.clrTitleFg)
-        self.ebMenu.modify_bg(gtk.STATE_NORMAL, self.clrMenuBg)
-        self.ebMenuThemes.modify_bg(gtk.STATE_NORMAL, self.clrMenuBg)
-        self.ebMenuInstall.modify_bg(gtk.STATE_NORMAL, self.clrMenuBg)
-
         # Set some variables
         self.version = functions.getPackageVersion('debian-plymouth-manager')
         self.distribution = functions.getDistribution()
@@ -526,7 +454,7 @@ class DPM:
         self.tv1Handler = TreeViewHandler(self.tv1, self.log)
         self.tv2Handler = TreeViewHandler(self.tv2, self.log)
 
-        self.showMenuThemes()
+        self.on_btnThemes_clicked()
 
         # Show version number in status bar
         functions.pushMessage(self.statusbar, self.version)
@@ -534,7 +462,7 @@ class DPM:
         # Show window
         gtk.main()
 
-    def destroy(self, widget, data=None):
+    def on_dpmWindow_destroy(self, widget, data=None):
         # Close the app
         gtk.main_quit()
 
