@@ -1,17 +1,23 @@
 Source: debian-plymouth-manager
 Section: admin
 Priority: optional
-Maintainer: Schoelje <schoelje@schoelje.nl>
-Build-Depends: debhelper (>= 5)
-Standards-Version: 3.7.2
+Maintainer: Arjen Balfoort <arjenbalfoort@solydxk.com>
+Build-Depends: debhelper (>= 9)
+  , python
+  , intltool
+X-Python-Version: >= 2.7
+Standards-Version: 3.9.5
+Vcs-Git: git://github.com/SolydXK/debian-plymouth-manager.git
+Vcs-Browser: https://github.com/SolydXK/debian-plymouth-manager
 
 Package: debian-plymouth-manager
 Architecture: all
-Maintainer: Schoelje <schoelje@schoelje.nl>
-Installed-Size: 74
-Depends: plymouth, plymouth-drm (>= 0.8.5.1-5), plymouth-x11
-Provides: debian-plymouth-manager
-Section: admin
-Priority: optional
+Depends: ${misc:Depends}, ${python:Depends}
+  , python (>= 2.7), python (<< 3)
+  , python-gtk2
+  , python-glade2
+  , plymouth
+Conflicts: solydxk-locale
+Replaces: solydxk-locale
 Description: Debian Plymouth Manager.
 

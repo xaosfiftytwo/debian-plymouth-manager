@@ -14,7 +14,6 @@ try:
     import getopt
     import gettext
     from plymouth import Plymouth, PlymouthSave
-    from config import Config
     from treeview import TreeViewHandler
     from dialogs import MessageDialogSafe, QuestionDialog
     from logger import Logger
@@ -460,7 +459,9 @@ class DPM:
         functions.pushMessage(self.statusbar, self.version)
 
         # Show window
+        gtk.gdk.threads_enter()
         gtk.main()
+        gtk.gdk.threads_leave()
 
     def on_dpmWindow_destroy(self, widget, data=None):
         # Close the app

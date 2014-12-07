@@ -1,0 +1,439 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: debian-plymouth-manager 2.0.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-03 16:42+0100\n"
+"PO-Revision-Date: 2013-06-20 07:00+0100\n"
+"Last-Translator: Schoelje <schoelje@solydxk.com>\n"
+"Language-Team: SolydXK <admin@solydxk.com>\n"
+"Language: Polish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:57
+#: ../usr/share/applications/debian-plymouth-manager.desktop.in.h:1
+#, fuzzy
+msgid "Debian Plymouth Manager"
+msgstr "Debian Plymouth Manager wersja: %(version)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:59
+msgid "Themes"
+msgstr "Motywy"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:60
+msgid "Install"
+msgstr "Instaluj"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:61
+msgid "Grub"
+msgstr "Grub"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:71
+msgid "None: no plymouth splash"
+msgstr ""
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:92
+msgid "Set Plymouth Theme"
+msgstr "Wybierz motyw"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:93
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:245
+msgid "Preview"
+msgstr "Podgląd"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:99
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:151
+msgid "Installed Themes"
+msgstr "Zainstalowane motywy"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:118
+msgid "Resolutions"
+msgstr "Rozdzielczości"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:139
+msgid "Install Theme"
+msgstr "Instaluj"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:140
+msgid "Remove Theme"
+msgstr "Usuń"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:146
+msgid "Available Themes"
+msgstr "Dostępne motywy"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:165
+msgid "Set Grub Resolution"
+msgstr "Rozdzielczość grub"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:171
+msgid "Grub Resolutions"
+msgstr "Rozdzielczości grub"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:246
+#, python-format
+msgid ""
+"You must save before you can preview:\n"
+"\n"
+"Theme: %(theme)s\n"
+"Resolution: %(res)s"
+msgstr ""
+"Podgląd dostępny po zapisaniu:\n"
+"\n"
+"Motyw: %(theme)s\n"
+"Rozdzielczość: %(res)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:253
+#, python-format
+msgid "Save setting: %(theme)s (%(res)s)"
+msgstr "Zapisz ustawienia: %(theme)s (%(res)s)"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:281
+#, python-format
+msgid "Done saving settings: %(theme)s (%(res)s)"
+msgstr "Ustawienia zapisane: %(theme)s (%(res)s)"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:283
+msgid "Save settings"
+msgstr "Zapisz ustawienia"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:284
+#, python-format
+msgid ""
+"Theme: %(theme)s\n"
+"Resolution: %(res)s\n"
+"\n"
+"Done"
+msgstr ""
+"Motyw: %(theme)s\n"
+"Rozdzielczość: %(res)s\n"
+"\n"
+"Wykonane"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:306
+msgid "install"
+msgstr "instaluj"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:309
+msgid "Install theme"
+msgstr "Instaluj motyw"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:309
+#, python-format
+msgid ""
+"Continue installing theme:\n"
+"%(theme)s"
+msgstr ""
+"Kontynuuj instalację motyw:\n"
+"%(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:313
+#, python-format
+msgid "Start installing theme: %(theme)s"
+msgstr "Rozpocznij instalację motywu: %(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:325
+#, python-format
+msgid "User cancel install theme: %(theme)s"
+msgstr "Instalacja motywu skasowana przez użytkownika: %(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:327
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:354
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:375
+#, python-format
+msgid "%(act1)s%(act2)s theme"
+msgstr "%(act1)s%(act2)s motywu"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:328
+#, python-format
+msgid ""
+"The package cannot be installed: %(pck)s\n"
+"Try apt instead"
+msgstr ""
+"Pakiet nie może być zainstalowany: %(pck)s\n"
+"Spróbuj użyć apt"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:333
+msgid "remove"
+msgstr "usuń"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:336
+msgid "Remove theme"
+msgstr "Usuń motyw"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:336
+#, python-format
+msgid ""
+"Continue removing theme:\n"
+"%(theme)s"
+msgstr ""
+"Usuwanie motywu w toku:\n"
+"%(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:342
+#, python-format
+msgid "Start removing theme: %(theme)s"
+msgstr "Rozpocznij usuwanie motywu: %(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:352
+#, python-format
+msgid "User cancel remove theme: %(theme)s"
+msgstr "Usuwanie motywu skasowane przez użytkownika: %(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:355
+#, python-format
+msgid ""
+"The package cannot be removed: %(pck)s\n"
+"It is part of a meta package.\n"
+"Try apt instead"
+msgstr ""
+"Pakiet nie może być usunięty: %(pck)s\n"
+"Jest on częścią metapakietu.\n"
+"Spróbuj użyć apt"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:377
+#, python-format
+msgid ""
+"Could not %(action)s theme:\n"
+"%(theme)s\n"
+"Try apt instead.\n"
+"\n"
+"Error message:\n"
+"%(err)s"
+msgstr ""
+"Nie można %(action)s motywu:\n"
+"%(theme)s\n"
+"Spróbuj uzyć apt.\n"
+"\n"
+"Komunikat błędu:\n"
+"%(err)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:379
+#, python-format
+msgid ""
+"%(action)s successfully of:\n"
+"%(pck)s"
+msgstr ""
+"%(action)s zrealizowane:\n"
+"%(pck)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:391
+#, python-format
+msgid "Save grub resolution: %(res)s"
+msgstr "Zapisz rozdzielczość grub: %(res)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:410
+msgid "Grub resolution"
+msgstr "Rozdzielczość grub"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:411
+#, python-format
+msgid "Grub resolution saved: %(res)s"
+msgstr "Zapisano rozdzielczość grub: %(res)s"
+
+#: ../usr/lib/debian-plymouth-manager/grub.py:46
+#: ../usr/lib/debian-plymouth-manager/plymouth.py:132
+msgid "Neither grub nor burg found in /etc/default"
+msgstr "Nie znaleziono ani grub ani burg w /etc/default"
+
+#: ../usr/lib/debian-plymouth-manager/grub.py:74
+msgid "No grub or burg found"
+msgstr "Nie znaleziono programu rozruchowego (grub/burg)"
+
+#: ../usr/lib/debian-plymouth-manager/plymouth.py:164
+#, fuzzy, python-format
+msgid ""
+"Cannot save Plymouth theme:\n"
+"No %s."
+msgstr ""
+"Nie mozna zapisać motywu Plymouth:\n"
+"Brak pliku konfiguracyjnego grub/burg..."
+
+#: ../usr/lib/debian-plymouth-manager/plymouth.py:284
+#, python-format
+msgid "Used graphics driver: %(drv)s"
+msgstr "Sterownik karty graficznej:  %(drv)s"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:57
+#, python-format
+msgid "Write debug information to file: %(path)s"
+msgstr "Zapisz informację o debugowaniu do pliku: %(path)s"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:61
+#, python-format
+msgid "Machine info: %(info)s"
+msgstr "Informacje o komputerze: %(info)s"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:63
+#, python-format
+msgid "Debian Plymouth Manager version: %(version)s"
+msgstr "Debian Plymouth Manager wersja: %(version)s"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:85
+#: ../usr/lib/debian-plymouth-manager/main.py:87
+msgid "Please enter your password"
+msgstr "Wpisz hasło"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:93
+msgid "DPM - Live environment"
+msgstr "DPM - środowisko live"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:94
+msgid ""
+"DPM cannot run in a live environment\n"
+"\n"
+"To force start, use the --force argument"
+msgstr ""
+"DPM nie może działać w środowisku live\n"
+"\n"
+"Aby wymusić start użyj argumentu --force"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:98
+msgid "DPM - Debian based"
+msgstr "DPM - oparty na Debianie"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:99
+msgid "DPM can only run on Debian based distributions"
+msgstr "DPM może działać wyłącznie w dystrubucjach opartych na Debianie"
+
+#: ../usr/lib/debian-plymouth-manager/execapt.py:26
+#, python-format
+msgid "Error returned: %(err)s"
+msgstr "Zwrócony błąd: %(err)s"
+
+#~ msgid "Command to execute: %(cmd)s"
+#~ msgstr "Polecenie do wykonania: %(cmd)s"
+
+#~ msgid "Search for extensions: %(ext)s"
+#~ msgstr "Szukaj rozszerzeń: %(ext)s"
+
+#~ msgid "File with extension found: %(path)s"
+#~ msgstr "Znaleziono plik z rozszerzeniem: %(path)s"
+
+#~ msgid "File found: %(path)s"
+#~ msgstr "Znaleziono plik: %(path)s"
+
+#~ msgid "Resolution added: %(res)s"
+#~ msgstr "Dodano rozdzielczość: %(res)s"
+
+#~ msgid "Package is installed: %(package)s"
+#~ msgstr "Pakiet zainstalowany: %(package)s"
+
+#~ msgid "Package not installed: %(package)s"
+#~ msgstr "Pakiet niezainstalowany: %(package)s"
+
+#~ msgid "Package not found: %(package)s"
+#~ msgstr "Nie znaleziono pakietu: %(package)s"
+
+#~ msgid "Could not get status info for package: %(package)s"
+#~ msgstr "Nie można znaleźć informacji o statusie pakietu: %(package)s"
+
+#~ msgid "Startup command: %(cmd)s"
+#~ msgstr "Polecenie startowe: %(cmd)s"
+
+#~ msgid "Create list store eval string: %(eval)s"
+#~ msgstr "Utwórz list store eval string: %(eval)s"
+
+#~ msgid "Clear existing list store"
+#~ msgstr "Wyczyść istniejącą list store"
+
+#~ msgid "First item is column name (multi-column list): %(iscolname)s"
+#~ msgstr ""
+#~ "Pierwsza pozycja jest nazwą kolumny (lista wielokolumnowa): %(iscolname)s"
+
+#~ msgid "First item is column name (single-column list): %(iscolname)s"
+#~ msgstr ""
+#~ "Pierwsza pozycja jest nazwą kolumny (lista jednokolumnowa): %(iscolname)s"
+
+#~ msgid "Create column names: %(cols)s"
+#~ msgstr "Utwórz nazwy kolumn: %(cols)s"
+
+#~ msgid "First item is column name: skip first item"
+#~ msgstr "Pierwsza pozycja jest nazwą kolumny - pomiń ją"
+
+#~ msgid "Add data to list store: %(data)s"
+#~ msgstr "Dodaj dane do list store: %(data)s"
+
+#~ msgid "Add data to top of list store: %(totop)s"
+#~ msgstr "Dodaj dane na początek list store: %(totop)s"
+
+#~ msgid "Add data to bottom of list store: %(tobottom)s"
+#~ msgstr "Dodaj dane na koniec list store: %(tobottom)s"
+
+#~ msgid "Last visible column nr: %(colnr)d"
+#~ msgstr "Numer ostatniej widocznej kolumny: %(colnr)d"
+
+#~ msgid "Hide column nr: %(colnr)d"
+#~ msgstr "Ukryj kolumnę nr: %(colnr)d"
+
+#~ msgid "Create column: %(col)s"
+#~ msgstr "Utwórz kolumnę: %(col)s"
+
+#~ msgid "Check box found: add toggle function"
+#~ msgstr "Znaleziono pole wyboru - dodaj funkcję przełączania"
+
+#~ msgid "Last column fills treeview: %(colnr)d"
+#~ msgstr "Ostatnia kolumna wypełnia treeview: %(colnr)d"
+
+#~ msgid "Column added: %(col)s"
+#~ msgstr "Dodana kolumna: %(col)s"
+
+#~ msgid "Column already exists: %(col)s"
+#~ msgstr "Kolumna istnieje: %(col)s"
+
+#~ msgid "Add Liststore to Treeview"
+#~ msgstr "Dodaj ListStore do TreeView"
+
+#~ msgid "Scrolled to selected row: %(row)d"
+#~ msgstr "Przewinięto do wybranego wiersza: %(row)d"
+
+#~ msgid "Themes menu - seleceted theme: %(theme)s"
+#~ msgstr "Menu motywów - wybrany motyw: %(theme)s"
+
+#~ msgid "Install menu - seleceted available theme: %(theme)s"
+#~ msgstr "Menu instalacyjne - wybrany dostępny motyw: %(theme)s"
+
+#~ msgid "Grub menu - seleceted grub resolution: %(res)s"
+#~ msgstr "Menu grub - wybrana rozdzielczość grub: %(res)s"
+
+#~ msgid "Themes menu - seleceted resolution: %(res)s"
+#~ msgstr "Menu motywów - wybrana rozdzielczość: %(res)s"
+
+#~ msgid "Install menu - seleceted theme to remove: %(theme)s"
+#~ msgstr "Menu instalacyjne - wybrany motyw do usunięcia: %(theme)s"
+
+#~ msgid "Package found %(pck)s"
+#~ msgstr "Znaleziono pakiet %(pck)s"
+
+#~ msgid "Current Plymouth resolution: %(res)s"
+#~ msgstr "Bieżąca rozdzielczość Plymoutha: %(res)s"
+
+#~ msgid ""
+#~ "\n"
+#~ "New modules:\n"
+#~ "%(modules)s\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Nowe moduły:\n"
+#~ "%(modules)s\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "New grub:\n"
+#~ "%(grub)s\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Nowy grub:\n"
+#~ "%(grub)s\n"
+
+#~ msgid "Current grub resolution: %(res)s"
+#~ msgstr "Bieżąca rozdzielczość grub: %(res)s"

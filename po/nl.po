@@ -1,0 +1,439 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: debian-plymouth-manager 2.0.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-03 16:42+0100\n"
+"PO-Revision-Date: 2014-04-22 11:02+0100\n"
+"Last-Translator: Schoelje <schoelje@solydxk.com>\n"
+"Language-Team: SolydXK <admin@solydxk.com>\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:57
+#: ../usr/share/applications/debian-plymouth-manager.desktop.in.h:1
+msgid "Debian Plymouth Manager"
+msgstr "Debian Plymouth Manager"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:59
+msgid "Themes"
+msgstr "Thema's"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:60
+msgid "Install"
+msgstr "Installeren"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:61
+msgid "Grub"
+msgstr "Grub"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:71
+msgid "None: no plymouth splash"
+msgstr ""
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:92
+msgid "Set Plymouth Theme"
+msgstr "Thema instellen"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:93
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:245
+msgid "Preview"
+msgstr "Voorbeeld"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:99
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:151
+msgid "Installed Themes"
+msgstr "Geïnstalleerde thema's"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:118
+msgid "Resolutions"
+msgstr "Resoluties"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:139
+msgid "Install Theme"
+msgstr "Installeer thema"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:140
+msgid "Remove Theme"
+msgstr "Thema verwijderen"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:146
+msgid "Available Themes"
+msgstr "Beschikbare thema's"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:165
+msgid "Set Grub Resolution"
+msgstr "Resolutie instellen"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:171
+msgid "Grub Resolutions"
+msgstr "GRUB resoluties"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:246
+#, python-format
+msgid ""
+"You must save before you can preview:\n"
+"\n"
+"Theme: %(theme)s\n"
+"Resolution: %(res)s"
+msgstr ""
+"U dient te bewaren voordat u het voorbeeld kunt zien:\n"
+"\n"
+"Thema: %(theme)s\n"
+"Resolutie: %(res)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:253
+#, python-format
+msgid "Save setting: %(theme)s (%(res)s)"
+msgstr "Instellingen opslaan: %(theme)s (%(res)s)"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:281
+#, python-format
+msgid "Done saving settings: %(theme)s (%(res)s)"
+msgstr "Instellingen bewaard: %(theme)s (%(res)s)"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:283
+msgid "Save settings"
+msgstr "Instellingen opslaan"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:284
+#, python-format
+msgid ""
+"Theme: %(theme)s\n"
+"Resolution: %(res)s\n"
+"\n"
+"Done"
+msgstr ""
+"Thema: %(theme)s\n"
+"Resolutie: %(res)s\n"
+"\n"
+"Done"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:306
+msgid "install"
+msgstr "installeren"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:309
+msgid "Install theme"
+msgstr "Thema installeren"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:309
+#, python-format
+msgid ""
+"Continue installing theme:\n"
+"%(theme)s"
+msgstr ""
+"Installeer thema:\n"
+"%(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:313
+#, python-format
+msgid "Start installing theme: %(theme)s"
+msgstr "Start installatie thema: %(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:325
+#, python-format
+msgid "User cancel install theme: %(theme)s"
+msgstr "Gebruiker heeft installatie afgebroken: %(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:327
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:354
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:375
+#, python-format
+msgid "%(act1)s%(act2)s theme"
+msgstr "%(act1)s%(act2)s thema"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:328
+#, python-format
+msgid ""
+"The package cannot be installed: %(pck)s\n"
+"Try apt instead"
+msgstr ""
+"Dit pakket kan niet geïnstalleerd worden: %(pck)s\n"
+"Probeer apt in plaats hiervan"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:333
+msgid "remove"
+msgstr "verwijderen"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:336
+msgid "Remove theme"
+msgstr "Thema verwijderen"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:336
+#, python-format
+msgid ""
+"Continue removing theme:\n"
+"%(theme)s"
+msgstr ""
+"Verwijder thema:\n"
+"%(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:342
+#, python-format
+msgid "Start removing theme: %(theme)s"
+msgstr "Start verwijdering thema: %(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:352
+#, python-format
+msgid "User cancel remove theme: %(theme)s"
+msgstr "Gebruiker heeft verwijderen afgebroken: %(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:355
+#, python-format
+msgid ""
+"The package cannot be removed: %(pck)s\n"
+"It is part of a meta package.\n"
+"Try apt instead"
+msgstr ""
+"Dit pakket kan niet verwijderd worden: %(pck)s\n"
+"Het is deel van een metapakket.\n"
+"Probeer apt in plaats hiervan"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:377
+#, python-format
+msgid ""
+"Could not %(action)s theme:\n"
+"%(theme)s\n"
+"Try apt instead.\n"
+"\n"
+"Error message:\n"
+"%(err)s"
+msgstr ""
+"Kon thema niet %(action)s:\n"
+"%(theme)s\n"
+"Probeer apt in plaats hiervan.\n"
+"\n"
+"Foutbericht:\n"
+"%(err)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:379
+#, python-format
+msgid ""
+"%(action)s successfully of:\n"
+"%(pck)s"
+msgstr ""
+"%(action)s succesvol van:\n"
+"%(pck)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:391
+#, python-format
+msgid "Save grub resolution: %(res)s"
+msgstr "Bewaar grub resolutie: %(res)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:410
+msgid "Grub resolution"
+msgstr "Grubresolutie"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:411
+#, python-format
+msgid "Grub resolution saved: %(res)s"
+msgstr "Grub resolutie bewaard: %(res)s"
+
+#: ../usr/lib/debian-plymouth-manager/grub.py:46
+#: ../usr/lib/debian-plymouth-manager/plymouth.py:132
+msgid "Neither grub nor burg found in /etc/default"
+msgstr "Zowel grub als burg zijn niet in /etc/default gevonden"
+
+#: ../usr/lib/debian-plymouth-manager/grub.py:74
+msgid "No grub or burg found"
+msgstr "Grub of burg niet gevonden"
+
+#: ../usr/lib/debian-plymouth-manager/plymouth.py:164
+#, python-format
+msgid ""
+"Cannot save Plymouth theme:\n"
+"No %s."
+msgstr ""
+"Kan Plymouth thema niet bewaren:\n"
+"Geen %s."
+
+#: ../usr/lib/debian-plymouth-manager/plymouth.py:284
+#, python-format
+msgid "Used graphics driver: %(drv)s"
+msgstr "Gebruikte grafische driver: %(drv)s"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:57
+#, python-format
+msgid "Write debug information to file: %(path)s"
+msgstr "Schrijf debug informatie naar bestand: %(path)s"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:61
+#, python-format
+msgid "Machine info: %(info)s"
+msgstr "Machine informatie: %(info)s"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:63
+#, python-format
+msgid "Debian Plymouth Manager version: %(version)s"
+msgstr "Debian Plymouth Manager versie: %(version)s"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:85
+#: ../usr/lib/debian-plymouth-manager/main.py:87
+msgid "Please enter your password"
+msgstr "Voer hier uw wachtwoord in"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:93
+msgid "DPM - Live environment"
+msgstr "DPM - Live omgeving"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:94
+msgid ""
+"DPM cannot run in a live environment\n"
+"\n"
+"To force start, use the --force argument"
+msgstr ""
+"DPM kan niet in een live omgeving gestart worden\n"
+"\n"
+"Om toch te starten, gebruik het --force argument"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:98
+msgid "DPM - Debian based"
+msgstr "DPM - Debian gebaseerd"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:99
+msgid "DPM can only run on Debian based distributions"
+msgstr "DPM kan alleen op Debian gebaseerde distributies draaien"
+
+#: ../usr/lib/debian-plymouth-manager/execapt.py:26
+#, python-format
+msgid "Error returned: %(err)s"
+msgstr "Fout geretourneerd: %(err)s"
+
+#, fuzzy
+#~ msgid "1 Neither grub nor burg found in /etc/default"
+#~ msgstr "Zowel grub als burg zijn niet in /etc/default gevonden"
+
+#~ msgid "Command to execute: %(cmd)s"
+#~ msgstr "Opdracht uitvoeren: %(cmd)s"
+
+#~ msgid "Search for extensions: %(ext)s"
+#~ msgstr "Zoek naar extensies: %(ext)s"
+
+#~ msgid "File with extension found: %(path)s"
+#~ msgstr "Bestand met extensie gevonden: %(path)s"
+
+#~ msgid "File found: %(path)s"
+#~ msgstr "Bestand gevonden: %(path)s"
+
+#~ msgid "Resolution added: %(res)s"
+#~ msgstr "Resolutie toegevoegd: %(res)s"
+
+#~ msgid "Package is installed: %(package)s"
+#~ msgstr "Pakket geïnstalleerd: %(package)s"
+
+#~ msgid "Package not installed: %(package)s"
+#~ msgstr "Pakket niet geïnstalleerd: %(package)s"
+
+#~ msgid "Package not found: %(package)s"
+#~ msgstr "Pakket niet gevonden: %(package)s"
+
+#~ msgid "Could not get status info for package: %(package)s"
+#~ msgstr "Statusinformatie niet beschikbaar voor pakket: %(package)s"
+
+#~ msgid "Startup command: %(cmd)s"
+#~ msgstr "Startopdracht: %(cmd)s"
+
+#~ msgid "Create list store eval string: %(eval)s"
+#~ msgstr "Maak list store eval string: %(eval)s"
+
+#~ msgid "Clear existing list store"
+#~ msgstr "Maak bestaande list store leeg"
+
+#~ msgid "First item is column name (multi-column list): %(iscolname)s"
+#~ msgstr "Eerste item is kolomnaam (multi-kolom lijst): %(iscolname)s"
+
+#~ msgid "First item is column name (single-column list): %(iscolname)s"
+#~ msgstr "Eerste item is kolomnaam (enkele-kolom lijst): %(iscolname)s"
+
+#~ msgid "Create column names: %(cols)s"
+#~ msgstr "Maak kolomnamen: %(cols)s"
+
+#~ msgid "First item is column name: skip first item"
+#~ msgstr "Eerste item is kolomnaam: sla eerste item over"
+
+#~ msgid "Add data to list store: %(data)s"
+#~ msgstr "Voeg data toe aan list store: %(data)s"
+
+#~ msgid "Add data to top of list store: %(totop)s"
+#~ msgstr "Voeg data bovenaan toe aan list store: %(totop)s"
+
+#~ msgid "Add data to bottom of list store: %(tobottom)s"
+#~ msgstr "Voeg data onderaan to aan list store: %(tobottom)s"
+
+#~ msgid "Last visible column nr: %(colnr)d"
+#~ msgstr "Laatste zichtbare kolomnr: %(colnr)d"
+
+#~ msgid "Hide column nr: %(colnr)d"
+#~ msgstr "Verberg kolomnr: %(colnr)d"
+
+#~ msgid "Create column: %(col)s"
+#~ msgstr "Maak kolom: %(col)s"
+
+#~ msgid "Check box found: add toggle function"
+#~ msgstr "Selectievakje gevonden: voeg schakelfunctie toe"
+
+#~ msgid "Last column fills treeview: %(colnr)d"
+#~ msgstr "Laatste kolom vult treeview: %(colnr)d"
+
+#~ msgid "Column added: %(col)s"
+#~ msgstr "Kolom toegevoegd: %(col)s"
+
+#~ msgid "Column already exists: %(col)s"
+#~ msgstr "Kolom bestaat reeds: %(col)s"
+
+#~ msgid "Add Liststore to Treeview"
+#~ msgstr "Voeg Liststore toe aan Treeview"
+
+#~ msgid "Scrolled to selected row: %(row)d"
+#~ msgstr "Naar geselecteerde rij gescrold: %(row)d"
+
+#~ msgid "Themes menu - seleceted theme: %(theme)s"
+#~ msgstr "Thema's menu - geselecteerd thema: %(theme)s"
+
+#~ msgid "Install menu - seleceted available theme: %(theme)s"
+#~ msgstr "Installatie menu - geselecteerd beschikbaar thema: %(theme)s"
+
+#~ msgid "Grub menu - seleceted grub resolution: %(res)s"
+#~ msgstr "Grub menu - geselecteerde grub resolutie: %(res)s"
+
+#~ msgid "Themes menu - seleceted resolution: %(res)s"
+#~ msgstr "Thema's menu - geselecteerde resolutie: %(res)s"
+
+#~ msgid "Install menu - seleceted theme to remove: %(theme)s"
+#~ msgstr "Installatie menu - te verwijderen thema: %(theme)s"
+
+#~ msgid "Package found %(pck)s"
+#~ msgstr "Pakket gevonden: %(pck)s"
+
+#~ msgid "Current Plymouth resolution: %(res)s"
+#~ msgstr "Huidige Plymouth resolutie: %(res)s"
+
+#~ msgid ""
+#~ "\n"
+#~ "New modules:\n"
+#~ "%(modules)s\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Nieuwe modules:\n"
+#~ "%(modules)s\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "New grub:\n"
+#~ "%(grub)s\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Nieuwe grub:\n"
+#~ "%(grub)s\n"
+
+#~ msgid "Current grub resolution: %(res)s"
+#~ msgstr "Huidige grub resolutie: %(res)s"

@@ -1,14 +1,15 @@
 [Desktop Entry]
 Categories=System;
-Comment[en_US]=Debian Plymouth Manager
 Comment=Debian Plymouth Manager
+Comment[ca]=Debian Plymouth Manager
+Comment[nl]=Debian Plymouth Manager
 Exec=/usr/bin/debian-plymouth-manager
-GenericName[en_US]=
 GenericName=
 Icon=/usr/share/debian-plymouth-manager/logo.png
 MimeType=
-Name[en_US]=Debian Plymouth Manager
 Name=Debian Plymouth Manager
+Name[ca]=Debian Plymouth Manager
+Name[nl]=Debian Plymouth Manager
 Path=
 StartupNotify=true
 Terminal=false

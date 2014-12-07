@@ -1,83 +1,90 @@
+debian-plymouth-manager (2.2.6) debian; urgency=low
+
+  * Improved translation handling
+  * Gtk2 bug solved
+
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Sun, 02 Nov 2014 11:00:00 +0200
+
 debian-plymouth-manager (2.2.5) debian; urgency=low
 
   * Changed icon to use with the Evolvere icon theme
 
- -- Schoelje <schoelje@solydxk.com>  Fri, 12 Sep 2014 15:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Fri, 12 Sep 2014 15:00:00 +0100
 
 debian-plymouth-manager (2.2.4) debian; urgency=low
 
   * Skip update-initramfs when removing Plymouth theme: only update-grub
 
- -- Schoelje <schoelje@solydxk.com>  Wed, 27 Aug 2014 20:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Wed, 27 Aug 2014 20:00:00 +0100
 
 debian-plymouth-manager (2.2.3) debian; urgency=low
 
   * Removed some dependencies
 
- -- Schoelje <schoelje@solydxk.com>  Tue, 19 Aug 2014 12:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Tue, 19 Aug 2014 12:00:00 +0100
 
 debian-plymouth-manager (2.2.2) debian; urgency=low
 
   * Moved locale to solydxk-locale
 
- -- Schoelje <schoelje@solydxk.com>  Thu, 26 May 2014 08:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Thu, 26 May 2014 08:00:00 +0100
 
 debian-plymouth-manager (2.2.1) debian; urgency=low
 
   * Resolved bug not starting
 
- -- Schoelje <schoelje@solydxk.com>  Mon, 05 May 2014 22:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Mon, 05 May 2014 22:00:00 +0100
 
 debian-plymouth-manager (2.2.0) debian; urgency=low
 
   * Resolved untranslatable labels
 
- -- Schoelje <schoelje@solydxk.com>  Tue, 22 Apr 2014 11:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Tue, 22 Apr 2014 11:00:00 +0100
 
 debian-plymouth-manager (2.1.9) debian; urgency=low
 
   * Added Russian translation
   * Adapted Dutch translation
 
- -- Schoelje <schoelje@solydxk.com>  Tue, 01 Apr 2014 18:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Tue, 01 Apr 2014 18:00:00 +0100
 
 debian-plymouth-manager (2.1.7) debian; urgency=low
 
   * Changed driver to uvesafb
 
- -- Schoelje <schoelje@solydxk.com>  Tue, 11 Mar 2014 18:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Tue, 11 Mar 2014 18:00:00 +0100
 
 debian-plymouth-manager (2.1.6) debian; urgency=low
 
   * Added Czech translation
   * Adapted Italian translation
 
- -- Schoelje <schoelje@solydxk.com>  Tue, 24 Dec 2013 12:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Tue, 24 Dec 2013 12:00:00 +0100
 
 debian-plymouth-manager (2.1.5) debian; urgency=low
 
   * Adapted French translation
 
- -- Schoelje <schoelje@solydxk.com>  Mon, 21 Oct 2013 19:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Mon, 21 Oct 2013 19:00:00 +0100
 
 debian-plymouth-manager (2.1.4) debian; urgency=low
 
   * Added Greek translation
     provided by Stelios
 
- -- Schoelje <schoelje@solydxk.com>  Thu, 03 Oct 2013 11:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Thu, 03 Oct 2013 11:00:00 +0100
 
 debian-plymouth-manager (2.1.3) debian; urgency=low
 
   * Added French translation
 
- -- Schoelje <schoelje@solydxk.com>  Sat, 07 Sep 2013 22:30:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Sat, 07 Sep 2013 22:30:00 +0100
  
 debian-plymouth-manager (2.1.2) debian; urgency=low
 
   * Grub section not showing resolutions
 
- -- Schoelje <schoelje@solydxk.com>  Sat, 06 Jul 2013 18:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Sat, 06 Jul 2013 18:00:00 +0100
 
 debian-plymouth-manager (2.1.1) debian; urgency=low
 
@@ -85,58 +92,58 @@ debian-plymouth-manager (2.1.1) debian; urgency=low
   * Make GUI objects size with textual contents
   * Changed resolutions from Vesa safe to Xrandr
 
- -- Schoelje <schoelje@solydxk.com>  Wed, 12 Jun 2013 15:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Wed, 12 Jun 2013 15:00:00 +0100
 
 debian-plymouth-manager (2.0.9) debian; urgency=low
 
   * Added Catalan translation
 
- -- Schoelje <schoelje@solydxk.com>  Wed, 05 Jun 2013 19:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Wed, 05 Jun 2013 19:00:00 +0100
 
 debian-plymouth-manager (2.0.8) debian; urgency=low
 
   * Moved translations to standard directory /usr/share/locale
 
- -- Schoelje <schoelje@solydxk.com>  Wed, 06 Jun 2013 10:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Wed, 06 Jun 2013 10:00:00 +0100
 
 debian-plymouth-manager (2.0.7) debian; urgency=low
 
   * Included Spanish and Dutch translations
 
- -- Schoelje <schoelje@solydxk.com>  Wed, 29 May 2013 20:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Wed, 29 May 2013 20:00:00 +0100
 
 debian-plymouth-manager (2.0.5) debian; urgency=low
 
   * Grub settings were not saved
 
- -- Schoelje <schoelje@solydxk.com>  Tue, 21 May 2013 10:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Tue, 21 May 2013 10:00:00 +0100
 
 debian-plymouth-manager (2.0.4) debian; urgency=low
 
   * No resolutions listed whith v86d driver
 
- -- Schoelje <schoelje@solydxk.com>  Sat, 05 May 2013 20:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Sat, 05 May 2013 20:00:00 +0100
 
 debian-plymouth-manager (2.0.3) debian; urgency=low
 
   * Some minor bugs resolved
 
- -- Schoelje <schoelje@solydxk.com>  Thu, 03 Apr 2013 11:30:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Thu, 03 Apr 2013 11:30:00 +0100
 
 debian-plymouth-manager (2.0.2) debian; urgency=low
 
   * List safe resolutions if (u)vesafb cannot be retrieved
 
- -- Schoelje <schoelje@solydxk.com>  Tue, 25 Mar 2013 22:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Tue, 25 Mar 2013 22:00:00 +0100
  
 debian-plymouth-manager (2.0.1) debian; urgency=low
 
   * Name change (there is already a DPM package)
 
- -- Schoelje <schoelje@solydxk.com>  Wed, 27 Jan 2013 08:38:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Wed, 27 Jan 2013 08:38:00 +0100
 
 debian-plymouth-manager (2.0.0) debian; urgency=low
 
   * Initial version 2.0.0
 
- -- Schoelje <schoelje@solydxk.com>  Tue, 23 Jan 2013 08:38:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Tue, 23 Jan 2013 08:38:00 +0100

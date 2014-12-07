@@ -1,0 +1,314 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: debian  plymouth manager\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-03 16:42+0100\n"
+"PO-Revision-Date: 2014-06-26 09:36+0100\n"
+"Last-Translator: \n"
+"Language-Team: SolydXK <admin@solydxk.com>\n"
+"Language: Japanese\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:57
+#: ../usr/share/applications/debian-plymouth-manager.desktop.in.h:1
+msgid "Debian Plymouth Manager"
+msgstr ""
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:59
+msgid "Themes"
+msgstr "テーマ"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:60
+msgid "Install"
+msgstr "インストール"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:61
+msgid "Grub"
+msgstr "GRUB"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:71
+msgid "None: no plymouth splash"
+msgstr ""
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:92
+msgid "Set Plymouth Theme"
+msgstr "起動画面テーマの設定"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:93
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:245
+msgid "Preview"
+msgstr "プレビュー"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:99
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:151
+msgid "Installed Themes"
+msgstr "インストール済テーマ"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:118
+msgid "Resolutions"
+msgstr "Resolutions"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:139
+msgid "Install Theme"
+msgstr "テーマをインストール"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:140
+msgid "Remove Theme"
+msgstr "テーマの削除"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:146
+msgid "Available Themes"
+msgstr "有効なテーマ"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:165
+msgid "Set Grub Resolution"
+msgstr "GRUB Resolution の設定"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:171
+msgid "Grub Resolutions"
+msgstr "GRUB Resolution"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:246
+#, python-format
+msgid ""
+"You must save before you can preview:\n"
+"\n"
+"Theme: %(theme)s\n"
+"Resolution: %(res)s"
+msgstr ""
+"プレビューの前に保存します:\n"
+"\n"
+"テーマ: %(theme)s\n"
+"Resolution: %(res)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:253
+#, python-format
+msgid "Save setting: %(theme)s (%(res)s)"
+msgstr "設定保存中: %(theme)s (%(res)s)"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:281
+#, python-format
+msgid "Done saving settings: %(theme)s (%(res)s)"
+msgstr "設定保存が完了しました: %(theme)s (%(res)s)"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:283
+msgid "Save settings"
+msgstr "設定保存"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:284
+#, python-format
+msgid ""
+"Theme: %(theme)s\n"
+"Resolution: %(res)s\n"
+"\n"
+"Done"
+msgstr ""
+"テーマ: %(theme)s\n"
+"Resolution: %(res)s\n"
+"\n"
+"完了"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:306
+msgid "install"
+msgstr "インストール"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:309
+msgid "Install theme"
+msgstr "テーマのインストール"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:309
+#, python-format
+msgid ""
+"Continue installing theme:\n"
+"%(theme)s"
+msgstr ""
+"テーマのインストールを続けます:\n"
+"%(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:313
+#, python-format
+msgid "Start installing theme: %(theme)s"
+msgstr "テーマインストール開始: %(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:325
+#, python-format
+msgid "User cancel install theme: %(theme)s"
+msgstr "テーマインストールはユーザーよりキャンセルされました: %(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:327
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:354
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:375
+#, python-format
+msgid "%(act1)s%(act2)s theme"
+msgstr "%(act1)s%(act2)s テーマ"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:328
+#, python-format
+msgid ""
+"The package cannot be installed: %(pck)s\n"
+"Try apt instead"
+msgstr ""
+"パッケージがインストールできませんでした: %(pck)s\n"
+"代わりに apt を試して下さい"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:333
+msgid "remove"
+msgstr "削除"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:336
+msgid "Remove theme"
+msgstr "テーマの削除"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:336
+#, python-format
+msgid ""
+"Continue removing theme:\n"
+"%(theme)s"
+msgstr ""
+"テーマの削除を続けます:\n"
+"%(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:342
+#, python-format
+msgid "Start removing theme: %(theme)s"
+msgstr "テーマの削除を開始しました: %(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:352
+#, python-format
+msgid "User cancel remove theme: %(theme)s"
+msgstr "テーマの削除はユーザーによってキャンセルしました: %(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:355
+#, python-format
+msgid ""
+"The package cannot be removed: %(pck)s\n"
+"It is part of a meta package.\n"
+"Try apt instead"
+msgstr ""
+"パッケージを削除できませんでした: %(pck)s\n"
+"これはメタパッケージの一部です。\n"
+"代わりに apt を試して下さい"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:377
+#, python-format
+msgid ""
+"Could not %(action)s theme:\n"
+"%(theme)s\n"
+"Try apt instead.\n"
+"\n"
+"Error message:\n"
+"%(err)s"
+msgstr ""
+"テーマを %(action)s できませんでした:\n"
+"%(theme)s\n"
+"代わりに apt を試して下さい。\n"
+"\n"
+"エラーメッセージ:\n"
+"%(err)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:379
+#, python-format
+msgid ""
+"%(action)s successfully of:\n"
+"%(pck)s"
+msgstr ""
+"%(action)s 完了しました:\n"
+"%(pck)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:391
+#, python-format
+msgid "Save grub resolution: %(res)s"
+msgstr "GRUB Resolution 保存: %(res)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:410
+msgid "Grub resolution"
+msgstr "GRUB Resolution"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:411
+#, python-format
+msgid "Grub resolution saved: %(res)s"
+msgstr "GRUB Resolution を保存しました: %(res)s"
+
+#: ../usr/lib/debian-plymouth-manager/grub.py:46
+#: ../usr/lib/debian-plymouth-manager/plymouth.py:132
+msgid "Neither grub nor burg found in /etc/default"
+msgstr "grub・burg が /etc/default 内から見つかりませんでした"
+
+#: ../usr/lib/debian-plymouth-manager/grub.py:74
+msgid "No grub or burg found"
+msgstr "grub・burg 検出なし"
+
+#: ../usr/lib/debian-plymouth-manager/plymouth.py:164
+#, python-format
+msgid ""
+"Cannot save Plymouth theme:\n"
+"No %s."
+msgstr ""
+
+#: ../usr/lib/debian-plymouth-manager/plymouth.py:284
+#, python-format
+msgid "Used graphics driver: %(drv)s"
+msgstr "使用しているグラフィックドライバー: %(drv)s"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:57
+#, python-format
+msgid "Write debug information to file: %(path)s"
+msgstr "デバック情報をファイルに書込: %(path)s"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:61
+#, python-format
+msgid "Machine info: %(info)s"
+msgstr "マシン情報: %(info)s"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:63
+#, python-format
+msgid "Debian Plymouth Manager version: %(version)s"
+msgstr "Debian Plymouth Manager バージョン: %(version)s"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:85
+#: ../usr/lib/debian-plymouth-manager/main.py:87
+msgid "Please enter your password"
+msgstr "パスワードを入力して下さい"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:93
+msgid "DPM - Live environment"
+msgstr "DPM - Live environment"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:94
+msgid ""
+"DPM cannot run in a live environment\n"
+"\n"
+"To force start, use the --force argument"
+msgstr ""
+"DPM を Live environment で実行できません\n"
+"\n"
+"強制開始するには --force を使用して下さい"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:98
+msgid "DPM - Debian based"
+msgstr "DPM - Debian ベース"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:99
+msgid "DPM can only run on Debian based distributions"
+msgstr "DPM は Debian ベースのディストリビューションのみで実行できます"
+
+#: ../usr/lib/debian-plymouth-manager/execapt.py:26
+#, python-format
+msgid "Error returned: %(err)s"
+msgstr "エラーが返りました: %(err)s"
+
+#~ msgid ""
+#~ "%(action)s 完了しました:\n"
+#~ "%(pck)s"
+#~ msgstr ""
+#~ "%(action)s 完了しました:\n"
+#~ "%(pck)s"

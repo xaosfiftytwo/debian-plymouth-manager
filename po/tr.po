@@ -1,0 +1,310 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: debian-plymouth-manager 2.0.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-03 16:42+0100\n"
+"PO-Revision-Date: 2013-12-26 22:10+0200\n"
+"Last-Translator: Taylan Tatlı <taylantatli90@gmail.com>\n"
+"Language-Team: SolydXK <admin@solyxk.com>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:57
+#: ../usr/share/applications/debian-plymouth-manager.desktop.in.h:1
+#, fuzzy
+msgid "Debian Plymouth Manager"
+msgstr "Debian Plymouth Manager version: %(version)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:59
+msgid "Themes"
+msgstr "Temalar"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:60
+msgid "Install"
+msgstr "Yükle"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:61
+msgid "Grub"
+msgstr "Grub"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:71
+msgid "None: no plymouth splash"
+msgstr ""
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:92
+msgid "Set Plymouth Theme"
+msgstr "Plymouth Temasını Ayarla"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:93
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:245
+msgid "Preview"
+msgstr "Önizleme"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:99
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:151
+msgid "Installed Themes"
+msgstr "Kurulu Temalar"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:118
+msgid "Resolutions"
+msgstr "Çözünürlükler"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:139
+msgid "Install Theme"
+msgstr "Temayı Kur"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:140
+msgid "Remove Theme"
+msgstr "Temayı Kaldır"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:146
+msgid "Available Themes"
+msgstr "Kullanılabilir Temalar"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:165
+msgid "Set Grub Resolution"
+msgstr "Grub Çözünürlüğünü Ayarla"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:171
+msgid "Grub Resolutions"
+msgstr "Grub Çözünürlükleri"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:246
+#, python-format
+msgid ""
+"You must save before you can preview:\n"
+"\n"
+"Theme: %(theme)s\n"
+"Resolution: %(res)s"
+msgstr ""
+"Önizleme yapabilmek için önce kaydetmelisiniz:\n"
+"\n"
+"Tema: %(theme)s\n"
+"Çözünürlük: %(res)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:253
+#, python-format
+msgid "Save setting: %(theme)s (%(res)s)"
+msgstr "Ayarı kaydet: %(theme)s (%(res)s)"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:281
+#, python-format
+msgid "Done saving settings: %(theme)s (%(res)s)"
+msgstr "Ayar kaydedildi: %(theme)s (%(res)s)"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:283
+msgid "Save settings"
+msgstr "Ayarları kaydet"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:284
+#, python-format
+msgid ""
+"Theme: %(theme)s\n"
+"Resolution: %(res)s\n"
+"\n"
+"Done"
+msgstr ""
+"Tema: %(theme)s\n"
+"Çözünürlük: %(res)s\n"
+"\n"
+"Tamamlandı"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:306
+msgid "install"
+msgstr "kur"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:309
+msgid "Install theme"
+msgstr "Tema kur"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:309
+#, python-format
+msgid ""
+"Continue installing theme:\n"
+"%(theme)s"
+msgstr ""
+"Temayı kurmaya devam et:\n"
+"%(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:313
+#, python-format
+msgid "Start installing theme: %(theme)s"
+msgstr "Temayı kurmaya başla: %(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:325
+#, python-format
+msgid "User cancel install theme: %(theme)s"
+msgstr "Kullanıcı tema kurulumunu iptal etti: %(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:327
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:354
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:375
+#, python-format
+msgid "%(act1)s%(act2)s theme"
+msgstr "%(act1)s%(act2)s teması"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:328
+#, python-format
+msgid ""
+"The package cannot be installed: %(pck)s\n"
+"Try apt instead"
+msgstr ""
+"Paket kurulamadı: %(pck)s\n"
+"APT'yi kullanmayı deneyin"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:333
+msgid "remove"
+msgstr "kaldır"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:336
+msgid "Remove theme"
+msgstr "Temayı kaldır"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:336
+#, python-format
+msgid ""
+"Continue removing theme:\n"
+"%(theme)s"
+msgstr ""
+"Temayı silmeye devam et:\n"
+"%(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:342
+#, python-format
+msgid "Start removing theme: %(theme)s"
+msgstr "Temayı silmeye başla: %(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:352
+#, python-format
+msgid "User cancel remove theme: %(theme)s"
+msgstr "Kullanıcı temayı silmeyi iptal etti: %(theme)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:355
+#, python-format
+msgid ""
+"The package cannot be removed: %(pck)s\n"
+"It is part of a meta package.\n"
+"Try apt instead"
+msgstr ""
+"Paket silinemedi: %(pck)s\n"
+"Paket, meta paketinin bir parçası.\n"
+"APT'yi kullanmayı deneyin"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:377
+#, python-format
+msgid ""
+"Could not %(action)s theme:\n"
+"%(theme)s\n"
+"Try apt instead.\n"
+"\n"
+"Error message:\n"
+"%(err)s"
+msgstr ""
+"Tema %(action)s işlemi yapılamadı:\n"
+"%(theme)s\n"
+"APT'yi kullanmayı deneyin.\n"
+"\n"
+"Hata mesajı:\n"
+"%(err)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:379
+#, python-format
+msgid ""
+"%(action)s successfully of:\n"
+"%(pck)s"
+msgstr ""
+"%(action)s başarılı:\n"
+"%(pck)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:391
+#, python-format
+msgid "Save grub resolution: %(res)s"
+msgstr "Grub çözünürlüğünü kaydet: %(res)s"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:410
+msgid "Grub resolution"
+msgstr "Grub çözünürlüğü"
+
+#: ../usr/lib/debian-plymouth-manager/debian-plymouth-manager.py:411
+#, python-format
+msgid "Grub resolution saved: %(res)s"
+msgstr "Grub çözünürlüğü kaydedildi: %(res)s"
+
+#: ../usr/lib/debian-plymouth-manager/grub.py:46
+#: ../usr/lib/debian-plymouth-manager/plymouth.py:132
+msgid "Neither grub nor burg found in /etc/default"
+msgstr "Grub ya da burg'dan herhangi biri /etc/default içerisinde bulunamadı"
+
+#: ../usr/lib/debian-plymouth-manager/grub.py:74
+msgid "No grub or burg found"
+msgstr "Grub veya burg bulunamadı"
+
+#: ../usr/lib/debian-plymouth-manager/plymouth.py:164
+#, fuzzy, python-format
+msgid ""
+"Cannot save Plymouth theme:\n"
+"No %s."
+msgstr ""
+"Plymouth teması kaydedilemedi:\n"
+"Grub veya burg ayar dosyası /etc/default içerisinde bulunamadı"
+
+#: ../usr/lib/debian-plymouth-manager/plymouth.py:284
+#, python-format
+msgid "Used graphics driver: %(drv)s"
+msgstr "Kullanılan grafik sürücüsü: %(drv)s"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:57
+#, python-format
+msgid "Write debug information to file: %(path)s"
+msgstr "Hata ayıklama bilgisini dosyaya yaz: %(path)s"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:61
+#, python-format
+msgid "Machine info: %(info)s"
+msgstr "Makine bilgisi: %(info)s"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:63
+#, python-format
+msgid "Debian Plymouth Manager version: %(version)s"
+msgstr "Debian Plymouth Manager version: %(version)s"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:85
+#: ../usr/lib/debian-plymouth-manager/main.py:87
+msgid "Please enter your password"
+msgstr "Lütfen parolanızı girin"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:93
+msgid "DPM - Live environment"
+msgstr "DDM - Canlı ortam"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:94
+msgid ""
+"DPM cannot run in a live environment\n"
+"\n"
+"To force start, use the --force argument"
+msgstr ""
+"DDM canlı bir ortamda çalıştırılamaz\n"
+"\n"
+"Zorla başlatmak için,  --force değişkenini kullanın"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:98
+msgid "DPM - Debian based"
+msgstr "DDM - Debian tabanlı"
+
+#: ../usr/lib/debian-plymouth-manager/main.py:99
+msgid "DPM can only run on Debian based distributions"
+msgstr "DPM sadece Debian tabanlı dağıtımlar üzerinde çalışabilir"
+
+#: ../usr/lib/debian-plymouth-manager/execapt.py:26
+#, python-format
+msgid "Error returned: %(err)s"
+msgstr "İşlemde hata oluştu: %(err)s"
