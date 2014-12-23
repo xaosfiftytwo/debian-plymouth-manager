@@ -1,101 +1,92 @@
-#!/usr/bin/env python
+#!/usr/bin/python -OO
+#-*- coding: utf-8 -*-
 
-# Elevate permissions
-import os
-import functions
-import getopt
 import sys
-import string
-import gtk
-import gettext
-from logger import Logger
-from dialogs import MessageDialogSafe
-
-# i18n
-gettext.install("debian-plymouth-manager", "/usr/share/locale")
-
-
-# Help
-def usage():
-    # Show usage
-    hlp = """Usage: spm [options]
-
-Options:
-  -d (--debug): print debug information to log file in user directory
-  -f (--force): force start in a live environment
-  -h (--help): show this help"""
-    print hlp
-
+sys.path.insert(1, '/usr/lib/debian-plymouth-manager')
+from gi.repository import Gtk
+from dpm import DPM
+import os
+import getopt
 
 # Handle arguments
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'hdf', ['help', 'debug', 'force'])
+    opts, args = getopt.getopt(sys.argv[1:], 'f', ['force'])
 except getopt.GetoptError:
-    usage()
     sys.exit(2)
 
-debug = False
 force = False
 for opt, arg in opts:
-    if opt in ('-d', '--debug'):
-        debug = True
+    print((">> opt = {} / arg = {}".format(opt, arg)))
     if opt in ('-f', '--force'):
         force = True
-    elif opt in ('-h', '--help'):
-        usage()
-        sys.exit()
 
-# Initialize logging
-logFile = ''
-if debug:
-    logFile = 'debian-plymouth-manager.log'
-log = Logger(logFile)
-functions.log = log
-if debug:
-    if os.path.isfile(log.logPath):
-        open(log.logPath, 'w').close()
-    log.write(_("Write debug information to file: %(path)s") % { "path": log.logPath }, 'main', 'info')
-
-# Log some basic environmental information
-machineInfo = functions.getSystemVersionInfo()
-log.write(_("Machine info: %(info)s") % { "info": machineInfo }, 'main', 'info')
-version = functions.getPackageVersion('debian-plymouth-manager')
-log.write(_("Debian Plymouth Manager version: %(version)s") % { "version": version }, 'main', 'info')
 
 # Set variables
 scriptDir = os.path.dirname(os.path.realpath(__file__))
+title = _("Debian Plymouth Manager")
+msg = _("Debian Plymouth Manager cannot be started in a live environment\n"
+        "You can use the --force argument to start DPM in a live environment")
 
-# Pass arguments to ddm.py: replace - with : -> because kdesudo assumes these options are meant for him...
-# TODO: Isn't there another way?
-args = ' '.join(sys.argv[1:])
-if len(args) > 0:
-    args = ' ' + string.replace(args, '-', ':')
-    # Pass the log path to ddm.py
-    if debug:
-        args += ' :l ' + log.logPath
 
-if functions.getDistribution() == 'debian':
-    # Do not run in live environment
-    if not functions.isRunningLive() or force:
-        dpmPath = os.path.join(scriptDir, 'debian-plymouth-manager.py' + args)
+def isRunningLive():
+    if force:
+        return False
+    liveDirs = ['/live', '/lib/live', '/rofs']
+    for ld in liveDirs:
+        if os.path.exists(ld):
+            return True
+    return False
 
-        # Add launcher string, only when not root
-        launcher = ''
-        if os.geteuid() > 0:
-            launcher = "gksudo --message \"<b>%s</b>\"" % _("Please enter your password")
-            if os.path.exists('/usr/bin/kdesudo'):
-                launcher = "kdesudo -i 'debian-plymouth-manager' -d --comment \"<b>%s</b>\"" % _("Please enter your password")
 
-        cmd = '%s python %s' % (launcher, dpmPath)
-        log.write("Startup command: %(cmd)s" % { "cmd": cmd }, 'main', 'debug')
-        os.system(cmd)
+def showMsg(title, message, GtkMessageType=Gtk.MessageType.INFO):
+    dialog = Gtk.MessageDialog(None, Gtk.DialogFlags.MODAL, GtkMessageType, Gtk.ButtonsType.OK, message)
+    dialog.set_markup("<b>{}</b>".format(title))
+    dialog.format_secondary_markup(message)
+    dialog.set_icon_name("debian-plymouth-manager")
+    dialog.run()
+    dialog.destroy()
+
+
+# Do not run in live environment
+if isRunningLive():
+    showMsg(title, msg)
+    sys.exit()
+
+
+def uncaught_excepthook(*args):
+    sys.__excepthook__(*args)
+    if __debug__:
+        from pprint import pprint
+        from types import BuiltinFunctionType, ClassType, ModuleType, TypeType
+        tb = sys.last_traceback
+        while tb.tb_next: tb = tb.tb_next
+        print('\nDumping locals() ...')
+        pprint({k:v for k,v in tb.tb_frame.f_locals.items()
+                    if not k.startswith('_') and
+                       not isinstance(v, (BuiltinFunctionType,
+                                          ClassType, ModuleType, TypeType))})
+        if sys.stdin.isatty() and (sys.stdout.isatty() or sys.stderr.isatty()):
+            try:
+                import ipdb as pdb  # try to import the IPython debugger
+            except ImportError:
+                import pdb as pdb
+            print('\nStarting interactive debug prompt ...')
+            pdb.pm()
     else:
-        title = _("DPM - Live environment")
-        msg = _("DPM cannot run in a live environment\n\nTo force start, use the --force argument")
-        MessageDialogSafe(title, msg, gtk.MESSAGE_INFO).show()
-        log.write(msg, 'main', 'warning')
-else:
-    title = _("DPM - Debian based")
-    msg = _("DPM can only run on Debian based distributions")
-    MessageDialogSafe(title, msg, gtk.MESSAGE_INFO).show()
-    log.write(msg, 'main', 'warning')
+        import traceback
+        title = _('Unexpected error')
+        msg = _('Debian Plymouth Manager has failed with the following unexpected error.\nPlease submit a bug report!')
+        msg = "<b>{}</b>\n\n<tt>{}</tt>".format(msg, '\n'.join(traceback.format_exception(*args)))
+        showMsg(title, msg)
+    sys.exit(1)
+
+sys.excepthook = uncaught_excepthook
+
+# main entry
+if __name__ == "__main__":
+    # Create an instance of our GTK application
+    try:
+        DPM()
+        Gtk.main()
+    except KeyboardInterrupt:
+        pass

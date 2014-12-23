@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#! /usr/bin/env python3
+#-*- coding: utf-8 -*-
 
 # http://wiki.debian.org/plymouth
 # https://wiki.ubuntu.com/Plymouth
@@ -8,8 +9,7 @@ import os
 import threading
 import gettext
 from glob import glob
-from execcmd import ExecCmd
-from config import Config
+import utils
 from grub import Grub
 
 kmsDrv = ['nouveau', 'radeon', 'intel']
@@ -28,22 +28,20 @@ gettext.install("debian-plymouth-manager", "/usr/share/locale")
 
 # Handles general plymouth functions
 class Plymouth():
-    def __init__(self, loggerObject):
+    def __init__(self, loggerObject, setThemePath, modulesPath):
         self.log = loggerObject
-        self.ec = ExecCmd(self.log)
         self.grub = Grub(self.log)
         self.boot = self.grub.getConfig()
         self.avlThemesSearchstr = 'plymouth-themes'
-        self.conf = Config('debian-plymouth-manager.conf')
-        self.setThemePath = self.conf.getValue('Paths', 'settheme')
-        self.modulesPath = self.conf.getValue('Paths', 'modules')
+        self.setThemePath = setThemePath
+        self.modulesPath = modulesPath
 
     # Get a list of installed Plymouth themes
     def getInstalledThemes(self):
         instThemes = []
         if os.path.isfile(self.setThemePath):
             cmd = '%s --list' % self.setThemePath
-            instThemes = self.ec.run(cmd, False)
+            instThemes = utils.getoutput(cmd)
         return instThemes
 
     # Get the currently used Plymouth theme
@@ -57,7 +55,7 @@ class Plymouth():
                 matchObj = re.search('GRUB_CMDLINE_LINUX_DEFAULT="(.*)"', grubCont)
                 if matchObj:
                     if 'splash' in matchObj.group(1):
-                        curThemeList = self.ec.run(self.setThemePath, False)
+                        curThemeList = utils.getoutput(self.setThemePath)
                         if curThemeList:
                             curTheme = curThemeList[0]
         return curTheme
@@ -65,7 +63,7 @@ class Plymouth():
     # Get a list of Plymouth themes in the repositories that can be installed
     def getAvailableThemes(self):
         cmd = 'aptitude search %s | grep ^p' % self.avlThemesSearchstr
-        availableThemes = self.ec.run(cmd)
+        availableThemes = utils.getoutput(cmd)
         avlThemes = []
 
         for line in availableThemes:
@@ -80,15 +78,15 @@ class Plymouth():
     def previewPlymouth(self):
         try:
             cmd = "su -c 'plymouthd; plymouth --show-splash ; for ((I=0; I<10; I++)); do plymouth --update=test$I ; sleep 1; done; plymouth quit'"
-            self.ec.run(cmd, False)
-        except Exception, detail:
+            utils.shell_exec(cmd)
+        except Exception as detail:
             self.log.write(detail, 'plymouth.previewPlymouth', 'error')
 
     # Get the package name that can be uninstalled of a given Plymouth theme
     def getRemovablePackageName(self, theme):
         cmd = 'dpkg -S %s.plymouth' % theme
         package = None
-        packageNames = self.ec.run(cmd, False)
+        packageNames = utils.getoutput(cmd)
 
         for line in packageNames:
             if self.avlThemesSearchstr in line:
@@ -135,88 +133,53 @@ class Plymouth():
 
 # Handles plymouth saving (threaded)
 class PlymouthSave(threading.Thread):
-    def __init__(self, loggerObject, theme=None, resolution=None):
+    def __init__(self, loggerObject, modulesPath, splashPath, setThemePath, theme=None, resolution=None):
         threading.Thread.__init__(self)
         self.log = loggerObject
-        self.ec = ExecCmd(self.log)
         self.grub = Grub(self.log)
         self.boot = self.grub.getConfig()
         self.theme = None
         self.resolution = None
-        self.plymouth = Plymouth(self.log)
-        self.conf = Config('debian-plymouth-manager.conf')
-        self.modulesPath = self.conf.getValue('Paths', 'modules')
-        self.splashPath = self.conf.getValue('Paths', 'splash')
-        self.setThemePath = self.conf.getValue('Paths', 'settheme')
+        self.modulesPath = modulesPath
+        self.splashPath = splashPath
+        self.setThemePath = setThemePath
+        self.plymouth = Plymouth(self.log, setThemePath, modulesPath)
         self.installedThemes = self.plymouth.getInstalledThemes()
-        if theme in self.installedThemes:
+        if theme in self.installedThemes and resolution is not None:
+            print((">> Theme installed and selected: {}".format(theme)))
             self.theme = theme
             self.resolution = resolution
 
     # Save given theme and resolution
     def run(self):
         try:
-            #module = self.getUsedDriver()
-            # Test
-            #module = 'vesa'
-
             if not os.path.exists(self.modulesPath):
                 self.log.write(_("Cannot save Plymouth theme:\nNo %s.") % self.modulesPath, 'PlymouthSave.run', 'error')
-            #elif module is None:
-                #self.log.write(_("No valid graphics driver found."), 'PlymouthSave.run', 'error')
             else:
-                ## Create list with module lines per manufacturer
-                #kmsLines = []
-                #kmsLines.append([kmsDrv[2], 'intel_agp'])
-                #kmsLines.append(['all', 'drm'])
-                ## nouveau causes a tremendous amount of trouble when you switch to nvidia later on (blacklisting not enough)
-                ##kmsLines.append([kmsDrv[0], 'nouveau modeset=1'])
-                #kmsLines.append([kmsDrv[1], 'radeon modeset=1'])
-                #kmsLines.append([kmsDrv[2], 'i915 modeset=1'])
-
                 # Cleanup first
-                self.ec.run("sed -i -e 's/^ *//; s/ *$//' %s" % self.modulesPath, False)    # Trim all lines
-                self.ec.run("sed -i -e 's/^.*KMS$//g' %s" % self.modulesPath, False)
-                self.ec.run("sed -i -e 's/^intel_agp$//g' %s" % self.modulesPath, False)
-                self.ec.run("sed -i -e 's/^drm$//g' %s" % self.modulesPath, False)
-                self.ec.run("sed -i -e 's/^nouveau modeset.*//g' %s" % self.modulesPath, False)
-                self.ec.run("sed -i -e 's/^radeon modeset.*//g' %s" % self.modulesPath, False)
-                self.ec.run("sed -i -e 's/^i915 modeset.*//g' %s" % self.modulesPath, False)
-                self.ec.run("sed -i -e 's/^uvesafb\s*mode_option.*//g' %s" % self.modulesPath, False)
-                self.ec.run("sed -i -e '/^$/d' %s" % self.modulesPath, False)    # Remove empty lines
+                utils.shell_exec("sed -i -e 's/^ *//; s/ *$//' %s" % self.modulesPath)    # Trim all lines
+                utils.shell_exec("sed -i -e 's/^.*KMS$//g' %s" % self.modulesPath)
+                utils.shell_exec("sed -i -e 's/^intel_agp$//g' %s" % self.modulesPath)
+                utils.shell_exec("sed -i -e 's/^drm$//g' %s" % self.modulesPath)
+                utils.shell_exec("sed -i -e 's/^nouveau modeset.*//g' %s" % self.modulesPath)
+                utils.shell_exec("sed -i -e 's/^radeon modeset.*//g' %s" % self.modulesPath)
+                utils.shell_exec("sed -i -e 's/^i915 modeset.*//g' %s" % self.modulesPath)
+                utils.shell_exec("sed -i -e 's/^uvesafb\s*mode_option.*//g' %s" % self.modulesPath)
+                utils.shell_exec("sed -i -e '/^$/d' %s" % self.modulesPath)    # Remove empty lines
                 if os.path.exists(self.boot):
-                    self.ec.run("sed -i -e 's/^GRUB_GFXPAYLOAD_LINUX.*//g' %s" % self.boot, False)
-                os.system("rm %s" % self.splashPath)
-
-                #if self.theme and self.resolution:
-                    #f = open(self.modulesPath, 'a')
-                    #f.write('\n# KMS\n')
-                    #for line in kmsLines:
-                        #if kmsDrv[0] in module and (line[0] == kmsDrv[0] or line[0] == 'all'):
-                            #f.write('%s\n' % line[1])
-                        #elif kmsDrv[1] in module and (line[0] == kmsDrv[1] or line[0] == 'all'):
-                            #f.write('%s\n' % line[1])
-                        #elif kmsDrv[2] in module and (line[0] == kmsDrv[2] or line[0] == 'all'):
-                            #f.write('%s\n' % line[1])
-                        #elif line[0] == 'all':
-                            #f.write('%s\n' % line[1])
-                    #f.close()
-
-                ## Read modules just for debugging purposes
-                #f = open(self.modulesPath, 'r')
-                #newModules = f.read()
-                #f.close()
-                #self.log.write("\nNew modules:\n%(modules)s\n" % { "modules": newModules }, 'PlymouthSave.run', 'debug')
+                    utils.shell_exec("sed -i -e 's/^GRUB_GFXPAYLOAD_LINUX.*//g' %s" % self.boot)
+                utils.shell_exec("rm %s" % self.splashPath)
 
                 # Edit grub
-                cmd = 'sed -i -e \'/GRUB_CMDLINE_LINUX_DEFAULT=/ c GRUB_CMDLINE_LINUX_DEFAULT="quiet"\' %s' % self.boot
-                if self.theme:
-                    cmd = 'sed -i -e \'/GRUB_CMDLINE_LINUX_DEFAULT=/ c GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"\' %s' % self.boot
-                self.ec.run(cmd)
+                cmd = "sed -i -e 's/splash//' {}".format(self.boot)
+                if self.theme is not None:
+                    cmd = "sed -i -e 's/quiet/quiet splash/' {}".format(self.boot)
+                print((">> cmd={}".format(cmd)))
+                utils.shell_exec(cmd)
 
                 # Write uvesafb command to modules file
-                if self.theme:
-                    line = "\nuvesafb mode_option=%s-24 mtrr=3 scroll=ywrap\n" % self.resolution
+                if self.theme is not None and self.resolution is not None:
+                    line = "\nuvesafb mode_option=%s-24 mtrr=3 scroll=ywrap\ndrm\n" % self.resolution
                     with open(self.modulesPath, 'a') as f:
                         f.write(line)
 
@@ -225,32 +188,24 @@ class PlymouthSave(threading.Thread):
                     with open(self.splashPath, 'w') as f:
                         f.write(line)
 
-                #cmd = "sed 's/^GRUB_GFXPAYLOAD_LINUX.*//g' %s -i" % boot
-                #if self.theme and self.resolution:
-                    #if functions.doesFileContainString(boot, 'GRUB_GFXPAYLOAD_LINUX'):
-                        #cmd = 'sed -i -e \'/GRUB_GFXPAYLOAD_LINUX=/ c GRUB_GFXPAYLOAD_LINUX=%s\' %s' % (self.resolution, boot)
-                    #else:
-                        #cmd = 'sed -i -e \'/GRUB_GFXMODE=/ i \GRUB_GFXPAYLOAD_LINUX=%s\' %s' % (self.resolution, boot)
-                #self.ec.run(cmd)
-
                 # Read grub for debugging purposes
                 with open(self.boot, 'r') as f:
                     content = f.read()
                     self.log.write("\nNew grub:\n%(grub)s\n" % { "grub": content }, 'PlymouthSave.run', 'debug')
 
                 # Set the theme
-                if self.theme:
-                    self.ec.run('%s %s' % (self.setThemePath, self.theme))
+                if self.theme is not None:
+                    utils.shell_exec('%s %s' % (self.setThemePath, self.theme))
 
                 # Update grub and initram
                 if 'grub' in self.boot:
-                    self.ec.run('update-grub')
+                    utils.shell_exec('update-grub')
                 else:
-                    self.ec.run('update-burg')
+                    utils.shell_exec('update-burg')
                 if self.theme is not None:
-                    self.ec.run('update-initramfs -u -k all')
+                    utils.shell_exec('update-initramfs -u -k all')
 
-        except Exception, detail:
+        except Exception as detail:
             self.log.write(detail, 'PlymouthSave.run', 'exception')
 
     # Return graphics module used by X.org

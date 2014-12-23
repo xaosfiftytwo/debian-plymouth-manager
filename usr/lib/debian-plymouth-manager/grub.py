@@ -1,11 +1,11 @@
-#!/usr/bin/env python
+#! /usr/bin/env python3
+#-*- coding: utf-8 -*-
 
 import re
 import os
 import threading
 import gettext
-from config import Config
-from execcmd import ExecCmd
+import utils
 
 # i18n
 gettext.install("debian-plymouth-manager", "/usr/share/locale")
@@ -48,14 +48,12 @@ class Grub():
 
 
 class GrubSave(threading.Thread):
-    def __init__(self, loggerObject, resolution):
+    def __init__(self, loggerObject, resolution, modulesPath):
         threading.Thread.__init__(self)
         self.log = loggerObject
-        self.ec = ExecCmd(self.log)
         self.grub = Grub(self.log)
         self.resolution = resolution
-        self.conf = Config('debian-plymouth-manager.conf')
-        self.modulesPath = self.conf.getValue('Paths', 'modules')
+        self.modulesPath = modulesPath
 
     # Save given grub resolution
     def run(self):
@@ -64,14 +62,14 @@ class GrubSave(threading.Thread):
 
             if boot:
                 cmd = 'sed -i -e \'/GRUB_GFXMODE=/ c GRUB_GFXMODE=%s\' %s' % (self.resolution, boot)
-                self.ec.run(cmd)
+                utils.shell_exec(cmd)
                 # Update grub and initram
                 if 'grub' in boot:
-                    self.ec.run('update-grub')
+                    utils.shell_exec('update-grub')
                 else:
-                    self.ec.run('update-burg')
+                    utils.shell_exec('update-burg')
             else:
                 self.log.write(_("No grub or burg found"), 'GrubSave.run', 'error')
 
-        except Exception, detail:
+        except Exception as detail:
             self.log.write(detail, 'Grub.run', 'exception')

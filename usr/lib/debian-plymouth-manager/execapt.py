@@ -1,8 +1,9 @@
-#!/usr/bin/env python -u
+#! /usr/bin/env python3
+#-*- coding: utf-8 -*-
 
 import threading
 import gettext
-from execcmd import ExecCmd
+import utils
 
 # i18n
 gettext.install("debian-plymouth-manager", "/usr/share/locale")
@@ -17,16 +18,15 @@ class ExecuteApt(threading.Thread):
 
     def run(self):
         try:
-            ec = ExecCmd(self.log)
-            lst = ec.run(self.command)
-            print str(lst)
+            lst = utils.getoutput(self.command)
+            print((str(lst)))
             # Check if an error occured
             for line in lst:
                 if line[:2] == 'E:':
                     self.log.write(_("Error returned: %(err)s") % { "err": line }, 'execapt.run', 'error')
                     self.queue.put(line)
                     break
-        except Exception, detail:
+        except Exception as detail:
             self.queue.put(detail)
         finally:
             # If no error occurred, be sure to put None in the queue or get an error on task_done

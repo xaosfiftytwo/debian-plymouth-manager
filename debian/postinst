@@ -24,6 +24,10 @@ case "$1" in
 	sed 's/^vga16fb$//g' /etc/initramfs-tools/modules -i
 	sed '/^$/d' /etc/initramfs-tools/modules -i
 	rm -f /etc/modprobe.d/uves*.conf
+	
+	if [ -f /usr/lib/debian-plymouth-manager/debian-plymouth-manager.conf ]; then
+	  rm /usr/lib/debian-plymouth-manager/debian-plymouth-manager.conf
+	fi
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
