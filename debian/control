@@ -20,5 +20,6 @@ Depends: ${misc:Depends}, ${python3:Depends}
   , hwinfo
 Conflicts: solydxk-locale
 Replaces: solydxk-locale
+Recommends: plymouth-themes
 Description: Debian Plymouth Manager.
 

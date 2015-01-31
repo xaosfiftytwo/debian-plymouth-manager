@@ -3,6 +3,7 @@
 
 from gi.repository import Gtk, GObject, GdkPixbuf
 
+
 # Show message dialog
 # Usage:
 # MessageDialog(_("My Title"), "Your (error) message here", Gtk.MessageType.ERROR).show()
@@ -16,8 +17,7 @@ class MessageDialog(Gtk.MessageDialog):
         Gtk.MessageDialog.__init__(self, parent, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT, style, Gtk.ButtonsType.OK, message)
         self.set_default_response(Gtk.ResponseType.OK)
         self.set_position(Gtk.WindowPosition.CENTER)
-        self.set_markup("<b>%s</b>" % title)
-        self.format_secondary_markup(message)
+        self.set_title(title)
         if parent is not None:
             self.set_icon(parent.get_icon())
         self.connect('response', self._handle_clicked)
@@ -50,13 +50,9 @@ class MessageDialogSafe(object):
 
     def show(self):
         dialog = Gtk.MessageDialog(self.parent, Gtk.DialogFlags.MODAL, self.style, Gtk.ButtonsType.OK, self.message)
-        dialog.set_markup("<b>%s</b>" % self.title)
-        dialog.format_secondary_markup(self.message)
+        dialog.set_title(self.title)
         if self.parent is not None:
             dialog.set_icon(self.parent.get_icon())
-            dialog.set_title("{} ".format(self.parent.get_title()))
-        else:
-            dialog.set_title(' ')
         dialog.run()
         dialog.destroy()
 
@@ -75,14 +71,10 @@ class QuestionDialog(object):
     #''' Show me on screen '''
     def show(self):
         dialog = Gtk.MessageDialog(self.parent, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, self.message)
-        dialog.set_markup("<b>%s</b>" % self.title)
-        dialog.format_secondary_markup(self.message)
+        dialog.set_title(self.title)
         dialog.set_position(Gtk.WindowPosition.CENTER)
         if self.parent is not None:
             dialog.set_icon(self.parent.get_icon())
-            dialog.set_title("{} ".format(self.parent.get_title()))
-        else:
-            dialog.set_title(' ')
         answer = dialog.run()
         if answer == Gtk.ResponseType.YES:
             return_value = True

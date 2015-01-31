@@ -199,6 +199,16 @@ def strToNumber(stringnr, toInt=False):
     return nr
 
 
+# Check for string in file
+def hasStringInFile(searchString, filePath):
+    if exists(filePath):
+        with open(filePath) as f:
+            for line in f:
+                if re.search("{0}".format(searchString), line):
+                    return True
+    return False
+
+
 # Check if a package is installed
 def isPackageInstalled(packageName, alsoCheckVersion=True):
     isInstalled = False

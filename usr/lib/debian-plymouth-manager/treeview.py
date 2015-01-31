@@ -246,9 +246,11 @@ class TreeViewHandler(GObject.GObject):
     def getSelectedValue(self, colNr=0):
         # Assume single row selection
         val = None
-        (model, pathlist) = self.treeview.get_selection().get_selected_rows()
-        if model is not None and pathlist:
-            val = model.get_value(model.get_iter(pathlist[0]), colNr)
+        selection = self.treeview.get_selection()
+        if selection is not None:
+            (model, pathlist) = selection.get_selected_rows()
+            if model is not None and pathlist:
+                val = model.get_value(model.get_iter(pathlist[0]), colNr)
         return val
 
     def getSelectedRows(self):

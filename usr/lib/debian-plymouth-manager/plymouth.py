@@ -171,11 +171,11 @@ class PlymouthSave(threading.Thread):
                 utils.shell_exec("rm %s" % self.splashPath)
 
                 # Edit grub
-                cmd = "sed -i -e 's/splash//' {}".format(self.boot)
-                if self.theme is not None:
+                if self.theme is not None \
+                    and not utils.hasStringInFile("splash", self.boot):
                     cmd = "sed -i -e 's/quiet/quiet splash/' {}".format(self.boot)
-                print((">> cmd={}".format(cmd)))
-                utils.shell_exec(cmd)
+                    print((">> cmd={}".format(cmd)))
+                    utils.shell_exec(cmd)
 
                 # Write uvesafb command to modules file
                 if self.theme is not None and self.resolution is not None:

@@ -108,7 +108,6 @@
                                 <property name="label" translatable="yes">lblTitle1</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
-                                  <attribute name="size" value="12000"/>
                                 </attributes>
                               </object>
                               <packing>
@@ -162,7 +161,6 @@
                                 <property name="label" translatable="yes">lblTitle2</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
-                                  <attribute name="size" value="12000"/>
                                 </attributes>
                               </object>
                               <packing>
@@ -218,6 +216,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
+                        <property name="padding">2</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
