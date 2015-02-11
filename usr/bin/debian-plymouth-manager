@@ -1,7 +1,7 @@
 #!/bin/bash
 
 optimize='OO'; case "$*" in *--debug*) unset optimize; esac
-# Launch solydxk-welcome with all passed arguments (future reserved)
+# Launch debian-plymouth-manager with all passed arguments (future reserved)
 
 MSG='Please enter your password'
 CMD="python3 -tt${optimize} /usr/lib/debian-plymouth-manager/main.py $@"

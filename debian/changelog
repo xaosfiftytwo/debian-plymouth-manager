@@ -1,3 +1,9 @@
+debian-plymouth-manager (2.3.1) debian; urgency=low
+
+  * Adapted for Jessie Plymouth
+
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Tue, 10 Feb 2015 10:00:00 +0100
+
 debian-plymouth-manager (2.3.0) debian; urgency=low
 
   * Added plymouth-themes as a dependency

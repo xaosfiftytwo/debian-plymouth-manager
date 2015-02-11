@@ -1,5 +1,4 @@
 #! /usr/bin/env python3
-#-*- coding: utf-8 -*-
 
 import re
 import os
@@ -9,6 +8,7 @@ import utils
 
 # i18n
 gettext.install("debian-plymouth-manager", "/usr/share/locale")
+_ = gettext.gettext
 
 
 # Handles general plymouth functions
@@ -27,7 +27,7 @@ class Grub():
         else:
             return None
 
-    # Get current Plymouth resolution
+    # Get current Grub resolution
     def getCurrentResolution(self):
         res = None
         boot = self.getConfig()
@@ -48,19 +48,18 @@ class Grub():
 
 
 class GrubSave(threading.Thread):
-    def __init__(self, loggerObject, resolution, modulesPath):
+    def __init__(self, loggerObject, resolution):
         threading.Thread.__init__(self)
         self.log = loggerObject
         self.grub = Grub(self.log)
         self.resolution = resolution
-        self.modulesPath = modulesPath
 
     # Save given grub resolution
     def run(self):
         try:
             boot = self.grub.getConfig()
 
-            if boot:
+            if boot and self.resolution is not None:
                 cmd = 'sed -i -e \'/GRUB_GFXMODE=/ c GRUB_GFXMODE=%s\' %s' % (self.resolution, boot)
                 utils.shell_exec(cmd)
                 # Update grub and initram

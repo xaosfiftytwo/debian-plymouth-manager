@@ -1,5 +1,4 @@
 #!/usr/bin/python -OO
-#-*- coding: utf-8 -*-
 
 import sys
 sys.path.insert(1, '/usr/lib/debian-plymouth-manager')

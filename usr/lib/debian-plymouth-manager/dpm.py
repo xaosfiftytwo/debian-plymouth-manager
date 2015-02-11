@@ -1,5 +1,4 @@
 #! /usr/bin/env python3
-#-*- coding: utf-8 -*-
 
 from gi.repository import Gtk, GObject, GLib
 import utils
@@ -19,6 +18,7 @@ menuItems = ['themes', 'install', 'grub']
 
 # i18n
 gettext.install("debian-plymouth-manager", "/usr/share/locale")
+_ = gettext.gettext
 
 # Need to initiate threads for Gtk
 GObject.threads_init()
@@ -57,29 +57,25 @@ class DPM:
         self.btnGrub.set_label("_" + _("Grub"))
 
         self.selectedMenuItem = None
-        self.selectedTheme = None
-        self.selectedResolution = None
         self.selectedAvailableTheme = None
         self.selectedRemoveTheme = None
-        self.selectedGrubResolution = None
         self.threadPackage = None
         self.queue = Queue()
         self.noPlymouth = _('None: no plymouth splash')
-        config = utils.get_config_dict(join(self.scriptDir, 'dpm.conf'))
-        self.modulesPath = config.get('modules', '/etc/initramfs-tools/modules')
-        self.splashPath = config.get('splash', '/etc/initramfs-tools/conf.d/splash')
-        self.setThemePath = config.get('settheme', '/usr/sbin/plymouth-set-default-theme')
 
         # Set some variables
         self.logFile = '/var/log/dpm.log'
         self.log = Logger(self.logFile, addLogTime=False, maxSizeKB=1024)
         self.version = utils.getPackageVersion('debian-plymouth-manager')
-        self.plymouth = Plymouth(self.log, self.setThemePath, self.modulesPath)
+        self.plymouth = Plymouth(self.log)
         self.grub = Grub(self.log)
         self.resolutions = utils.getResolutions('800x600', '', True, False)
         self.currentResolution = self.plymouth.getCurrentResolution()
+        self.selectedResolution = self.currentResolution
         self.currentGrubResolution = self.grub.getCurrentResolution()
+        self.selectedGrubResolution = self.currentGrubResolution
         self.currentTheme = self.plymouth.getCurrentTheme()
+        self.selectedTheme = self.currentTheme
         self.installedThemes = self.plymouth.getInstalledThemes()
         self.availableThemes = self.plymouth.getAvailableThemes()
         self.tv1Handler = TreeViewHandler(self.tv1, self.log)
@@ -91,8 +87,8 @@ class DPM:
         self.builder.connect_signals(self)
         self.window.show_all()
 
-        # TODO: Hide the install button for now
-        self.btnThemes.set_visible(False)
+        # TODO: Hide the tool bar for now
+        go('tlbMain').set_visible(False)
 
     # ===============================================
     # Menu section functions
@@ -272,7 +268,7 @@ class DPM:
             self.selectedResolution = None
         self.log.write(_("Save setting: %(theme)s (%(res)s)") % { "theme": self.selectedTheme, "res": self.selectedResolution }, 'dpm.setTheme', 'info')
         # Start saving in a separate thread
-        t = PlymouthSave(self.log, self.modulesPath, self.splashPath, self.setThemePath, self.selectedTheme, self.selectedResolution)
+        t = PlymouthSave(self.log, self.selectedTheme, self.selectedResolution)
         t.start()
         GLib.timeout_add(250, self.checkSaveThread)
 
@@ -289,8 +285,6 @@ class DPM:
         self.currentResolution = None
         if self.currentTheme != self.noPlymouth:
             self.currentResolution = self.plymouth.getCurrentResolution()
-        else:
-            self.selectedResolution = None
         self.installedThemes = self.plymouth.getInstalledThemes()
         self.availableThemes = self.plymouth.getAvailableThemes()
         if self.selectedMenuItem == menuItems[0]:
@@ -298,10 +292,10 @@ class DPM:
 
         # Thread is done: make button sensitive again
         self.toggleGuiElements(False)
-        self.log.write(_("Done saving settings: %(theme)s (%(res)s)") % { "theme": self.selectedTheme, "res": self.selectedResolution }, 'dpm.checkSaveThread', 'info')
+        self.log.write(_("Done saving settings: %(theme)s (%(res)s)") % { "theme": self.currentTheme, "res": self.currentResolution }, 'dpm.checkSaveThread', 'info')
 
         title = _("Save settings")
-        msg = _("Theme: %(theme)s\nResolution: %(res)s\n\nDone") % { "theme": self.selectedTheme, "res": str(self.selectedResolution) }
+        msg = _("Theme: %(theme)s\nResolution: %(res)s\n\nDone") % { "theme": self.currentTheme, "res": str(self.currentResolution) }
         self.log.write(msg, 'dpm.checkSaveThread')
         MessageDialogSafe(title, msg, Gtk.MessageType.INFO, self.window).show()
         return False
@@ -409,7 +403,7 @@ class DPM:
         self.toggleGuiElements(True)
         self.log.write(_("Save grub resolution: %(res)s") % { "res": self.selectedGrubResolution }, 'dpm.setGrubResolution', 'info')
         # Start saving in a separate thread
-        t = GrubSave(self.log, self.selectedGrubResolution, self.modulesPath)
+        t = GrubSave(self.log, self.selectedGrubResolution)
         t.start()
         GLib.timeout_add(250, self.checkGrubThread)
 

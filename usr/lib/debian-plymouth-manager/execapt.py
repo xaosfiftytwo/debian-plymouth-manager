@@ -1,5 +1,4 @@
 #! /usr/bin/env python3
-#-*- coding: utf-8 -*-
 
 import threading
 import gettext
@@ -7,6 +6,7 @@ import utils
 
 # i18n
 gettext.install("debian-plymouth-manager", "/usr/share/locale")
+_ = gettext.gettext
 
 
 class ExecuteApt(threading.Thread):
