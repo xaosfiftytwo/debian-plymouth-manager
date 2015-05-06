@@ -6,7 +6,7 @@ import utils
 
 # i18n
 gettext.install("debian-plymouth-manager", "/usr/share/locale")
-_ = gettext.gettext
+#_ = gettext.gettext
 
 
 class ExecuteApt(threading.Thread):

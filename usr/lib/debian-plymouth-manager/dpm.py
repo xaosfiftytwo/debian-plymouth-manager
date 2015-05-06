@@ -18,7 +18,7 @@ menuItems = ['themes', 'install', 'grub']
 
 # i18n
 gettext.install("debian-plymouth-manager", "/usr/share/locale")
-_ = gettext.gettext
+#_ = gettext.gettext
 
 # Need to initiate threads for Gtk
 GObject.threads_init()

@@ -8,7 +8,7 @@ import utils
 
 # i18n
 gettext.install("debian-plymouth-manager", "/usr/share/locale")
-_ = gettext.gettext
+#_ = gettext.gettext
 
 
 # Handles general plymouth functions

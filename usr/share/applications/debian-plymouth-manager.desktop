@@ -1,7 +1,8 @@
 [Desktop Entry]
-Categories=System;
+Categories=Settings;X-XFCE-SettingsDialog;X-XFCE-SystemSettings;
 Comment=Debian Plymouth Manager
 Comment[ca]=Debian Plymouth Manager
+Comment[fr]=Debian Plymouth Manager
 Comment[nl]=Debian Plymouth Manager
 Exec=/usr/bin/debian-plymouth-manager
 GenericName=
@@ -9,6 +10,7 @@ Icon=debian-plymouth-manager
 MimeType=
 Name=Debian Plymouth Manager
 Name[ca]=Debian Plymouth Manager
+Name[fr]=Debian Plymouth Manager
 Name[nl]=Debian Plymouth Manager
 Path=
 StartupNotify=true

@@ -1,3 +1,16 @@
+debian-plymouth-manager (2.3.3) debian; urgency=low
+
+  * Added X-XFCE-SettingsDialog;X-XFCE-SystemSettings; to launcher
+  * French translation
+
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Wed, 06 May 2015 15:00:00 +0100
+
+debian-plymouth-manager (2.3.2) debian; urgency=low
+
+  * Fix gettext bug
+
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Wed, 29 Apr 2015 18:00:00 +0100
+
 debian-plymouth-manager (2.3.1) debian; urgency=low
 
   * Adapted for Jessie Plymouth
