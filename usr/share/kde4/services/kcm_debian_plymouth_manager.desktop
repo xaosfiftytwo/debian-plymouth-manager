@@ -1,0 +1,19 @@
+[Desktop Entry]
+Type=Service
+Icon=debian-plymouth-manager
+Exec=debian-plymouth-manager
+
+X-KDE-ServiceTypes=SystemSettingsExternalApp
+X-KDE-System-Settings-Parent-Category=system-administration 
+X-KDE-System-Settings-Parent-Category-V2=system-administration 
+X-KDE-ParentApp=debian-plymouth-manager
+Categories=Qt;KDE;X-KDE-settings-system-administration;
+
+Name=Debian Plymouth Manager
+Name[ca]=Debian Plymouth Manager
+Name[fr]=Debian Plymouth Manager
+Name[nl]=Debian Plymouth Manager
+Comment=Debian Plymouth Manager
+Comment[ca]=Debian Plymouth Manager
+Comment[fr]=Debian Plymouth Manager
+Comment[nl]=Debian Plymouth Manager

@@ -1,33 +1,33 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# root <arjenbalfoort@solydxk.com>, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: debian-plymouth-manager 2.0.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-10 11:07+0100\n"
-"PO-Revision-Date: 2014-04-22 11:02+0100\n"
-"Last-Translator: Schoelje <schoelje@solydxk.com>\n"
-"Language-Team: SolydXK <admin@solydxk.com>\n"
-"Language: nl_NL\n"
+"POT-Creation-Date: 2015-05-08 17:23+0200\n"
+"PO-Revision-Date: 2015-05-08 17:35+0200\n"
+"Last-Translator: root <arjenbalfoort@solydxk.com>\n"
+"Language-Team: none\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.5.4\n"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:53
 #: ../usr/lib/debian-plymouth-manager/main.py:25
+#: ../usr/share/kde4/services/kcm_debian_plymouth_manager.desktop.in.h:1
 #: ../usr/share/applications/debian-plymouth-manager.desktop.in.h:1
 msgid "Debian Plymouth Manager"
 msgstr "Debian Plymouth Manager"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:55
-#, fuzzy
 msgid "Plymouth"
-msgstr "Thema instellen"
+msgstr "Plymouth"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:56
 msgid "Themes"
@@ -39,7 +39,7 @@ msgstr "Grub"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:64
 msgid "None: no plymouth splash"
-msgstr ""
+msgstr "Geen Plymouth splash"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:106
 msgid "Set Plymouth Theme"
@@ -250,24 +250,24 @@ msgid "No grub or burg found"
 msgstr "Grub of burg niet gevonden"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:26
-#, fuzzy
 msgid ""
 "Debian Plymouth Manager cannot be started in a live environment\n"
 "You can use the --force argument to start DPM in a live environment"
 msgstr ""
 "DPM kan niet in een live omgeving gestart worden\n"
-"\n"
 "Om toch te starten, gebruik het --force argument"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:76
 msgid "Unexpected error"
-msgstr ""
+msgstr "Onverwachte fout"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:77
 msgid ""
 "Debian Plymouth Manager has failed with the following unexpected error.\n"
 "Please submit a bug report!"
 msgstr ""
+"Debian Plymouth Manager kan niet starten om de volgende fout.\n"
+"Gelieve een bug verslag in te dienen!"
 
 #: ../usr/lib/debian-plymouth-manager/execapt.py:26
 #, python-format
