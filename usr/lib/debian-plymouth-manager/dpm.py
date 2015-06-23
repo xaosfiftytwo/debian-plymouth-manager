@@ -4,7 +4,6 @@ from gi.repository import Gtk, GObject, GLib
 import utils
 import threading
 from queue import Queue
-import gettext
 from os.path import join, dirname, realpath
 from plymouth import Plymouth, PlymouthSave
 from treeview import TreeViewHandler
@@ -16,9 +15,10 @@ from grub import Grub, GrubSave
 
 menuItems = ['themes', 'install', 'grub']
 
-# i18n
-gettext.install("debian-plymouth-manager", "/usr/share/locale")
-#_ = gettext.gettext
+# i18n: http://docs.python.org/3/library/gettext.html
+import gettext
+from gettext import gettext as _
+gettext.textdomain('debian-plymouth-manager')
 
 # Need to initiate threads for Gtk
 GObject.threads_init()

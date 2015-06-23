@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: debian-plymouth-manager 2.0.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-08 17:23+0200\n"
+"POT-Creation-Date: 2015-06-22 13:36+0200\n"
 "PO-Revision-Date: 2015-05-08 17:35+0200\n"
 "Last-Translator: root <arjenbalfoort@solydxk.com>\n"
 "Language-Team: none\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:53
-#: ../usr/lib/debian-plymouth-manager/main.py:25
+#: ../usr/lib/debian-plymouth-manager/main.py:30
 #: ../usr/share/kde4/services/kcm_debian_plymouth_manager.desktop.in.h:1
 #: ../usr/share/applications/debian-plymouth-manager.desktop.in.h:1
 msgid "Debian Plymouth Manager"
@@ -241,7 +241,7 @@ msgid "Grub resolution saved: %(res)s"
 msgstr "Grub resolutie bewaard: %(res)s"
 
 #: ../usr/lib/debian-plymouth-manager/grub.py:46
-#: ../usr/lib/debian-plymouth-manager/plymouth.py:132
+#: ../usr/lib/debian-plymouth-manager/plymouth.py:136
 msgid "Neither grub nor burg found in /etc/default"
 msgstr "Zowel grub als burg zijn niet in /etc/default gevonden"
 
@@ -249,7 +249,7 @@ msgstr "Zowel grub als burg zijn niet in /etc/default gevonden"
 msgid "No grub or burg found"
 msgstr "Grub of burg niet gevonden"
 
-#: ../usr/lib/debian-plymouth-manager/main.py:26
+#: ../usr/lib/debian-plymouth-manager/main.py:31
 msgid ""
 "Debian Plymouth Manager cannot be started in a live environment\n"
 "You can use the --force argument to start DPM in a live environment"
@@ -257,11 +257,11 @@ msgstr ""
 "DPM kan niet in een live omgeving gestart worden\n"
 "Om toch te starten, gebruik het --force argument"
 
-#: ../usr/lib/debian-plymouth-manager/main.py:76
+#: ../usr/lib/debian-plymouth-manager/main.py:81
 msgid "Unexpected error"
 msgstr "Onverwachte fout"
 
-#: ../usr/lib/debian-plymouth-manager/main.py:77
+#: ../usr/lib/debian-plymouth-manager/main.py:82
 msgid ""
 "Debian Plymouth Manager has failed with the following unexpected error.\n"
 "Please submit a bug report!"

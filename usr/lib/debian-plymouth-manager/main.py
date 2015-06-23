@@ -1,4 +1,4 @@
-#!/usr/bin/python -OO
+#! /usr/bin/env python3 -OO
 
 import sys
 sys.path.insert(1, '/usr/lib/debian-plymouth-manager')
@@ -6,6 +6,11 @@ from gi.repository import Gtk
 from dpm import DPM
 import os
 import getopt
+
+# i18n: http://docs.python.org/3/library/gettext.html
+import gettext
+from gettext import gettext as _
+gettext.textdomain('debian-plymouth-manager')
 
 # Handle arguments
 try:

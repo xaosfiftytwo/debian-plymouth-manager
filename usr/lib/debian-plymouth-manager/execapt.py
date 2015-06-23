@@ -1,12 +1,12 @@
 #! /usr/bin/env python3
 
 import threading
-import gettext
 import utils
 
-# i18n
-gettext.install("debian-plymouth-manager", "/usr/share/locale")
-#_ = gettext.gettext
+# i18n: http://docs.python.org/3/library/gettext.html
+import gettext
+from gettext import gettext as _
+gettext.textdomain('debian-plymouth-manager')
 
 
 class ExecuteApt(threading.Thread):

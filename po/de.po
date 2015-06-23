@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: debian-plymouth-manager 2.0.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-08 17:23+0200\n"
+"POT-Creation-Date: 2015-06-22 13:36+0200\n"
 "PO-Revision-Date: 2013-12-24 16:13+0100\n"
 "Last-Translator: Phi <phissica@gmail.com>\n"
 "Language-Team: SolydXK <admin@solydxk.com>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:53
-#: ../usr/lib/debian-plymouth-manager/main.py:25
+#: ../usr/lib/debian-plymouth-manager/main.py:30
 #: ../usr/share/kde4/services/kcm_debian_plymouth_manager.desktop.in.h:1
 #: ../usr/share/applications/debian-plymouth-manager.desktop.in.h:1
 #, fuzzy
@@ -244,7 +244,7 @@ msgid "Grub resolution saved: %(res)s"
 msgstr "Grubauflösung gespeichert: %(res)s"
 
 #: ../usr/lib/debian-plymouth-manager/grub.py:46
-#: ../usr/lib/debian-plymouth-manager/plymouth.py:132
+#: ../usr/lib/debian-plymouth-manager/plymouth.py:136
 msgid "Neither grub nor burg found in /etc/default"
 msgstr "Weder Grub noch Burg in /etc/default gefunden"
 
@@ -252,7 +252,7 @@ msgstr "Weder Grub noch Burg in /etc/default gefunden"
 msgid "No grub or burg found"
 msgstr "Grub oder Burg nicht gefunden"
 
-#: ../usr/lib/debian-plymouth-manager/main.py:26
+#: ../usr/lib/debian-plymouth-manager/main.py:31
 #, fuzzy
 msgid ""
 "Debian Plymouth Manager cannot be started in a live environment\n"
@@ -262,11 +262,11 @@ msgstr ""
 "\n"
 "Erzwinge den Start mit der Option --force "
 
-#: ../usr/lib/debian-plymouth-manager/main.py:76
+#: ../usr/lib/debian-plymouth-manager/main.py:81
 msgid "Unexpected error"
 msgstr ""
 
-#: ../usr/lib/debian-plymouth-manager/main.py:77
+#: ../usr/lib/debian-plymouth-manager/main.py:82
 msgid ""
 "Debian Plymouth Manager has failed with the following unexpected error.\n"
 "Please submit a bug report!"

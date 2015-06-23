@@ -6,9 +6,13 @@
 import re
 import os
 import threading
-import gettext
 import utils
 from grub import Grub
+
+# i18n: http://docs.python.org/3/library/gettext.html
+import gettext
+from gettext import gettext as _
+gettext.textdomain('debian-plymouth-manager')
 
 kmsDrv = ['nouveau', 'radeon', 'intel']
 
