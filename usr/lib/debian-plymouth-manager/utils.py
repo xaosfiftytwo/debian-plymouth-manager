@@ -237,7 +237,7 @@ def isPackageInstalled(packageName, alsoCheckVersion=True):
 
 
 def isRunningLive():
-    liveDirs = ['/live', '/lib/live', '/rofs']
+    liveDirs = ['/live', '/lib/live/mount', '/rofs']
     for ld in liveDirs:
         if exists(ld):
             return True

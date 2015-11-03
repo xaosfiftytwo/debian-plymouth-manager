@@ -1,0 +1,9 @@
+[main]
+host = https://www.transifex.com
+minimum_perc = 80
+
+[debian-plymouth-manager.debian-plymouth-managerpot]
+source_file = po/debian-plymouth-manager.pot
+file_filter = po/<lang>.po
+source_lang = en
+type = PO

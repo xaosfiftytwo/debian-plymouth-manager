@@ -1,35 +1,33 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: debian-plymouth-manager 2.0.6\n"
+"Project-Id-Version: debian-plymouth-manager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-22 13:36+0200\n"
-"PO-Revision-Date: 2013-12-26 22:10+0200\n"
-"Last-Translator: Taylan Tatlı <taylantatli90@gmail.com>\n"
-"Language-Team: SolydXK <admin@solyxk.com>\n"
+"POT-Creation-Date: 2015-11-03 16:48+0100\n"
+"PO-Revision-Date: 2015-10-22 05:33+0000\n"
+"Last-Translator: Arjen Balfoort <schoelje@solydxk.com>\n"
+"Language-Team: Turkish (http://www.transifex.com/solydxk/debian-plymouth-"
+"manager/language/tr/)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
-"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:53
 #: ../usr/lib/debian-plymouth-manager/main.py:30
 #: ../usr/share/kde4/services/kcm_debian_plymouth_manager.desktop.in.h:1
 #: ../usr/share/applications/debian-plymouth-manager.desktop.in.h:1
-#, fuzzy
 msgid "Debian Plymouth Manager"
-msgstr "Debian Plymouth Manager version: %(version)s"
+msgstr ""
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:55
-#, fuzzy
 msgid "Plymouth"
-msgstr "Plymouth Temasını Ayarla"
+msgstr ""
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:56
 msgid "Themes"
@@ -252,14 +250,10 @@ msgid "No grub or burg found"
 msgstr "Grub veya burg bulunamadı"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:31
-#, fuzzy
 msgid ""
 "Debian Plymouth Manager cannot be started in a live environment\n"
 "You can use the --force argument to start DPM in a live environment"
 msgstr ""
-"DDM canlı bir ortamda çalıştırılamaz\n"
-"\n"
-"Zorla başlatmak için,  --force değişkenini kullanın"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:81
 msgid "Unexpected error"
@@ -275,38 +269,3 @@ msgstr ""
 #, python-format
 msgid "Error returned: %(err)s"
 msgstr "İşlemde hata oluştu: %(err)s"
-
-#, fuzzy
-#~ msgid ""
-#~ "Cannot save Plymouth theme:\n"
-#~ "No %s."
-#~ msgstr ""
-#~ "Plymouth teması kaydedilemedi:\n"
-#~ "Grub veya burg ayar dosyası /etc/default içerisinde bulunamadı"
-
-#~ msgid "Used graphics driver: %(drv)s"
-#~ msgstr "Kullanılan grafik sürücüsü: %(drv)s"
-
-#~ msgid "Install"
-#~ msgstr "Yükle"
-
-#~ msgid "Write debug information to file: %(path)s"
-#~ msgstr "Hata ayıklama bilgisini dosyaya yaz: %(path)s"
-
-#~ msgid "Machine info: %(info)s"
-#~ msgstr "Makine bilgisi: %(info)s"
-
-#~ msgid "Debian Plymouth Manager version: %(version)s"
-#~ msgstr "Debian Plymouth Manager version: %(version)s"
-
-#~ msgid "Please enter your password"
-#~ msgstr "Lütfen parolanızı girin"
-
-#~ msgid "DPM - Live environment"
-#~ msgstr "DDM - Canlı ortam"
-
-#~ msgid "DPM - Debian based"
-#~ msgstr "DDM - Debian tabanlı"
-
-#~ msgid "DPM can only run on Debian based distributions"
-#~ msgstr "DPM sadece Debian tabanlı dağıtımlar üzerinde çalışabilir"

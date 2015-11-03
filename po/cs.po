@@ -1,35 +1,33 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: debian-plymouth-manager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-22 13:36+0200\n"
-"PO-Revision-Date: 2013-12-24 11:13+0100\n"
-"Last-Translator: Schoelje <schoelje@solydxk.com>\n"
-"Language-Team: SolydXK <admin@solydxk.com>\n"
+"POT-Creation-Date: 2015-11-03 16:48+0100\n"
+"PO-Revision-Date: 2015-10-22 05:33+0000\n"
+"Last-Translator: Arjen Balfoort <schoelje@solydxk.com>\n"
+"Language-Team: Czech (http://www.transifex.com/solydxk/debian-plymouth-"
+"manager/language/cs/)\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
-"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:53
 #: ../usr/lib/debian-plymouth-manager/main.py:30
 #: ../usr/share/kde4/services/kcm_debian_plymouth_manager.desktop.in.h:1
 #: ../usr/share/applications/debian-plymouth-manager.desktop.in.h:1
-#, fuzzy
 msgid "Debian Plymouth Manager"
-msgstr "Debian Plymouth Manager verze: %(version)s"
+msgstr ""
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:55
-#, fuzzy
 msgid "Plymouth"
-msgstr "Nastavení Plymouth Thématu"
+msgstr ""
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:56
 msgid "Themes"
@@ -252,14 +250,10 @@ msgid "No grub or burg found"
 msgstr "Ani grub ani burg nenalezen"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:31
-#, fuzzy
 msgid ""
 "Debian Plymouth Manager cannot be started in a live environment\n"
 "You can use the --force argument to start DPM in a live environment"
 msgstr ""
-"DPM nemůže běžet v živém prostředí\n"
-"\n"
-"K vynucení spuštění použijte argument --force"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:81
 msgid "Unexpected error"
@@ -275,38 +269,3 @@ msgstr ""
 #, python-format
 msgid "Error returned: %(err)s"
 msgstr "Vrácena chyba: %(err)s"
-
-#, fuzzy
-#~ msgid ""
-#~ "Cannot save Plymouth theme:\n"
-#~ "No %s."
-#~ msgstr ""
-#~ "Nelze uložit Plymouth téma:\n"
-#~ "Ani grub ani burg konfigurační soubor není v /etc/default."
-
-#~ msgid "Used graphics driver: %(drv)s"
-#~ msgstr "Použitý grafický ovladač: %(drv)s"
-
-#~ msgid "Install"
-#~ msgstr "Instalace"
-
-#~ msgid "Write debug information to file: %(path)s"
-#~ msgstr "Zápis ladících informací do souboru: %(path)s"
-
-#~ msgid "Machine info: %(info)s"
-#~ msgstr "Informace o stroji: %(info)s"
-
-#~ msgid "Debian Plymouth Manager version: %(version)s"
-#~ msgstr "Debian Plymouth Manager verze: %(version)s"
-
-#~ msgid "Please enter your password"
-#~ msgstr "Vložte prosím svoje heslo"
-
-#~ msgid "DPM - Live environment"
-#~ msgstr "DPM - Živé prostředí"
-
-#~ msgid "DPM - Debian based"
-#~ msgstr "DPM - založeno na Debianu"
-
-#~ msgid "DPM can only run on Debian based distributions"
-#~ msgstr "DPM běží jen v distribucích založených na Debianu"

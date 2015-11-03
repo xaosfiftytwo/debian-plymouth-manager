@@ -1,22 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: debian  plymouth manager\n"
+"Project-Id-Version: debian-plymouth-manager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-22 13:36+0200\n"
-"PO-Revision-Date: 2014-06-26 09:36+0100\n"
-"Last-Translator: \n"
-"Language-Team: SolydXK <admin@solydxk.com>\n"
-"Language: Japanese\n"
+"POT-Creation-Date: 2015-11-03 16:48+0100\n"
+"PO-Revision-Date: 2015-10-22 05:33+0000\n"
+"Last-Translator: Arjen Balfoort <schoelje@solydxk.com>\n"
+"Language-Team: Japanese (http://www.transifex.com/solydxk/debian-plymouth-"
+"manager/language/ja/)\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
-"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:53
 #: ../usr/lib/debian-plymouth-manager/main.py:30
@@ -26,9 +26,8 @@ msgid "Debian Plymouth Manager"
 msgstr ""
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:55
-#, fuzzy
 msgid "Plymouth"
-msgstr "起動画面テーマの設定"
+msgstr ""
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:56
 msgid "Themes"
@@ -251,14 +250,10 @@ msgid "No grub or burg found"
 msgstr "grub・burg 検出なし"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:31
-#, fuzzy
 msgid ""
 "Debian Plymouth Manager cannot be started in a live environment\n"
 "You can use the --force argument to start DPM in a live environment"
 msgstr ""
-"DPM を Live environment で実行できません\n"
-"\n"
-"強制開始するには --force を使用して下さい"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:81
 msgid "Unexpected error"
@@ -274,37 +269,3 @@ msgstr ""
 #, python-format
 msgid "Error returned: %(err)s"
 msgstr "エラーが返りました: %(err)s"
-
-#~ msgid "Used graphics driver: %(drv)s"
-#~ msgstr "使用しているグラフィックドライバー: %(drv)s"
-
-#~ msgid "Install"
-#~ msgstr "インストール"
-
-#~ msgid "Write debug information to file: %(path)s"
-#~ msgstr "デバック情報をファイルに書込: %(path)s"
-
-#~ msgid "Machine info: %(info)s"
-#~ msgstr "マシン情報: %(info)s"
-
-#~ msgid "Debian Plymouth Manager version: %(version)s"
-#~ msgstr "Debian Plymouth Manager バージョン: %(version)s"
-
-#~ msgid "Please enter your password"
-#~ msgstr "パスワードを入力して下さい"
-
-#~ msgid "DPM - Live environment"
-#~ msgstr "DPM - Live environment"
-
-#~ msgid "DPM - Debian based"
-#~ msgstr "DPM - Debian ベース"
-
-#~ msgid "DPM can only run on Debian based distributions"
-#~ msgstr "DPM は Debian ベースのディストリビューションのみで実行できます"
-
-#~ msgid ""
-#~ "%(action)s 完了しました:\n"
-#~ "%(pck)s"
-#~ msgstr ""
-#~ "%(action)s 完了しました:\n"
-#~ "%(pck)s"

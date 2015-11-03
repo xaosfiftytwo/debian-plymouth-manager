@@ -1,35 +1,36 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# Ilinsky Mikhail <mail@milinsky.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: Debian Plymouth Manager 2.1.9\n"
+"Project-Id-Version: debian-plymouth-manager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-22 13:36+0200\n"
-"PO-Revision-Date: 2014-06-26 09:56+0100\n"
-"Last-Translator: Igor Cheprasov <i-cheprasov@live.ru>\n"
-"Language-Team: SolydXK <admin@solydxk.com>\n"
+"POT-Creation-Date: 2015-11-03 16:48+0100\n"
+"PO-Revision-Date: 2015-10-22 16:21+0000\n"
+"Last-Translator: Ilinsky Mikhail <mail@milinsky.com>\n"
+"Language-Team: Russian (http://www.transifex.com/solydxk/debian-plymouth-"
+"manager/language/ru/)\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
-"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:53
 #: ../usr/lib/debian-plymouth-manager/main.py:30
 #: ../usr/share/kde4/services/kcm_debian_plymouth_manager.desktop.in.h:1
 #: ../usr/share/applications/debian-plymouth-manager.desktop.in.h:1
-#, fuzzy
 msgid "Debian Plymouth Manager"
-msgstr "Менеджер Debian Plymouth - версия: %(version)s"
+msgstr "Plymouth Менеджер"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:55
-#, fuzzy
 msgid "Plymouth"
-msgstr "Установить тему Plymouth"
+msgstr ""
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:56
 msgid "Themes"
@@ -41,7 +42,7 @@ msgstr "Grub"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:64
 msgid "None: no plymouth splash"
-msgstr ""
+msgstr "Ничего: нет plymouth заставки"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:106
 msgid "Set Plymouth Theme"
@@ -252,61 +253,26 @@ msgid "No grub or burg found"
 msgstr "Загрузчик Grub, Burg не найден"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:31
-#, fuzzy
 msgid ""
 "Debian Plymouth Manager cannot be started in a live environment\n"
 "You can use the --force argument to start DPM in a live environment"
 msgstr ""
-"DPM не может работать в live-режиме.\n"
-"\n"
-"Для принудительного запуска используйте --force"
+"Plymouth Менеджер не может быть запущена в live среде.\n"
+"Вы можете использовать параметр --Force, чтобы запустить в live среде/"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:81
 msgid "Unexpected error"
-msgstr ""
+msgstr "Неожиданная ошибка"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:82
 msgid ""
 "Debian Plymouth Manager has failed with the following unexpected error.\n"
 "Please submit a bug report!"
 msgstr ""
+"В Plymouth Менеджере произошла неожиданная ошибка.\n"
+"Пожалуйста, отправьте отчет об ошибке."
 
 #: ../usr/lib/debian-plymouth-manager/execapt.py:26
 #, python-format
 msgid "Error returned: %(err)s"
 msgstr "Ошибка: %(err)s"
-
-#, fuzzy
-#~ msgid ""
-#~ "Cannot save Plymouth theme:\n"
-#~ "No %s."
-#~ msgstr ""
-#~ "Не удается сохранить тему Plymouth:\n"
-#~ "Конфигурационный файл Grub, Burg не найден в /etc/default."
-
-#~ msgid "Used graphics driver: %(drv)s"
-#~ msgstr "Используемый графический драйвер: %(drv)s"
-
-#~ msgid "Install"
-#~ msgstr "Установить"
-
-#~ msgid "Write debug information to file: %(path)s"
-#~ msgstr "Записывать отладочную информацию в файл: %(path)s"
-
-#~ msgid "Machine info: %(info)s"
-#~ msgstr "Информация о компьютере: %(info)s"
-
-#~ msgid "Debian Plymouth Manager version: %(version)s"
-#~ msgstr "Менеджер Debian Plymouth - версия: %(version)s"
-
-#~ msgid "Please enter your password"
-#~ msgstr "Введите пароль"
-
-#~ msgid "DPM - Live environment"
-#~ msgstr "DPM - Live-режим"
-
-#~ msgid "DPM - Debian based"
-#~ msgstr "DPM - Debian-based"
-
-#~ msgid "DPM can only run on Debian based distributions"
-#~ msgstr "DPM может быть запущен только в Debian-based дистрибутивах"

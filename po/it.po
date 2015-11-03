@@ -1,34 +1,34 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# Davide Favaro <belzebu87@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: debian-plymouth-manager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-22 13:36+0200\n"
-"PO-Revision-Date: 2013-12-24 11:10+0100\n"
-"Last-Translator: Schoelje <schoelje@solydxk.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: Italiano\n"
+"POT-Creation-Date: 2015-11-03 16:48+0100\n"
+"PO-Revision-Date: 2015-10-22 05:33+0000\n"
+"Last-Translator: Arjen Balfoort <schoelje@solydxk.com>\n"
+"Language-Team: Italian (http://www.transifex.com/solydxk/debian-plymouth-"
+"manager/language/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:53
 #: ../usr/lib/debian-plymouth-manager/main.py:30
 #: ../usr/share/kde4/services/kcm_debian_plymouth_manager.desktop.in.h:1
 #: ../usr/share/applications/debian-plymouth-manager.desktop.in.h:1
-#, fuzzy
 msgid "Debian Plymouth Manager"
-msgstr "Versione Debian Plymouth Manager: %(version)s"
+msgstr "Debian Plymouth Manager"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:55
-#, fuzzy
 msgid "Plymouth"
-msgstr "Imposta tema Plymouth"
+msgstr "Plymouth"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:56
 msgid "Themes"
@@ -40,7 +40,7 @@ msgstr "Grub"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:64
 msgid "None: no plymouth splash"
-msgstr ""
+msgstr "Nessuno: nessun tema di plymouth"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:106
 msgid "Set Plymouth Theme"
@@ -134,7 +134,7 @@ msgid ""
 "Continue installing theme:\n"
 "%(theme)s"
 msgstr ""
-"Continua a installare il tema:\n"
+"Continua e installa il tema:\n"
 "%(theme)s"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:323
@@ -177,7 +177,7 @@ msgid ""
 "Continue removing theme:\n"
 "%(theme)s"
 msgstr ""
-"Continua a rimuovere il tema:\n"
+"Continua e rimuovi il tema:\n"
 "%(theme)s"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:352
@@ -251,7 +251,6 @@ msgid "No grub or burg found"
 msgstr "Grub o burg non sono stati rilevati"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:31
-#, fuzzy
 msgid ""
 "Debian Plymouth Manager cannot be started in a live environment\n"
 "You can use the --force argument to start DPM in a live environment"
@@ -262,50 +261,17 @@ msgstr ""
 
 #: ../usr/lib/debian-plymouth-manager/main.py:81
 msgid "Unexpected error"
-msgstr ""
+msgstr "Errore inatteso"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:82
 msgid ""
 "Debian Plymouth Manager has failed with the following unexpected error.\n"
 "Please submit a bug report!"
 msgstr ""
+"DDM riporta il seguente messaggio di errore inatteso. Si consiglia di "
+"inviare una segnalazione del bug!"
 
 #: ../usr/lib/debian-plymouth-manager/execapt.py:26
 #, python-format
 msgid "Error returned: %(err)s"
 msgstr "Errore restituito: %(err)s"
-
-#, fuzzy
-#~ msgid ""
-#~ "Cannot save Plymouth theme:\n"
-#~ "No %s."
-#~ msgstr ""
-#~ "Impossibile salvare il tema di Plymouth:\n"
-#~ "Nessun file di configurazione di grub o di burg in /etc/default."
-
-#~ msgid "Used graphics driver: %(drv)s"
-#~ msgstr "Driver video utilizzato: %(drv)s"
-
-#~ msgid "Install"
-#~ msgstr "Installa"
-
-#~ msgid "Write debug information to file: %(path)s"
-#~ msgstr "Scrivi informazioni di debug nel file: %(path)s"
-
-#~ msgid "Machine info: %(info)s"
-#~ msgstr "Informazioni macchina: %(info)s"
-
-#~ msgid "Debian Plymouth Manager version: %(version)s"
-#~ msgstr "Versione Debian Plymouth Manager: %(version)s"
-
-#~ msgid "Please enter your password"
-#~ msgstr "Per favore, inserire la password"
-
-#~ msgid "DPM - Live environment"
-#~ msgstr "DPM - Live environment"
-
-#~ msgid "DPM - Debian based"
-#~ msgstr "DPM - Debian based"
-
-#~ msgid "DPM can only run on Debian based distributions"
-#~ msgstr "DPM può essere eseguito solo su distribuzioni basate su Debian"
