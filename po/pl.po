@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Wojciech Kolasinski <kolasinski@retsat1.com.pl>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: debian-plymouth-manager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-03 16:48+0100\n"
-"PO-Revision-Date: 2015-10-22 05:33+0000\n"
-"Last-Translator: Arjen Balfoort <schoelje@solydxk.com>\n"
+"POT-Creation-Date: 2016-01-18 17:41+0100\n"
+"PO-Revision-Date: 2015-12-06 13:44+0000\n"
+"Last-Translator: Wojciech Kolasinski <kolasinski@retsat1.com.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/solydxk/debian-plymouth-"
 "manager/language/pl/)\n"
 "Language: pl\n"
@@ -19,68 +20,68 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:53
+#: ../usr/lib/debian-plymouth-manager/dpm.py:50
 #: ../usr/lib/debian-plymouth-manager/main.py:30
 #: ../usr/share/kde4/services/kcm_debian_plymouth_manager.desktop.in.h:1
 #: ../usr/share/applications/debian-plymouth-manager.desktop.in.h:1
 msgid "Debian Plymouth Manager"
-msgstr ""
+msgstr "Menedżer Plymouth Debiana"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:55
+#: ../usr/lib/debian-plymouth-manager/dpm.py:52
 msgid "Plymouth"
-msgstr ""
+msgstr "Plymouth"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:56
+#: ../usr/lib/debian-plymouth-manager/dpm.py:53
 msgid "Themes"
 msgstr "Motywy"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:57
+#: ../usr/lib/debian-plymouth-manager/dpm.py:54
 msgid "Grub"
 msgstr "Grub"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:64
+#: ../usr/lib/debian-plymouth-manager/dpm.py:61
 msgid "None: no plymouth splash"
-msgstr ""
+msgstr "Brak ekranu powitalnego"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:106
+#: ../usr/lib/debian-plymouth-manager/dpm.py:103
 msgid "Set Plymouth Theme"
 msgstr "Wybierz motyw"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:107
-#: ../usr/lib/debian-plymouth-manager/dpm.py:257
+#: ../usr/lib/debian-plymouth-manager/dpm.py:104
+#: ../usr/lib/debian-plymouth-manager/dpm.py:254
 msgid "Preview"
 msgstr "Podgląd"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:113
-#: ../usr/lib/debian-plymouth-manager/dpm.py:164
+#: ../usr/lib/debian-plymouth-manager/dpm.py:110
+#: ../usr/lib/debian-plymouth-manager/dpm.py:161
 msgid "Installed Themes"
 msgstr "Zainstalowane motywy"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:132
+#: ../usr/lib/debian-plymouth-manager/dpm.py:129
 msgid "Resolutions"
 msgstr "Rozdzielczości"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:152
+#: ../usr/lib/debian-plymouth-manager/dpm.py:149
 msgid "Install Theme"
 msgstr "Instaluj"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:153
+#: ../usr/lib/debian-plymouth-manager/dpm.py:150
 msgid "Remove Theme"
 msgstr "Usuń"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:159
+#: ../usr/lib/debian-plymouth-manager/dpm.py:156
 msgid "Available Themes"
 msgstr "Dostępne motywy"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:177
+#: ../usr/lib/debian-plymouth-manager/dpm.py:174
 msgid "Set Grub Resolution"
 msgstr "Rozdzielczość grub"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:183
+#: ../usr/lib/debian-plymouth-manager/dpm.py:180
 msgid "Grub Resolutions"
 msgstr "Rozdzielczości grub"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:258
+#: ../usr/lib/debian-plymouth-manager/dpm.py:255
 #, python-format
 msgid ""
 "You must save before you can preview:\n"
@@ -93,21 +94,21 @@ msgstr ""
 "Motyw: %(theme)s\n"
 "Rozdzielczość: %(res)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:269
+#: ../usr/lib/debian-plymouth-manager/dpm.py:266
 #, python-format
 msgid "Save setting: %(theme)s (%(res)s)"
 msgstr "Zapisz ustawienia: %(theme)s (%(res)s)"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:295
+#: ../usr/lib/debian-plymouth-manager/dpm.py:292
 #, python-format
 msgid "Done saving settings: %(theme)s (%(res)s)"
 msgstr "Ustawienia zapisane: %(theme)s (%(res)s)"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:297
+#: ../usr/lib/debian-plymouth-manager/dpm.py:294
 msgid "Save settings"
 msgstr "Zapisz ustawienia"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:298
+#: ../usr/lib/debian-plymouth-manager/dpm.py:295
 #, python-format
 msgid ""
 "Theme: %(theme)s\n"
@@ -120,15 +121,15 @@ msgstr ""
 "\n"
 "Wykonane"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:316
+#: ../usr/lib/debian-plymouth-manager/dpm.py:313
 msgid "install"
 msgstr "instaluj"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:319
+#: ../usr/lib/debian-plymouth-manager/dpm.py:316
 msgid "Install theme"
 msgstr "Instaluj motyw"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:319
+#: ../usr/lib/debian-plymouth-manager/dpm.py:316
 #, python-format
 msgid ""
 "Continue installing theme:\n"
@@ -137,24 +138,24 @@ msgstr ""
 "Kontynuuj instalację motyw:\n"
 "%(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:323
+#: ../usr/lib/debian-plymouth-manager/dpm.py:320
 #, python-format
 msgid "Start installing theme: %(theme)s"
 msgstr "Rozpocznij instalację motywu: %(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:335
+#: ../usr/lib/debian-plymouth-manager/dpm.py:332
 #, python-format
 msgid "User cancel install theme: %(theme)s"
 msgstr "Instalacja motywu skasowana przez użytkownika: %(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:337
-#: ../usr/lib/debian-plymouth-manager/dpm.py:364
-#: ../usr/lib/debian-plymouth-manager/dpm.py:388
+#: ../usr/lib/debian-plymouth-manager/dpm.py:334
+#: ../usr/lib/debian-plymouth-manager/dpm.py:361
+#: ../usr/lib/debian-plymouth-manager/dpm.py:385
 #, python-format
 msgid "%(act1)s%(act2)s theme"
 msgstr "%(act1)s%(act2)s motywu"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:338
+#: ../usr/lib/debian-plymouth-manager/dpm.py:335
 #, python-format
 msgid ""
 "The package cannot be installed: %(pck)s\n"
@@ -163,15 +164,15 @@ msgstr ""
 "Pakiet nie może być zainstalowany: %(pck)s\n"
 "Spróbuj użyć apt"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:343
+#: ../usr/lib/debian-plymouth-manager/dpm.py:340
 msgid "remove"
 msgstr "usuń"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:346
+#: ../usr/lib/debian-plymouth-manager/dpm.py:343
 msgid "Remove theme"
 msgstr "Usuń motyw"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:346
+#: ../usr/lib/debian-plymouth-manager/dpm.py:343
 #, python-format
 msgid ""
 "Continue removing theme:\n"
@@ -180,17 +181,17 @@ msgstr ""
 "Usuwanie motywu w toku:\n"
 "%(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:352
+#: ../usr/lib/debian-plymouth-manager/dpm.py:349
 #, python-format
 msgid "Start removing theme: %(theme)s"
 msgstr "Rozpocznij usuwanie motywu: %(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:362
+#: ../usr/lib/debian-plymouth-manager/dpm.py:359
 #, python-format
 msgid "User cancel remove theme: %(theme)s"
 msgstr "Usuwanie motywu skasowane przez użytkownika: %(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:365
+#: ../usr/lib/debian-plymouth-manager/dpm.py:362
 #, python-format
 msgid ""
 "The package cannot be removed: %(pck)s\n"
@@ -201,7 +202,7 @@ msgstr ""
 "Jest on częścią metapakietu.\n"
 "Spróbuj użyć apt"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:390
+#: ../usr/lib/debian-plymouth-manager/dpm.py:387
 #, python-format
 msgid ""
 "Could not %(action)s theme:\n"
@@ -218,7 +219,7 @@ msgstr ""
 "Komunikat błędu:\n"
 "%(err)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:392
+#: ../usr/lib/debian-plymouth-manager/dpm.py:389
 #, python-format
 msgid ""
 "%(action)s successfully of:\n"
@@ -227,16 +228,16 @@ msgstr ""
 "%(action)s zrealizowane:\n"
 "%(pck)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:404
+#: ../usr/lib/debian-plymouth-manager/dpm.py:401
 #, python-format
 msgid "Save grub resolution: %(res)s"
 msgstr "Zapisz rozdzielczość grub: %(res)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:423
+#: ../usr/lib/debian-plymouth-manager/dpm.py:420
 msgid "Grub resolution"
 msgstr "Rozdzielczość grub"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:424
+#: ../usr/lib/debian-plymouth-manager/dpm.py:421
 #, python-format
 msgid "Grub resolution saved: %(res)s"
 msgstr "Zapisano rozdzielczość grub: %(res)s"
@@ -255,16 +256,20 @@ msgid ""
 "Debian Plymouth Manager cannot be started in a live environment\n"
 "You can use the --force argument to start DPM in a live environment"
 msgstr ""
+"Menedżer Plymouth Debiana nie może być uruchomiony w środowisku \"live\". "
+"Możesz użyć argumentu --force aby wymusić uruchomienie DPM w tym środowisku."
 
 #: ../usr/lib/debian-plymouth-manager/main.py:81
 msgid "Unexpected error"
-msgstr ""
+msgstr "Niespodziewany błąd"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:82
 msgid ""
 "Debian Plymouth Manager has failed with the following unexpected error.\n"
 "Please submit a bug report!"
 msgstr ""
+"Menedżer Plymouth Debiana zakończył działanie z powodu nieoczekiwanego "
+"błędu. Wyślij proszę raport o błędzie. "
 
 #: ../usr/lib/debian-plymouth-manager/execapt.py:26
 #, python-format

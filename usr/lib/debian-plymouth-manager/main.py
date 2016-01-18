@@ -2,7 +2,7 @@
 
 import sys
 sys.path.insert(1, '/usr/lib/debian-plymouth-manager')
-from gi.repository import Gtk
+from gi.repository import Gtk, GObject
 from dpm import DPM
 import os
 import getopt
@@ -90,6 +90,11 @@ sys.excepthook = uncaught_excepthook
 if __name__ == "__main__":
     # Create an instance of our GTK application
     try:
+        # Calling GObject.threads_init() is not needed for PyGObject 3.10.2+
+        # Check with print (sys.version)
+        # Debian Jessie: 3.4.2
+        GObject.threads_init()
+
         DPM()
         Gtk.main()
     except KeyboardInterrupt:

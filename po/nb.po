@@ -3,35 +3,36 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Anders Dalen <anders@andersdalen.no>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: debian-plymouth-manager\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-18 17:41+0100\n"
-"PO-Revision-Date: 2015-10-22 05:33+0000\n"
-"Last-Translator: Arjen Balfoort <schoelje@solydxk.com>\n"
-"Language-Team: Czech (http://www.transifex.com/solydxk/debian-plymouth-"
-"manager/language/cs/)\n"
-"Language: cs\n"
+"PO-Revision-Date: 2016-01-15 20:10+0000\n"
+"Last-Translator: Anders Dalen <anders@andersdalen.no>\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/solydxk/debian-"
+"plymouth-manager/language/nb/)\n"
+"Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:50
 #: ../usr/lib/debian-plymouth-manager/main.py:30
 #: ../usr/share/kde4/services/kcm_debian_plymouth_manager.desktop.in.h:1
 #: ../usr/share/applications/debian-plymouth-manager.desktop.in.h:1
 msgid "Debian Plymouth Manager"
-msgstr ""
+msgstr "Debian Plymouth Manager"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:52
 msgid "Plymouth"
-msgstr ""
+msgstr "Plymouth"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:53
 msgid "Themes"
-msgstr "Témata"
+msgstr "Temaer"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:54
 msgid "Grub"
@@ -39,45 +40,45 @@ msgstr "Grub"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:61
 msgid "None: no plymouth splash"
-msgstr ""
+msgstr "Ingen: ikke noe oppstartsbilde"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:103
 msgid "Set Plymouth Theme"
-msgstr "Nastavení Plymouth Thématu"
+msgstr "Sett Plymouth Tema"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:104
 #: ../usr/lib/debian-plymouth-manager/dpm.py:254
 msgid "Preview"
-msgstr "Náhled"
+msgstr "Forhåndsvisning"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:110
 #: ../usr/lib/debian-plymouth-manager/dpm.py:161
 msgid "Installed Themes"
-msgstr "Instalovaná témata"
+msgstr "Installerte temaer"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:129
 msgid "Resolutions"
-msgstr "Rozlišení"
+msgstr "Oppløsning"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:149
 msgid "Install Theme"
-msgstr "Instalace tématu"
+msgstr "Installer tema"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:150
 msgid "Remove Theme"
-msgstr "Odebrání tématu"
+msgstr "Fjern tema"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:156
 msgid "Available Themes"
-msgstr "Dostupná témata"
+msgstr "Tilgjengelige tema"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:174
 msgid "Set Grub Resolution"
-msgstr "Nastavení Grub rozlišení"
+msgstr "Sett oppløsning for Grub"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:180
 msgid "Grub Resolutions"
-msgstr "Grub rozlišení"
+msgstr "Oppløsning for Grub"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:255
 #, python-format
@@ -87,24 +88,24 @@ msgid ""
 "Theme: %(theme)s\n"
 "Resolution: %(res)s"
 msgstr ""
-"Před náhledem musíte nejprve uložit:\n"
+"Du må lagre før du kan forhåndsvise:\n"
 "\n"
-"Téma: %(theme)s\n"
-"Rozlišení: %(res)s"
+"Tema: %(theme)s\n"
+"Oppløsning: %(res)s"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:266
 #, python-format
 msgid "Save setting: %(theme)s (%(res)s)"
-msgstr "Uložit nastavení: %(theme)s (%(res)s)"
+msgstr "Lagre innstillinger: %(theme)s (%(res)s)"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:292
 #, python-format
 msgid "Done saving settings: %(theme)s (%(res)s)"
-msgstr "Nastavení uloženo: %(theme)s (%(res)s)"
+msgstr "Ferdig med å lagre innstillinger: %(theme)s (%(res)s)"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:294
 msgid "Save settings"
-msgstr "Uložit nastvení"
+msgstr "Lagre innstillinger"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:295
 #, python-format
@@ -114,18 +115,18 @@ msgid ""
 "\n"
 "Done"
 msgstr ""
-"Téma: %(theme)s\n"
-"Rozlišení: %(res)s\n"
+"Tema: %(theme)s\n"
+"Oppløsning: %(res)s\n"
 "\n"
-"Hotovo"
+"Ferdig"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:313
 msgid "install"
-msgstr "Instalace"
+msgstr "installer"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:316
 msgid "Install theme"
-msgstr "Instalace tématu"
+msgstr "Installer tema"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:316
 #, python-format
@@ -133,25 +134,25 @@ msgid ""
 "Continue installing theme:\n"
 "%(theme)s"
 msgstr ""
-"Pokračovat v instalaci tématu:\n"
+"Fortsett å installere tema:\n"
 "%(theme)s"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:320
 #, python-format
 msgid "Start installing theme: %(theme)s"
-msgstr "Start instalace tématu: %(theme)s"
+msgstr "Begynn å installere tema: %(theme)s"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:332
 #, python-format
 msgid "User cancel install theme: %(theme)s"
-msgstr "Uživatelem přerušená instalace tématu: %(theme)s"
+msgstr "Installering av tema avbrutt av bruker: %(theme)s"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:334
 #: ../usr/lib/debian-plymouth-manager/dpm.py:361
 #: ../usr/lib/debian-plymouth-manager/dpm.py:385
 #, python-format
 msgid "%(act1)s%(act2)s theme"
-msgstr "Téma %(act1)s%(act2)s"
+msgstr "%(act1)s%(act2)s tema"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:335
 #, python-format
@@ -159,16 +160,16 @@ msgid ""
 "The package cannot be installed: %(pck)s\n"
 "Try apt instead"
 msgstr ""
-"Balíček: %(pck)s nelze nainstalovat\n"
-"Zkuste použít apt"
+"Pakken kan ikke installeres: %(pck)s\n"
+"Prøv apt i stedet"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:340
 msgid "remove"
-msgstr "odebrat"
+msgstr "fjern"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:343
 msgid "Remove theme"
-msgstr "Odebrat téma"
+msgstr "Fjern tema"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:343
 #, python-format
@@ -176,18 +177,18 @@ msgid ""
 "Continue removing theme:\n"
 "%(theme)s"
 msgstr ""
-"Pokračovat v odebrání tématu:\n"
+"Fortsett å fjerne tema:\n"
 "%(theme)s"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:349
 #, python-format
 msgid "Start removing theme: %(theme)s"
-msgstr "Začít odebrání tématu: %(theme)s"
+msgstr "Start fjerning av tema: %(theme)s"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:359
 #, python-format
 msgid "User cancel remove theme: %(theme)s"
-msgstr "Uživatelem přerušené odebírání tématu: %(theme)s"
+msgstr "Fjerning av tema avbrutt av bruker: %(theme)s"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:362
 #, python-format
@@ -196,9 +197,9 @@ msgid ""
 "It is part of a meta package.\n"
 "Try apt instead"
 msgstr ""
-"Nelze odebrat balíček: %(pck)s\n"
-"Je částí meta balíčku.\n"
-"Zkuste použít apt"
+"Pakken kunne ikke fjernes: %(pck)s\n"
+"Den er en del av en metapakke.\n"
+"Prøv apt i stedet"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:387
 #, python-format
@@ -210,11 +211,11 @@ msgid ""
 "Error message:\n"
 "%(err)s"
 msgstr ""
-"Nelze %(action)s téma:\n"
+"Kunne ikke %(action)s tema:\n"
 "%(theme)s\n"
-"Zkuste použít apt.\n"
+"Prøv apt i stedet.\n"
 "\n"
-"Chybová zpráva:\n"
+"Feilmelding:\n"
 "%(err)s"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:389
@@ -223,49 +224,53 @@ msgid ""
 "%(action)s successfully of:\n"
 "%(pck)s"
 msgstr ""
-"%(action)s úspěšné u:\n"
+"%(action)s vellykket av:\n"
 "%(pck)s"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:401
 #, python-format
 msgid "Save grub resolution: %(res)s"
-msgstr "Uložit rozlišení grub: %(res)s"
+msgstr "Lagre grub-oppløsning: %(res)s"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:420
 msgid "Grub resolution"
-msgstr "Rozlišení Grub"
+msgstr "Gru-oppløsning"
 
 #: ../usr/lib/debian-plymouth-manager/dpm.py:421
 #, python-format
 msgid "Grub resolution saved: %(res)s"
-msgstr "Uloženo rozlišení Grub : %(res)s"
+msgstr "Gru-oppløsning lagret: %(res)s"
 
 #: ../usr/lib/debian-plymouth-manager/grub.py:46
 #: ../usr/lib/debian-plymouth-manager/plymouth.py:136
 msgid "Neither grub nor burg found in /etc/default"
-msgstr "Ani grub ani burg nenalezen v /etc/default"
+msgstr "Hverken grub eller burg funnet i /etc/default"
 
 #: ../usr/lib/debian-plymouth-manager/grub.py:71
 msgid "No grub or burg found"
-msgstr "Ani grub ani burg nenalezen"
+msgstr "Ingen grub eller burg funnet"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:31
 msgid ""
 "Debian Plymouth Manager cannot be started in a live environment\n"
 "You can use the --force argument to start DPM in a live environment"
 msgstr ""
+"Debian Plymouth Manager kan ikke startes i et live-miljø\n"
+"Du kan bruke --force bryteren for  starte DPM i et live-miljø"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:81
 msgid "Unexpected error"
-msgstr ""
+msgstr "Uventet feil"
 
 #: ../usr/lib/debian-plymouth-manager/main.py:82
 msgid ""
 "Debian Plymouth Manager has failed with the following unexpected error.\n"
 "Please submit a bug report!"
 msgstr ""
+"Debian Plymouth Manager har feilet med følgende uventede feil.\n"
+"Vær snill å sende en feilrapport!"
 
 #: ../usr/lib/debian-plymouth-manager/execapt.py:26
 #, python-format
 msgid "Error returned: %(err)s"
-msgstr "Vrácena chyba: %(err)s"
+msgstr "Feilmelding: %(err)s"

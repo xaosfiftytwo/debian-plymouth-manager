@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-from gi.repository import Gtk, GObject, GLib
+from gi.repository import Gtk, GObject
 import utils
 import threading
 from queue import Queue
@@ -19,9 +19,6 @@ menuItems = ['themes', 'install', 'grub']
 import gettext
 from gettext import gettext as _
 gettext.textdomain('debian-plymouth-manager')
-
-# Need to initiate threads for Gtk
-GObject.threads_init()
 
 
 #class for the main window
@@ -270,7 +267,7 @@ class DPM:
         # Start saving in a separate thread
         t = PlymouthSave(self.log, self.selectedTheme, self.selectedResolution)
         t.start()
-        GLib.timeout_add(250, self.checkSaveThread)
+        GObject.timeout_add(250, self.checkSaveThread)
 
     def checkSaveThread(self):
         #print 'Thread count = ' + str(threading.active_count())
@@ -330,7 +327,7 @@ class DPM:
                 self.queue.join()
 
                 #self.log.write("Check every 250 miliseconds if thread is still active", 'dpm.installTheme')
-                GLib.timeout_add(250, self.checkAptThread)
+                GObject.timeout_add(250, self.checkAptThread)
             else:
                 self.log.write(_("User cancel install theme: %(theme)s") % { "theme": self.threadPackage }, 'dpm.installTheme', 'info')
         else:
@@ -357,7 +354,7 @@ class DPM:
                 self.queue.join()
 
                 #self.log.write("Check every 250 miliseconds if thread is still active", 'dpm.removeTheme')
-                GLib.timeout_add(250, self.checkAptThread)
+                GObject.timeout_add(250, self.checkAptThread)
             else:
                 self.log.write(_("User cancel remove theme: %(theme)s") % { "theme": self.threadPackage }, 'dpm.removeTheme', 'info')
         else:
@@ -405,7 +402,7 @@ class DPM:
         # Start saving in a separate thread
         t = GrubSave(self.log, self.selectedGrubResolution)
         t.start()
-        GLib.timeout_add(250, self.checkGrubThread)
+        GObject.timeout_add(250, self.checkGrubThread)
 
     def checkGrubThread(self):
         # As long there's a thread active, keep spinning

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: debian-plymouth-manager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-03 16:48+0100\n"
+"POT-Creation-Date: 2016-01-18 17:41+0100\n"
 "PO-Revision-Date: 2015-10-22 05:33+0000\n"
 "Last-Translator: Arjen Balfoort <schoelje@solydxk.com>\n"
 "Language-Team: Greek (http://www.transifex.com/solydxk/debian-plymouth-"
@@ -18,68 +18,68 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:53
+#: ../usr/lib/debian-plymouth-manager/dpm.py:50
 #: ../usr/lib/debian-plymouth-manager/main.py:30
 #: ../usr/share/kde4/services/kcm_debian_plymouth_manager.desktop.in.h:1
 #: ../usr/share/applications/debian-plymouth-manager.desktop.in.h:1
 msgid "Debian Plymouth Manager"
 msgstr ""
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:55
+#: ../usr/lib/debian-plymouth-manager/dpm.py:52
 msgid "Plymouth"
 msgstr ""
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:56
+#: ../usr/lib/debian-plymouth-manager/dpm.py:53
 msgid "Themes"
 msgstr "Θέματα"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:57
+#: ../usr/lib/debian-plymouth-manager/dpm.py:54
 msgid "Grub"
 msgstr "GRUB"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:64
+#: ../usr/lib/debian-plymouth-manager/dpm.py:61
 msgid "None: no plymouth splash"
 msgstr ""
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:106
+#: ../usr/lib/debian-plymouth-manager/dpm.py:103
 msgid "Set Plymouth Theme"
 msgstr "Επιλογή θέματος Plymouth"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:107
-#: ../usr/lib/debian-plymouth-manager/dpm.py:257
+#: ../usr/lib/debian-plymouth-manager/dpm.py:104
+#: ../usr/lib/debian-plymouth-manager/dpm.py:254
 msgid "Preview"
 msgstr "Προεπισκόπηση"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:113
-#: ../usr/lib/debian-plymouth-manager/dpm.py:164
+#: ../usr/lib/debian-plymouth-manager/dpm.py:110
+#: ../usr/lib/debian-plymouth-manager/dpm.py:161
 msgid "Installed Themes"
 msgstr "Εγκατεστημένα θέματα"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:132
+#: ../usr/lib/debian-plymouth-manager/dpm.py:129
 msgid "Resolutions"
 msgstr "Αναλύσεις"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:152
+#: ../usr/lib/debian-plymouth-manager/dpm.py:149
 msgid "Install Theme"
 msgstr "Εγκατάσταση θέματος"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:153
+#: ../usr/lib/debian-plymouth-manager/dpm.py:150
 msgid "Remove Theme"
 msgstr "Αφαίρεση Θέματος"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:159
+#: ../usr/lib/debian-plymouth-manager/dpm.py:156
 msgid "Available Themes"
 msgstr "Διαθέσιμα θέματα"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:177
+#: ../usr/lib/debian-plymouth-manager/dpm.py:174
 msgid "Set Grub Resolution"
 msgstr "Ρύθμιση ανάλυσης οθόνης GRUB"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:183
+#: ../usr/lib/debian-plymouth-manager/dpm.py:180
 msgid "Grub Resolutions"
 msgstr "Ανάλυση οθόνης GRUB"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:258
+#: ../usr/lib/debian-plymouth-manager/dpm.py:255
 #, python-format
 msgid ""
 "You must save before you can preview:\n"
@@ -92,21 +92,21 @@ msgstr ""
 "Θέμα: %(theme)s\n"
 "Ανάλυση: %(res)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:269
+#: ../usr/lib/debian-plymouth-manager/dpm.py:266
 #, python-format
 msgid "Save setting: %(theme)s (%(res)s)"
 msgstr "Αποθήκευση ρύθμισης: %(theme)s (%(res)s)"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:295
+#: ../usr/lib/debian-plymouth-manager/dpm.py:292
 #, python-format
 msgid "Done saving settings: %(theme)s (%(res)s)"
 msgstr "Ολοκληρώθηκε η αποθήκευση ρυθμίσεων: %(theme)s (%(res)s)"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:297
+#: ../usr/lib/debian-plymouth-manager/dpm.py:294
 msgid "Save settings"
 msgstr "Αποθήκευση ρυθμίσεων"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:298
+#: ../usr/lib/debian-plymouth-manager/dpm.py:295
 #, python-format
 msgid ""
 "Theme: %(theme)s\n"
@@ -119,15 +119,15 @@ msgstr ""
 "\n"
 "Ολοκληρώθηκε"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:316
+#: ../usr/lib/debian-plymouth-manager/dpm.py:313
 msgid "install"
 msgstr "Εγκατάσταση"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:319
+#: ../usr/lib/debian-plymouth-manager/dpm.py:316
 msgid "Install theme"
 msgstr "Εγκατάσταση θέματος"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:319
+#: ../usr/lib/debian-plymouth-manager/dpm.py:316
 #, python-format
 msgid ""
 "Continue installing theme:\n"
@@ -136,24 +136,24 @@ msgstr ""
 "Συνέχεια εγκατάστασης θέματος:\n"
 "%(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:323
+#: ../usr/lib/debian-plymouth-manager/dpm.py:320
 #, python-format
 msgid "Start installing theme: %(theme)s"
 msgstr "Έναρξη εγκατάστασης θέματος: %(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:335
+#: ../usr/lib/debian-plymouth-manager/dpm.py:332
 #, python-format
 msgid "User cancel install theme: %(theme)s"
 msgstr "Ακύρωση εγκατάστασης θέματος από τον χρήστη: %(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:337
-#: ../usr/lib/debian-plymouth-manager/dpm.py:364
-#: ../usr/lib/debian-plymouth-manager/dpm.py:388
+#: ../usr/lib/debian-plymouth-manager/dpm.py:334
+#: ../usr/lib/debian-plymouth-manager/dpm.py:361
+#: ../usr/lib/debian-plymouth-manager/dpm.py:385
 #, python-format
 msgid "%(act1)s%(act2)s theme"
 msgstr "%(act1)s%(act2)s θέμα"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:338
+#: ../usr/lib/debian-plymouth-manager/dpm.py:335
 #, python-format
 msgid ""
 "The package cannot be installed: %(pck)s\n"
@@ -162,15 +162,15 @@ msgstr ""
 "Το πακέτο δεν μπορεί να εγκατασταθεί: %(pck)s\n"
 "Δοκιμάστε με το APT"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:343
+#: ../usr/lib/debian-plymouth-manager/dpm.py:340
 msgid "remove"
 msgstr "αφαίρεση"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:346
+#: ../usr/lib/debian-plymouth-manager/dpm.py:343
 msgid "Remove theme"
 msgstr "Αφαίρεση θέματος"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:346
+#: ../usr/lib/debian-plymouth-manager/dpm.py:343
 #, python-format
 msgid ""
 "Continue removing theme:\n"
@@ -179,17 +179,17 @@ msgstr ""
 "Συνέχεια αφαίρεσης θέματος:\n"
 "%(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:352
+#: ../usr/lib/debian-plymouth-manager/dpm.py:349
 #, python-format
 msgid "Start removing theme: %(theme)s"
 msgstr "Έναρξη αφαίρεσης θέματος: %(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:362
+#: ../usr/lib/debian-plymouth-manager/dpm.py:359
 #, python-format
 msgid "User cancel remove theme: %(theme)s"
 msgstr "Ακύρωση αφαίρεσης θέματος από τον χρήστη: %(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:365
+#: ../usr/lib/debian-plymouth-manager/dpm.py:362
 #, python-format
 msgid ""
 "The package cannot be removed: %(pck)s\n"
@@ -200,7 +200,7 @@ msgstr ""
 "Είναι μέρος τού μετα-πακέτου.\n"
 "Δοκιμάστε το apt"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:390
+#: ../usr/lib/debian-plymouth-manager/dpm.py:387
 #, python-format
 msgid ""
 "Could not %(action)s theme:\n"
@@ -217,7 +217,7 @@ msgstr ""
 "Μύνημα λάθους:\n"
 "%(err)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:392
+#: ../usr/lib/debian-plymouth-manager/dpm.py:389
 #, python-format
 msgid ""
 "%(action)s successfully of:\n"
@@ -226,16 +226,16 @@ msgstr ""
 "%(action)s επιτυχώς των:\n"
 "%(pck)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:404
+#: ../usr/lib/debian-plymouth-manager/dpm.py:401
 #, python-format
 msgid "Save grub resolution: %(res)s"
 msgstr "Αποθήκευση ανάλυσης grub: %(res)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:423
+#: ../usr/lib/debian-plymouth-manager/dpm.py:420
 msgid "Grub resolution"
 msgstr "Ανάλυση οθόνης GRUB"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:424
+#: ../usr/lib/debian-plymouth-manager/dpm.py:421
 #, python-format
 msgid "Grub resolution saved: %(res)s"
 msgstr "Η ανάλυση οθόνης τού GRUB αποθηκεύτηκε:: %(res)s"

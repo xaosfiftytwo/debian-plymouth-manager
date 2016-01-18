@@ -1,8 +1,20 @@
-debian-plymouth-manager (2.3.7) debian; urgency=low
+debian-plymouth-manager (2.4.0) debian; urgency=low
 
   * Updated translations
 
- -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Tue, 03 Nov 2015 17:00:00 +0100
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Mon, 18 Jan 2016 18:00:00 +0100
+
+debian-plymouth-manager (2.3.9) debian; urgency=low
+
+  * Updated translations
+
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Fri, 11 Dec 2015 10:00:00 +0100
+
+debian-plymouth-manager (2.3.8) debian; urgency=low
+
+  * Updated translations
+
+ -- Arjen Balfoort <arjenbalfoort@solydxk.com>  Thu, 26 Nov 2015 12:00:00 +0100
 
 debian-plymouth-manager (2.3.6) debian; urgency=low
 
