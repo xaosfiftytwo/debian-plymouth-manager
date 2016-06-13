@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: debian-plymouth-manager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-18 17:41+0100\n"
+"POT-Creation-Date: 2016-06-08 13:16+0200\n"
 "PO-Revision-Date: 2015-12-09 17:59+0000\n"
 "Last-Translator: ilu lu\n"
 "Language-Team: German (http://www.transifex.com/solydxk/debian-plymouth-"
@@ -42,45 +42,45 @@ msgstr "Bootmanager Grub(2)"
 msgid "None: no plymouth splash"
 msgstr "Kein Plymouth Startbild"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:103
+#: ../usr/lib/debian-plymouth-manager/dpm.py:104
 msgid "Set Plymouth Theme"
 msgstr "Setze Plymouth Thema"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:104
-#: ../usr/lib/debian-plymouth-manager/dpm.py:254
+#: ../usr/lib/debian-plymouth-manager/dpm.py:105
+#: ../usr/lib/debian-plymouth-manager/dpm.py:255
 msgid "Preview"
 msgstr "Vorschau"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:110
-#: ../usr/lib/debian-plymouth-manager/dpm.py:161
+#: ../usr/lib/debian-plymouth-manager/dpm.py:111
+#: ../usr/lib/debian-plymouth-manager/dpm.py:162
 msgid "Installed Themes"
 msgstr "Installierte Themen"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:129
+#: ../usr/lib/debian-plymouth-manager/dpm.py:130
 msgid "Resolutions"
 msgstr "Auflösung(en)"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:149
+#: ../usr/lib/debian-plymouth-manager/dpm.py:150
 msgid "Install Theme"
 msgstr "Installiere Thema"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:150
+#: ../usr/lib/debian-plymouth-manager/dpm.py:151
 msgid "Remove Theme"
 msgstr "Entferne Thema"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:156
+#: ../usr/lib/debian-plymouth-manager/dpm.py:157
 msgid "Available Themes"
 msgstr "Verfügbare Themen"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:174
+#: ../usr/lib/debian-plymouth-manager/dpm.py:175
 msgid "Set Grub Resolution"
 msgstr "Setze Auflösung für Grub(2)"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:180
+#: ../usr/lib/debian-plymouth-manager/dpm.py:181
 msgid "Grub Resolutions"
 msgstr "Auflösungen für Grub(2)"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:255
+#: ../usr/lib/debian-plymouth-manager/dpm.py:256
 #, python-format
 msgid ""
 "You must save before you can preview:\n"
@@ -93,21 +93,21 @@ msgstr ""
 "Thema: %(theme)s\n"
 "Auflösung: %(res)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:266
+#: ../usr/lib/debian-plymouth-manager/dpm.py:267
 #, python-format
 msgid "Save setting: %(theme)s (%(res)s)"
 msgstr "Speichere Thema und Auflösung: %(theme)s (%(res)s)"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:292
+#: ../usr/lib/debian-plymouth-manager/dpm.py:291
 #, python-format
 msgid "Done saving settings: %(theme)s (%(res)s)"
 msgstr "Speicherung für Thema und Auflösung beendet: %(theme)s (%(res)s)"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:294
+#: ../usr/lib/debian-plymouth-manager/dpm.py:293
 msgid "Save settings"
 msgstr "Einstellung(en) speichern"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:295
+#: ../usr/lib/debian-plymouth-manager/dpm.py:294
 #, python-format
 msgid ""
 "Theme: %(theme)s\n"
@@ -120,15 +120,15 @@ msgstr ""
 "\n"
 "Fertig"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:313
+#: ../usr/lib/debian-plymouth-manager/dpm.py:312
 msgid "install"
 msgstr "installiere"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:316
+#: ../usr/lib/debian-plymouth-manager/dpm.py:315
 msgid "Install theme"
 msgstr "Thema installieren "
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:316
+#: ../usr/lib/debian-plymouth-manager/dpm.py:315
 #, python-format
 msgid ""
 "Continue installing theme:\n"
@@ -137,24 +137,24 @@ msgstr ""
 "Die Installation wird fortgesetzt:\n"
 "%(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:320
+#: ../usr/lib/debian-plymouth-manager/dpm.py:319
 #, python-format
 msgid "Start installing theme: %(theme)s"
 msgstr "Starte Installation für Thema: %(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:332
+#: ../usr/lib/debian-plymouth-manager/dpm.py:331
 #, python-format
 msgid "User cancel install theme: %(theme)s"
 msgstr "Abbruch durch den Benutzer: Thema-Installation %(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:334
-#: ../usr/lib/debian-plymouth-manager/dpm.py:361
-#: ../usr/lib/debian-plymouth-manager/dpm.py:385
+#: ../usr/lib/debian-plymouth-manager/dpm.py:333
+#: ../usr/lib/debian-plymouth-manager/dpm.py:360
+#: ../usr/lib/debian-plymouth-manager/dpm.py:384
 #, python-format
 msgid "%(act1)s%(act2)s theme"
 msgstr "%(act1)s%(act2)s Thema"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:335
+#: ../usr/lib/debian-plymouth-manager/dpm.py:334
 #, python-format
 msgid ""
 "The package cannot be installed: %(pck)s\n"
@@ -163,15 +163,15 @@ msgstr ""
 "Paket kann nicht installiert werden: %(pck)s\n"
 "Bitte mit apt-get install PAKETNAME versuchen."
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:340
+#: ../usr/lib/debian-plymouth-manager/dpm.py:339
 msgid "remove"
 msgstr "entfernen"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:343
+#: ../usr/lib/debian-plymouth-manager/dpm.py:342
 msgid "Remove theme"
 msgstr "Thema entfernen"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:343
+#: ../usr/lib/debian-plymouth-manager/dpm.py:342
 #, python-format
 msgid ""
 "Continue removing theme:\n"
@@ -180,17 +180,17 @@ msgstr ""
 "Entfernung des Themas wird fortgesetzt:\n"
 "%(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:349
+#: ../usr/lib/debian-plymouth-manager/dpm.py:348
 #, python-format
 msgid "Start removing theme: %(theme)s"
 msgstr "Starte Entfernung für Thema: %(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:359
+#: ../usr/lib/debian-plymouth-manager/dpm.py:358
 #, python-format
 msgid "User cancel remove theme: %(theme)s"
 msgstr "Abbruch durch Benutzer: Entfernung %(theme)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:362
+#: ../usr/lib/debian-plymouth-manager/dpm.py:361
 #, python-format
 msgid ""
 "The package cannot be removed: %(pck)s\n"
@@ -201,7 +201,7 @@ msgstr ""
 "Paket ist Teil eines Metapaketes.\n"
 "Stattdessen mit apt versuchen."
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:387
+#: ../usr/lib/debian-plymouth-manager/dpm.py:386
 #, python-format
 msgid ""
 "Could not %(action)s theme:\n"
@@ -219,7 +219,7 @@ msgstr ""
 "Fehlermeldung\n"
 "%(err)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:389
+#: ../usr/lib/debian-plymouth-manager/dpm.py:388
 #, python-format
 msgid ""
 "%(action)s successfully of:\n"
@@ -228,26 +228,26 @@ msgstr ""
 "%(action)s erfolgreich für:\n"
 "%(pck)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:401
+#: ../usr/lib/debian-plymouth-manager/dpm.py:400
 #, python-format
 msgid "Save grub resolution: %(res)s"
 msgstr "Speichere Grub-Auflösung: %(res)s"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:420
+#: ../usr/lib/debian-plymouth-manager/dpm.py:419
 msgid "Grub resolution"
 msgstr "Grub-Auflösung"
 
-#: ../usr/lib/debian-plymouth-manager/dpm.py:421
+#: ../usr/lib/debian-plymouth-manager/dpm.py:420
 #, python-format
 msgid "Grub resolution saved: %(res)s"
 msgstr "Grub-Auflösung gespeichert: %(res)s"
 
-#: ../usr/lib/debian-plymouth-manager/grub.py:46
+#: ../usr/lib/debian-plymouth-manager/grub.py:47
 #: ../usr/lib/debian-plymouth-manager/plymouth.py:136
 msgid "Neither grub nor burg found in /etc/default"
 msgstr "Weder Grub noch Burg in /etc/default gefunden"
 
-#: ../usr/lib/debian-plymouth-manager/grub.py:71
+#: ../usr/lib/debian-plymouth-manager/grub.py:72
 msgid "No grub or burg found"
 msgstr "Grub oder Burg nicht gefunden"
 

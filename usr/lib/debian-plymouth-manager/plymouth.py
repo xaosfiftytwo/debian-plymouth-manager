@@ -183,6 +183,9 @@ class PlymouthSave(threading.Thread):
                 self.log.write("Set nosplash", 'PlymouthSave.run', 'debug')
                 cmd = "sed -i -e '/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/\"$/ nosplash\"/' {}".format(self.boot)
                 utils.shell_exec(cmd)
+                # Comment the GRUB_GFXMODE line if needed
+                cmd = "sed -i '/GRUB_GFXMODE=/s/^/#/' %s" % self.boot
+                utils.shell_exec(cmd)
             else:
                 self.log.write("Set splash", 'PlymouthSave.run', 'debug')
                 cmd = "sed -i -e '/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/\"$/ splash\"/' {}".format(self.boot)

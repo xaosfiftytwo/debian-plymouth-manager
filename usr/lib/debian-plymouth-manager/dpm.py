@@ -77,6 +77,7 @@ class DPM:
         self.availableThemes = self.plymouth.getAvailableThemes()
         self.tv1Handler = TreeViewHandler(self.tv1, self.log)
         self.tv2Handler = TreeViewHandler(self.tv2, self.log)
+        self.force = utils.get_apt_force()
 
         self.on_btnPlymouth_clicked()
 
@@ -279,9 +280,7 @@ class DPM:
         # Get the new data
         self.pbDPM.set_fraction(0)
         self.currentTheme = self.plymouth.getCurrentTheme()
-        self.currentResolution = None
-        if self.currentTheme != self.noPlymouth:
-            self.currentResolution = self.plymouth.getCurrentResolution()
+        self.currentResolution = self.plymouth.getCurrentResolution()
         self.installedThemes = self.plymouth.getInstalledThemes()
         self.availableThemes = self.plymouth.getAvailableThemes()
         if self.selectedMenuItem == menuItems[0]:
@@ -320,7 +319,7 @@ class DPM:
                 self.log.write(_("Start installing theme: %(theme)s") % { "theme": self.threadPackage }, 'dpm.installTheme', 'info')
 
                 #  Start apt in a separate thread
-                cmd = 'apt-get install -y --force-yes %s' % self.threadPackage
+                cmd = 'apt-get install -y %s %s' % (self.force, self.threadPackage)
                 t = ExecuteApt(self.log, cmd, self.queue)
                 t.daemon = True
                 t.start()
@@ -347,7 +346,7 @@ class DPM:
 
                 # Start apt in a separate thread
                 self.log.write(_("Start removing theme: %(theme)s") % { "theme": self.threadPackage }, 'dpm.removeTheme', 'info')
-                cmd = 'apt-get purge -y --force-yes %s' % self.threadPackage
+                cmd = 'apt-get purge -y %s %s' % (self.force, self.threadPackage)
                 t = ExecuteApt(self.log, cmd, self.queue)
                 t.daemon = True
                 t.start()

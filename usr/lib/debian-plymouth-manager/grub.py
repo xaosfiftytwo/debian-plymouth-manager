@@ -39,8 +39,9 @@ class Grub():
                 # Search text for resolution
                 matchObj = re.search('^GRUB_GFXMODE=(.*)', line)
                 if matchObj:
-                    res = matchObj.group(1)
-                    self.log.write("Current grub resolution: %(res)s" % { "res": res }, 'grub.getCurrentResolution', 'debug')
+                    if matchObj.group(1).strip() != "":
+                        res = matchObj.group(1)
+                        self.log.write("Current grub resolution: %(res)s" % { "res": res }, 'grub.getCurrentResolution', 'debug')
                     break
         else:
             self.log.write(_("Neither grub nor burg found in /etc/default"), 'grub.getCurrentResolution', 'error')

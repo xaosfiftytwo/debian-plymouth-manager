@@ -243,6 +243,15 @@ def isRunningLive():
     return False
 
 
+def get_apt_force():
+    # --force-yes is deprecated in stretch
+    force = '--force-yes'
+    ver = strToNumber(getoutput("head -c 1 /etc/debian_version | sed 's/[a-zA-Z]/0/' 2>/dev/null || echo 0")[0])
+    if ver == 0 or ver > 8:
+        force = '--allow-downgrades --allow-remove-essential --allow-change-held-packages'
+    return force
+
+
 # Class to run commands in a thread and return the output in a queue
 class ExecuteThreadedCommands(threading.Thread):
 
